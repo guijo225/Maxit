@@ -1,0 +1,48 @@
+<!--pages/inscription/inscription.wxml-->
+<navigation-bar back="{{true}}" color="black" background="#FFF" ></navigation-bar>
+<view style="background-color: rgb(65, 63, 63); height: 0.25px;"></view>
+
+<view style="text-align : center ; font-weight:900; font-size: larger; margin-top: 20px;">Création de compte</view>
+
+<!-- box google et facebook -->
+<view style="display: flex; justify-content: space-between; margin : 30px">
+
+    <view style="align-items: center; display: flex; padding: 15px; border: solid 3rpx; border-radius: 10px;"> 
+        <image src="../../images/google.png" style="height: 20px; width: 20px; "></image> 
+        <text style="margin-left: 5px;">Avec Google</text> 
+    </view>
+
+    <view style="align-items: center; display: flex; padding: 15px; border: solid 3rpx;     border-radius: 10px;"> 
+        <image src="../../images/facebook.png" style="height: 30px; width: 30px; ">
+        </image> <text>Avec Facebook</text> 
+    </view>
+</view>
+
+<view style="background-color: rgb(65, 63, 63); height: 0.25px; margin-left: 50px ; margin-right: 50px"> 
+</view>
+<!-- Les champs du fomulaire  -->
+<form bindsubmit="">
+    <input type="text" placeholder="Nom" style="border: solid 3rpx; padding: 15px; margin: 20px; border-radius: 10px;"/>
+    <input type="text" placeholder="Prénom" style="border: solid 3rpx; padding: 15px; margin: 20px; border-radius: 10px;"/>
+    <input type="text" placeholder="Pseudo" style="border: solid 3rpx; padding: 15px; margin: 20px; border-radius: 10px;"/>
+    <picker mode="date" start="2015-09-01" end="2017-09-01" >
+    <view class="picker">     
+        <input type="date" placeholder="Date de Naissance" style="border: solid 3rpx; padding: 15px; margin: 20px; border-radius: 10px;"/>
+        </view>
+    </picker>
+    <input type="number" placeholder="Numéro de Téléphone" style="border: solid 3rpx; padding: 15px; margin: 20px; border-radius: 10px;"/>
+    <input type="file" placeholder="Ajouter votre pièce d'identité" style="border: solid 3rpx; padding: 15px; margin: 20px; border-radius: 10px;"/>
+
+    <label class="checkbox">
+    <checkbox value="" checked="" style="margin-left: 30px;"/> Conditions d'utilisations
+    </label>
+
+    <button style="margin-top: 30px ;color: white; background-color: rgb(255, 135, 23); font-weight: 400; " form-type="submit">Valider
+    </button>
+</form>
+<!-- Texte création de compte et se connecter -->
+<view style="text-align: center; margin-top: 20px;">Créer un compte ? 
+    <text style="color: rgb(255, 135, 23);" bind:tap="pageConnexion">Se connecter</text> 
+</view>
+
+
