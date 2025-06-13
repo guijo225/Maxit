@@ -1,0 +1,16 @@
+/* App.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+#root {
+  height: 100vh;
+}
+
+* {
+  box-sizing: inherit;
+}

@@ -1,0 +1,615 @@
+/* Variables pour les couleurs */
+:root {
+  --orange-primary: #ff6b00;
+  --text-dark: #333;
+  --text-medium: #666;
+  --border-light: #eee;
+  --bg-light: #f5f5f5;
+  --bg-white: #ffffff;
+  --shadow-light: rgba(0, 0, 0, 0.05);
+}
+
+/* Reset de base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Arial', sans-serif; /* Utilisez la police de caractères souhaitée */
+  line-height: 1.6;
+  color: var(--text-dark);
+}
+
+/* Layout principal */
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--bg-light);
+}
+
+/* Sidebar */
+.sidebar {
+  width: 280px; /* Un peu plus large pour l'image */
+  background-color: var(--bg-white);
+  box-shadow: 2px 0 10px var(--shadow-light);
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0; /* Padding global pour la sidebar */
+}
+
+.sidebar-header {
+  padding: 0 25px 20px; /* Ajuster le padding */
+  border-bottom: 1px solid var(--border-light);
+  margin-bottom: 20px;
+}
+
+.orange-logo {
+  width: 150px; /* Taille ajustée pour l'image */
+  height: auto;
+  display: block; /* Pour centrer si besoin, mais pas ici */
+  margin: 0; /* Supprimer les marges par défaut */
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 0; /* Le padding est sur les items */
+}
+
+.nav-section-title {
+  color: var(--text-medium);
+  font-size: 11px; /* Plus petit */
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 0 25px;
+  margin-bottom: 15px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 25px; /* Ajuster le padding */
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, border-left 0.2s ease-in-out;
+  border-left: 4px solid transparent; /* Bordure transparente par défaut */
+}
+
+.nav-item:hover:not(.active) {
+  background-color: #f9f9f9; /* Hover subtil */
+}
+
+.nav-item.active {
+  background-color: #fcece2; /* Un orange très clair pour l'actif */
+  border-left-color: var(--orange-primary); /* Bordure orange pour l'actif */
+}
+
+.icon {
+  width: 20px; /* Taille des icônes */
+  height: 20px;
+  margin-right: 12px; /* Espacement avec le texte */
+  object-fit: contain; /* Assure que l'icône ne soit pas déformée */
+}
+
+.nav-link {
+  background: none;
+  border: none;
+  color: var(--text-dark);
+  font-size: 15px; /* Taille de police */
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  flex: 1;
+  padding: 0; /* Supprimer le padding par défaut du bouton */
+}
+
+/* Sous-menu */
+.has-submenu {
+  position: relative;
+  /* Flexbox pour aligner l'icône, le texte et la flèche */
+  justify-content: space-between;
+}
+
+.has-submenu .nav-link {
+  flex-grow: 1; /* Permet au bouton de prendre l'espace */
+}
+
+.submenu-arrow {
+  font-size: 10px; /* Plus petite */
+  color: var(--text-medium);
+  transition: transform 0.3s ease-in-out;
+  margin-left: 10px; /* Espacement pour la flèche */
+}
+
+.submenu {
+  display: none;
+  list-style: none;
+  padding-left: 60px; /* Indentation plus profonde pour le sous-menu */
+  margin-top: 5px; /* Espacement du haut */
+  margin-bottom: 5px; /* Espacement du bas */
+  background-color: var(--bg-white); /* Assure le même fond que la sidebar */
+}
+
+.nav-item.has-submenu.open .submenu {
+  display: block;
+}
+
+.nav-item.has-submenu.open .submenu-arrow {
+  transform: rotate(180deg);
+}
+
+.submenu-link {
+  background: none;
+  border: none;
+  color: var(--text-medium);
+  padding: 8px 0; /* Padding vertical */
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  font-size: 14px; /* Taille de police du sous-menu */
+  transition: color 0.2s ease-in-out;
+}
+
+.submenu-link:hover {
+  color: var(--orange-primary);
+}
+
+/* Footer de la sidebar */
+.sidebar-footer {
+  padding: 20px 25px; /* Padding ajusté */
+  border-top: 1px solid var(--border-light);
+  margin-top: auto; /* Pousse le footer en bas */
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Espacement entre icône et texte */
+}
+
+.sidebar-footer .icon {
+  width: 22px; /* Icône de déconnexion un peu plus grande */
+  height: 22px;
+  margin-right: 0; /* Pas de marge à droite ici */
+}
+
+.sidebar-footer .nav-link {
+  font-weight: 600; /* Texte plus gras */
+  color: var(--text-dark);
+}
+
+/* Contenu principal */
+.main-content {
+  flex: 1;
+  padding: 30px; /* Plus de padding pour le contenu */
+}
+
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.breadcrumb {
+  color: var(--text-medium);
+  font-size: 14px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 25px; /* Espacement entre les éléments de l'en-tête */
+}
+
+.header-actions .icon {
+  width: 24px; /* Taille des icônes d'en-tête */
+  height: 24px;
+  cursor: pointer;
+  margin-right: 0;
+}
+
+.profile-pic {
+  width: 45px; /* Taille plus grande pour la photo de profil */
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--orange-primary); /* Bordure orange */
+}
+
+/* Corps du tableau de bord */
+.dashboard-body {
+  background-color: var(--bg-white);
+  border-radius: 10px;
+  padding: 30px; /* Plus de padding */
+  box-shadow: 0 4px 15px var(--shadow-light); /* Ombre plus prononcée */
+}
+
+.current-date {
+  color: var(--text-medium);
+  font-size: 14px;
+  margin-bottom: 25px; /* Espacement */
+}
+
+.dashboard-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.dashboard-header-row h1 {
+  font-size: 28px; /* Plus grande taille pour le titre */
+  font-weight: bold;
+  color: var(--text-dark);
+}
+
+.search-period-group {
+  display: flex;
+  align-items: center; /* Alignement vertical */
+  gap: 20px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border-light);
+  border-radius: 5px;
+  padding: 8px 12px;
+  background-color: var(--bg-white);
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); /* Ombre interne */
+}
+
+.search-box input {
+  border: none;
+  outline: none; /* Supprimer la bordure de focus */
+  flex: 1;
+  padding: 0; /* Réinitialiser le padding */
+  font-size: 14px;
+  color: var(--text-dark);
+  margin-left: 8px; /* Espacement pour l'icône de loupe */
+}
+
+.search-box input::placeholder {
+  color: #aaa;
+}
+
+.search-box .search-icon { /* Si vous ajoutez une icône de loupe */
+  width: 18px;
+  height: 18px;
+  color: var(--text-medium);
+}
+
+.search-button {
+  background-color: var(--orange-primary);
+  color: white;
+  border: none;
+  padding: 10px 20px; /* Plus de padding */
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.search-button:hover {
+  background-color: #e65c00; /* Orange plus foncé au survol */
+}
+
+.period-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.period-selector span {
+  color: var(--text-medium);
+  font-size: 14px;
+}
+
+.period-selector select {
+  padding: 8px 12px; /* Padding ajusté */
+  border: 1px solid var(--border-light);
+  border-radius: 5px;
+  background-color: var(--bg-white);
+  font-size: 14px;
+  color: var(--text-dark);
+  cursor: pointer;
+  outline: none;
+  -webkit-appearance: none; /* Supprimer les styles par défaut des select */
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23666' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E"); /* Flèche custom */
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 16px;
+}
+
+/* Cartes de vue d'ensemble */
+.section-title {
+  margin: 30px 0 20px;
+  color: var(--text-dark);
+  font-size: 22px; /* Taille pour les titres de section */
+  font-weight: bold;
+}
+
+.overview-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Taille min/max ajustée */
+  gap: 25px; /* Espacement entre les cartes */
+  margin-bottom: 40px;
+}
+
+.card {
+  background-color: var(--orange-primary); /* Fond orange pour les cartes */
+  color: white; /* Texte blanc */
+  border-radius: 10px;
+  padding: 25px; /* Plus de padding */
+  box-shadow: 0 4px 15px rgba(255, 107, 0, 0.2); /* Ombre colorée */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative; /* Pour positionner l'icône */
+  overflow: hidden; /* Pour cacher l'icône si elle dépasse */
+}
+
+.card .icon { /* Icônes des cartes */
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px; /* Plus grande */
+  height: 40px;
+  opacity: 0.8;
+  margin-right: 0; /* Enlève la marge héritée */
+}
+
+.card h3 {
+  font-size: 16px; /* Taille du titre de la carte */
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.card-value {
+  font-size: 36px; /* Valeur plus grande et plus audacieuse */
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.card-details {
+  background: none;
+  border: none;
+  color: white; /* Texte blanc pour le bouton détails */
+  cursor: pointer;
+  padding: 0;
+  font-size: 13px; /* Plus petit */
+  font-weight: 500;
+  text-align: right; /* Aligné à droite */
+  width: 100%; /* S'étend sur toute la largeur */
+  transition: opacity 0.2s ease-in-out;
+}
+
+.card-details:hover {
+  opacity: 0.8;
+}
+
+/* Tableau */
+.filter-section {
+  text-align: right; /* Aligne le bouton de filtre à droite */
+  margin-bottom: 20px;
+}
+
+.filter-button {
+  background-color: var(--bg-white); /* Fond blanc */
+  border: 1px solid var(--border-light);
+  padding: 8px 18px; /* Padding ajusté */
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-flex; /* Pour aligner texte et icône */
+  align-items: center;
+  gap: 8px; /* Espacement */
+  font-size: 14px;
+  color: var(--text-dark);
+  font-weight: 500;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.filter-button:hover {
+  background-color: #f9f9f9;
+}
+
+.filter-button .icon { /* Flèche du filtre */
+  width: 10px;
+  height: 10px;
+  margin-right: 0;
+  transform: rotate(0deg); /* Assurez-vous qu'elle est en bonne orientation */
+  color: var(--text-medium);
+}
+
+
+.table-container {
+  overflow-x: auto;
+  border: 1px solid var(--border-light); /* Bordure autour du tableau */
+  border-radius: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  /* Pas de margin-top ici car le container a déjà des bordures */
+}
+
+th, td {
+  padding: 15px 20px; /* Plus de padding */
+  text-align: left;
+  border-bottom: 1px solid var(--border-light);
+  font-size: 14px;
+}
+
+th {
+  background-color: #fcfcfc; /* Un blanc légèrement cassé pour l'en-tête */
+  color: var(--text-medium);
+  font-weight: 600; /* Plus gras */
+  text-transform: uppercase;
+  letter-spacing: 0.2px;
+}
+
+th:first-child, td:first-child {
+  padding-left: 20px; /* Padding gauche pour la première colonne */
+}
+th:last-child, td:last-child {
+  padding-right: 20px; /* Padding droite pour la dernière colonne */
+}
+
+td {
+  color: var(--text-dark);
+}
+
+tr:last-child td {
+  border-bottom: none; /* Pas de bordure en bas de la dernière ligne */
+}
+
+/* Style des checkbox dans le tableau */
+table input[type="checkbox"] {
+  margin-right: 10px; /* Espacement avec le texte */
+  width: 18px;
+  height: 18px;
+  vertical-align: middle; /* Alignement */
+  cursor: pointer;
+}
+
+/* Flèches des en-têtes de tableau */
+th span.icon {
+  width: 10px;
+  height: 10px;
+  margin-left: 5px; /* Espacement avec le texte */
+  vertical-align: middle;
+  color: var(--text-medium);
+}
+
+
+/* Responsive */
+@media (max-width: 992px) {
+  .sidebar {
+    width: 200px; /* Réduire la largeur sur les écrans plus petits */
+    padding: 15px 0;
+  }
+  .sidebar-header {
+    padding: 0 15px 15px;
+  }
+  .orange-logo {
+    width: 120px;
+  }
+  .nav-section-title, .nav-item {
+    padding: 0 15px;
+  }
+  .sidebar-footer {
+    padding: 15px;
+  }
+  .main-content {
+    padding: 20px;
+  }
+  .dashboard-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  .search-period-group {
+    flex-direction: column;
+    width: 100%;
+    align-items: stretch;
+  }
+  .search-box {
+    width: 100%;
+  }
+  .search-button {
+    width: 100%;
+  }
+  .period-selector {
+    width: 100%;
+  }
+  .period-selector select {
+    width: 100%;
+  }
+  .overview-cards {
+    grid-template-columns: 1fr; /* Une seule colonne sur mobile */
+  }
+  .card {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    box-shadow: 0 2px 5px var(--shadow-light);
+  }
+
+  .main-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  .header-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+/* ... (votre CSS existant) ... */
+
+/* Styles pour les icônes de tri/filtre dans les en-têtes de tableau */
+th {
+  position: relative; /* Nécessaire pour le positionnement absolu du dropdown */
+}
+
+.sort-filter-icon {
+  cursor: pointer;
+  margin-left: 5px;
+  font-weight: bold;
+  color: var(--text-medium);
+  transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+  display: inline-flex; /* Pour contenir le dropdown et le positionner */
+  align-items: center;
+}
+
+th:hover .sort-filter-icon {
+  color: var(--orange-primary); /* Change de couleur au survol */
+}
+
+/* Styles pour le menu déroulant de filtre */
+.filter-dropdown {
+  position: absolute;
+  background-color: var(--bg-white);
+  border: 1px solid var(--border-light);
+  border-radius: 5px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  z-index: 100; /* Assure qu'il est au-dessus des autres éléments */
+  list-style: none;
+  padding: 10px 0;
+  min-width: 180px; /* Largeur minimale pour les options */
+  top: 100%; /* Positionne juste en dessous de l'en-tête */
+  left: 0;
+  margin-top: 5px; /* Petit espace entre l'icône et le dropdown */
+}
+
+.filter-dropdown li button {
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  padding: 8px 15px;
+  cursor: pointer;
+  color: var(--text-dark);
+  font-size: 14px;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.filter-dropdown li button:hover {
+  background-color: #fcece2; /* Couleur claire au survol */
+  color: var(--orange-primary);
+}
+
+/* ... (le reste de votre CSS) ... */
