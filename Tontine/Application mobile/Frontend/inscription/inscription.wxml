@@ -4,8 +4,6 @@
 
 <scroll-view scroll-y="true" show-scrollbar="true" style="height: 100vh;">
     
-
-
 <view style="text-align : center ; font-weight:900; font-size: larger; margin-top: 20px;">Création de compte</view>
 
 <!-- box google et facebook -->
@@ -29,17 +27,30 @@
     <input type="text" placeholder="Nom" style="border: solid 3rpx; padding: 15px; margin: 20px; border-radius: 10px;"/>
     <input type="text" placeholder="Prénom" style="border: solid 3rpx; padding: 15px; margin: 20px; border-radius: 10px;"/>
     <input type="text" placeholder="Pseudo" style="border: solid 3rpx; padding: 15px; margin: 20px; border-radius: 10px;"/>
-    <picker mode="date" start="2015-09-01" end="2017-09-01" >
-    <view class="picker">     
-        <input type="date" placeholder="Date de Naissance" style="border: solid 3rpx; padding: 15px; margin: 20px; border-radius: 10px;"/>
+    <!-- Champs date de naissance -->
+    <picker mode="date" start="2000-09-01" end="2025-06-01" bindchange="onDateChange" value="">
+        <view style="position: relative; margin: 20px;">
+            <input
+            type="text"
+            placeholder="Date de Naissance"
+            style="border: solid 3rpx; padding: 15px ; border-radius: 10px;"
+            />
+            <image
+            src="../../images/calendar.png"
+            style="width: 24px; height: 24px; position: absolute; right: 15px; top: 50%; transform: translateY(-50%); pointer-events: none;"
+            />
         </view>
     </picker>
     <input type="number" placeholder="Numéro de Téléphone" style="border: solid 3rpx; padding: 15px; margin: 20px 20px 0px 20px; border-radius: 10px;"/>
     <!-- Champs d'image -->
     <view>
-  <button bindtap="chooseImage" style="border: solid 3rpx; padding: 15px; margin: 20px; border-radius: 10px;">
-    Choisir une image
-  </button>
+  <view bindtap="chooseImage" style="border: solid 3rpx; padding: 15px; margin: 20px; border-radius: 10px; position: relative; margin: 20px;">
+    Entrer la photo de votre pièce d'identité
+    <image
+            src="../../images/identity.jpg"
+            style="width: 26px; height: 26px; position: absolute; right: 15px; top: 50%; transform: translateY(-50%); "
+            />
+  </view>
 
   <!-- Conteneur centré pour l’image -->
   <view wx:if="{{imagePath}}" style="text-align: center; margin-top: 10px;">
