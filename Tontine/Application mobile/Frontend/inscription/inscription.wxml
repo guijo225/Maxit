@@ -2,6 +2,10 @@
 <navigation-bar back="{{true}}" color="black" background="#FFF" ></navigation-bar>
 <view style="background-color: rgb(65, 63, 63); height: 0.25px;"></view>
 
+<scroll-view scroll-y="true" show-scrollbar="true" style="height: 100vh;">
+    
+
+
 <view style="text-align : center ; font-weight:900; font-size: larger; margin-top: 20px;">Création de compte</view>
 
 <!-- box google et facebook -->
@@ -30,8 +34,19 @@
         <input type="date" placeholder="Date de Naissance" style="border: solid 3rpx; padding: 15px; margin: 20px; border-radius: 10px;"/>
         </view>
     </picker>
-    <input type="number" placeholder="Numéro de Téléphone" style="border: solid 3rpx; padding: 15px; margin: 20px; border-radius: 10px;"/>
-    <input type="file" placeholder="Ajouter votre pièce d'identité" style="border: solid 3rpx; padding: 15px; margin: 20px; border-radius: 10px;"/>
+    <input type="number" placeholder="Numéro de Téléphone" style="border: solid 3rpx; padding: 15px; margin: 20px 20px 0px 20px; border-radius: 10px;"/>
+    <!-- Champs d'image -->
+    <view>
+  <button bindtap="chooseImage" style="border: solid 3rpx; padding: 15px; margin: 20px; border-radius: 10px;">
+    Choisir une image
+  </button>
+
+  <!-- Conteneur centré pour l’image -->
+  <view wx:if="{{imagePath}}" style="text-align: center; margin-top: 10px;">
+    <image src="{{imagePath}}" style="width: 100px; height: 100px;" />
+  </view>
+</view>
+
 
     <label class="checkbox">
     <checkbox value="" checked="" style="margin-left: 30px;"/> Conditions d'utilisations
@@ -46,3 +61,4 @@
 </view>
 
 
+</scroll-view>

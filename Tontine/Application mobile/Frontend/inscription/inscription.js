@@ -12,8 +12,25 @@ Page({
      * Page initial data
      */
     data: {
-
+        imagePath: ''
     },
+    chooseImage() {
+        wx.chooseImage({
+          count: 1, // nombre d’images à sélectionner
+          sizeType: ['original', 'compressed'], // taille de l’image
+          sourceType: ['album', 'camera'], // sources possibles
+          success: (res) => {
+            const path = res.tempFilePaths[0];
+            this.setData({
+              imagePath: path
+            });
+            console.log('Image sélectionnée :', path);
+          },
+          fail: (err) => {
+            console.error('Erreur lors de la sélection de l’image', err);
+          }
+        });
+      },
 
     /**
      * Lifecycle function--Called when page load
