@@ -1,0 +1,105 @@
+/* components/page_couverture.wxss */
+.image_couverture{
+  position: relative;
+  width: 750rpx;
+  height: 446rpx;
+  left: 0rpx; 
+  top: 1rpx; 
+  display: block;
+  box-sizing: border-box;
+  background-image: url("https://www.gabonreview.com/wp-content/uploads/2023/03/jetons-Francs-CFA.jpg");
+  background-size: cover;
+}
+.retour{
+   position: relative;
+   width: 153rpx;
+   height: 73rpx; 
+   display: block; 
+   box-sizing: 
+   border-box; 
+   left: 2rpx; 
+   top: 72rpx;
+}
+.retour image{
+  position: relative; 
+  width: 25px; 
+  height: 20px; 
+  display: inline-block; 
+  box-sizing: border-box; 
+  left: 18rpx;
+}
+
+.menu{
+  position: relative; 
+  width: 153rpx; 
+  height: 73rpx; 
+  display: block; 
+  box-sizing: border-box; 
+  left: 582rpx; 
+  top: 0rpx
+}
+
+.menu image{
+  position: relative; 
+  width: 20px; 
+  height: 20px; 
+  display: inline-block; 
+  box-sizing: border-box; 
+  left: 100rpx;
+}
+.textCentre{
+  position: relative; 
+  width: 375rpx;  
+  height: 73rpx; 
+  display: block; 
+  box-sizing: border-box; 
+  left: 188rpx; 
+  top: 42rpx ;
+  text-align:center;
+}
+.transparent{
+  position: relative; 
+  width: 750rpx; 
+  background: #88888885; 
+  height: 146rpx; 
+  display: block; 
+  box-sizing: border-box; 
+  left: 2rpx; 
+  top: 86rpx;
+}
+.transparent_conteneur{
+  position: relative; 
+  width: 533rpx;  
+  height: 108rpx; 
+  display: block; 
+  box-sizing: border-box; 
+  left: 50rpx; 
+  top: 19rpx
+}
+.transparent_conteneur image{
+  position: relative; 
+  width: 122rpx; 
+  height: 94rpx; 
+  display: inline-block; 
+  box-sizing: border-box; 
+  left: 26rpx; 
+  top: 8rpx;
+}
+.premierText{
+  position: relative; 
+  width: 319rpx; 
+  height: 33rpx; 
+  display: block; 
+  box-sizing: border-box; 
+  left: 186rpx; 
+  top: -97rpx
+}
+.secondText{
+position: relative;
+width: 319rpx; 
+height: 33rpx; 
+display: block; 
+box-sizing: border-box; 
+left: 186rpx; 
+top: -80rpx
+}

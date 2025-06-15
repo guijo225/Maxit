@@ -1,0 +1,8 @@
+<view class="nav">
+  <view class="orange">
+    <image src="/assets/LOGO ORANGE.png" mode=""/>
+  </view>
+  <view class="profil">
+    <image src="/assets/profile-user.png" mode=""/>
+  </view>
+</view>

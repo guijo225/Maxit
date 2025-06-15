@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "page_couverture": "/components/page_couverture/page_couverture"
+  }
+}
