@@ -1,1 +1,126 @@
-/* pages/Accueil/Accueil.wxss */
+/* En-tête */
+.page-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+.header {
+    font-size: 32rpx;
+    font-weight: bold;
+    margin: 5% 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 32rpx;
+  }
+  
+  /* Icône de retour et active */
+  .back-icon {
+    width: 48rpx;
+    height: 48rpx;
+  }
+  
+  /* Conteneur scrollable */
+  .content {
+    padding: 20rpx;
+    box-sizing: border-box;
+    flex: 1;
+    overflow-y: auto;
+   
+  }
+  
+  /* Carte Tour */
+  .tour-card {
+    display: flex;
+    background: #fff;
+    border-radius: 20rpx;
+    padding: 20rpx;
+    margin-bottom: 30rpx;
+    box-shadow: 0 4rpx 8rpx rgba(0,0,0,0.1);
+  }
+  
+  .tour-image {
+    width: 200rpx;
+    height: 200rpx;
+    border-radius: 20rpx;
+  }
+  
+  .tour-info {
+    margin-left: 20rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  
+  .tour-title {
+    font-size: 36rpx;
+    font-weight: bold;
+  }
+  
+  .tour-text {
+    font-size: 28rpx;
+    color: #333;
+  }
+  
+  /* Bandeau info */
+  .info-banner {
+    background-color: #FF7900;
+    border-radius: 20rpx;
+    padding: 30rpx;
+    margin-bottom: 40rpx;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .banner-text {
+    color: #fff;
+    font-size: 32rpx;
+    width: 65%;
+  }
+  
+  .banner-image {
+    width: 150rpx;
+    height: 150rpx;
+    position: absolute;
+    right: 20rpx;
+    top: 20rpx;
+  }
+  
+  /* Grille de cards */
+  .card-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  /* Card individuelle */
+  .action-card {
+    width: 48%;
+    background: #fff;
+    border-radius: 20rpx;
+    padding: 20rpx;
+    margin-bottom: 20rpx;
+    box-shadow: 0 4rpx 8rpx rgba(0.1,0.1,0.1,0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .card-title {
+    font-size: 28rpx;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10rpx;
+  }
+  
+  .card-text {
+    font-size: 24rpx;
+    text-align: center;
+    margin-bottom: 20rpx;
+  }
+  
+  .card-image {
+    width: 120rpx;
+    height: 120rpx;
+  }
+  

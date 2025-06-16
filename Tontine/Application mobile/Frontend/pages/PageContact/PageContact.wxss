@@ -1,94 +1,121 @@
-/* pages/PageContact/PageContact.wxss */
+/* Conteneur principal */
 .container {
-    padding: 20px; 
-    background-color: #FFFFFF; 
+    padding: 20px;
+    background-color: #FFFFFF;
+    padding-bottom: 70px; /* Pour éviter que le scroll cache le bouton flottant */
   }
+  
+  /* Header de la page */
   .header {
     font-size: 18px;
-    font-weight: bold; 
-    margin-bottom: 20px; 
-    margin-top: 5%; 
-    display: flex; 
-    justify-content: space-between; 
+    font-weight: bold;
+    margin-bottom: 20px;
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
   }
+  
+  /* Icône de retour */
   .back-icon {
-    width: 24px; 
+    width: 24px;
     height: 24px;
   }
+  
+  /* Barre de recherche */
   .search-bar input {
-    width: 100%; 
-    padding: 10px; 
+    width: 100%;
+    padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
   }
+  
+  /* Section des contacts */
   .contacts-section {
-    margin-top: 10px; 
+    margin-top: 10px;
     width: 100%;
   }
+  
   .contact-text-header {
-    display: flex; /* Disposition en ligne */
-    justify-content: center; /* Centrage horizontal */
-    align-items: center; /* Alignement vertical centré */
-    padding: 20rpx 30rpx; 
-    border-bottom: 1rpx solid #ddd; /* Ligne de séparation */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20rpx 30rpx;
+    border-bottom: 1rpx solid #ddd;
   }
+  
   .contacts-text {
     flex: 1;
-    text-align: center; 
+    text-align: center;
   }
+  
   .contact-text {
-    font-size: 30rpx; 
-    font-weight: bold; 
+    font-size: 30rpx;
+    font-weight: bold;
   }
+  
   .select-text {
-    background: none; 
-    border: none; 
-    font-size: 30rpx; 
-    color: #000000; 
+    background: none;
+    border: none;
+    font-size: 30rpx;
+    color: #000000;
   }
+  
   .contacts-list {
-    margin-top: 10px; 
-    height: 400px; 
+    margin-top: 10px;
+    height: 400px;
   }
+  
   .contact-item {
-    display: flex; 
-    align-items: center; 
-    padding: 10px 0; 
-    border-bottom: 1px solid #eee; 
-  }
-  .contact-circle {
-    width: 40px; /* Largeur du cercle */
-    height: 40px; /* Hauteur du cercle */
-    background-color: #ff6200; 
-    color: white; 
-    border-radius: 50%; 
     display: flex;
-    align-items: center; 
-    justify-content: center; 
-    margin-right: 10px; 
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
   }
+  
+  .contact-circle {
+    width: 40px;
+    height: 40px;
+    background-color: #ff6200;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+  }
+  
   .contact-details {
-    flex: 1; /* Prend l'espace restant */
+    flex: 1;
   }
+  
   .contact-name {
-    display: block; /* Affichage en bloc */
+    display: block;
   }
+  
   .contact-phone {
-    font-size: 14px; 
-    color: #666; 
+    font-size: 14px;
+    color: #666;
   }
+  
   .checkbox {
-    margin-left: 0; /* Pas de marge à gauche */
-    margin-right: 10px; /* Marge à droite pour aligner à droite */
+    margin-left: 0;
+    margin-right: 10px;
   }
-  .ignore-button {
-    width: 100%; /* Pleine largeur */
-    padding: 10px; /* Espacement interne */
-    background-color: #ddd; 
-    border: none; 
-    border-radius: 5px; 
-    margin-top: 20px; 
+  
+  /* Bouton flottant sous forme de texte en bas de la page */
+  .floating-ignore {
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 32rpx;
+    color: #FF7900;
+    padding: 20rpx 0;
+    background: #fff;
+    box-shadow: 0 -4rpx 8rpx rgba(0, 0, 0, 0.05);
+    z-index: 999;
   }
   

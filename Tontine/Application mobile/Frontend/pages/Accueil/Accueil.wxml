@@ -1,2 +1,74 @@
-<!--pages/Accueil/Accueil.wxml-->
+<view class="page-container">
+<!-- Barre de navigation personnalisée -->
 <navigation-bar></navigation-bar>
+
+<!-- En-tête -->
+<view class="header">
+  <image src="/assets/retour.png" class="back-icon" bindtap="goBack" />
+  <text>Gestion tontine</text>
+  <image src="/assets/active.png" class="back-icon" bindtap="goBack" />
+</view>
+
+<!-- Contenu principal scrollable -->
+<scroll-view  class="content" scroll-y="true" enhanced="true" show-scrollbar="false">
+
+  <!-- Carte récapitulative du tour de tontine -->
+  <view class="tour-card">
+    <image src="/assets/envoyer.png" class="tour-image" />
+    <view class="tour-info">
+      <text class="tour-title">Tour N°2</text>
+      <text class="tour-text">Ayant cotisé: 5</text>
+      <text class="tour-text">Argent collecté: 500 000</text>
+    </view>
+  </view>
+
+  <!-- Bandeau informatif -->
+  <view class="info-banner">
+    <view class="banner-text">Gérer facilement et efficacement vos tontines</view>
+    <image src="/assets/Rectangle 17.png" class="banner-image" />
+  </view>
+
+  <!-- Grille des actions (cards clicables) -->
+  <view class="card-grid">
+    <view class="action-card" bindtap="goToInvite" style="width: 330rpx; height: 324rpx; display: flex; box-sizing: border-box">
+      <text class="card-title">Inviter des membres</text>
+      <text class="card-text">Ajouter des proches à rejoindre votre tontine</text>
+      <image src="/assets/add-membre.png" class="card-image" />
+    </view>
+
+    <view class="action-card" bindtap="goToCotisation" style="width: 330rpx; height: 324rpx; display: flex; box-sizing: border-box">
+      <text class="card-title">Consulter les règles 
+et modalités</text>
+      <text class="card-text">Voir nos règles et 
+modalités de gestion</text>
+      <image src="/assets/modlite.png" class="card-image" />
+    </view>
+
+    <view class="action-card" bindtap="goToTour" style="width: 330rpx; height: 324rpx; display: flex; box-sizing: border-box">
+      <text class="card-title">Payer sa 
+cotisation</text>
+      <text class="card-text">Regler vos cotisations , 
+payer facilement </text>
+      <image src="/assets/contribution.png" class="card-image" />
+    </view>
+
+    <view class="action-card" bindtap="goToHistorique" style="width: 330rpx; height: 324rpx; display: flex; box-sizing: border-box">
+      <text class="card-title">Ordre de 
+recupération</text>
+      <text class="card-text">Informations 
+sur les gains, ordre 
+de recupération </text>
+      <image src="/assets/cagnotte.png" class="card-image" />
+    </view>
+
+    <view class="action-card" bindtap="goToHistorique" style="width: 330rpx; height: 324rpx; display: flex; box-sizing: border-box">
+      <text class="card-title">Historique</text>
+      <text class="card-text">Ajouter des proches a
+rejoindre votre tontine</text>
+      <image src="/assets/Historique.png" class="card-image" />
+    </view>
+  </view>
+
+</scroll-view>
+
+</view>

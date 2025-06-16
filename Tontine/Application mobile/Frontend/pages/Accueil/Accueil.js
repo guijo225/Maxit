@@ -1,66 +1,27 @@
-// pages/Accueil/Accueil.js
 Page({
-
-    /**
-     * Page initial data
-     */
-    data: {
-  
+    goBack() {
+      wx.navigateBack();
     },
-  
-    /**
-     * Lifecycle function--Called when page load
-     */
-    onLoad(options) {
-  
+    // Méthode pour naviguer vers la page d'invitation
+    goToInvite() {
+      wx.navigateTo({
+        url: '/pages/Invite/Invite'
+      });
     },
-  
-    /**
-     * Lifecycle function--Called when page is initially rendered
-     */
-    onReady() {
-  
+    goToCotisation() {
+      wx.navigateTo({
+        url: '/pages/Cotisation/Cotisation'
+      });
     },
-  
-    /**
-     * Lifecycle function--Called when page show
-     */
-    onShow() {
-  
+    goToTour() {
+      wx.navigateTo({
+        url: '/pages/Tour/Tour'
+      });
     },
-  
-    /**
-     * Lifecycle function--Called when page hide
-     */
-    onHide() {
-  
-    },
-  
-    /**
-     * Lifecycle function--Called when page unload
-     */
-    onUnload() {
-  
-    },
-  
-    /**
-     * Page event handler function--Called when user drop down
-     */
-    onPullDownRefresh() {
-  
-    },
-  
-    /**
-     * Called when page reach bottom
-     */
-    onReachBottom() {
-  
-    },
-  
-    /**
-     * Called when user click on the top right corner to share
-     */
-    onShareAppMessage() {
-  
+    goToHistorique() {
+      wx.navigateTo({
+        url: '/pages/Historique/Historique'
+      });
     }
   })
+  

@@ -1,32 +1,38 @@
-<!--pages/PageContact/PageContact.wxml-->
 <navigation-bar></navigation-bar>
 <view class="container">
   <view class="header">
-    <image src="/assets/retour.png" class="back-icon" bindtap="goBack" /> 
-    <text>Ajouter participants</text> <!-- Titre de la section -->
+    <image src="/assets/retour.png" class="back-icon" bindtap="goBack" />
+    <text>Ajouter participants</text>
   </view>
+
   <view class="search-bar">
-    <input type="text" placeholder="Entrez un nom ou un numéro" /> <!-- Champ de recherche -->
+    <input type="text" placeholder="Entrez un nom ou un numéro" />
   </view>
+
   <view class="contacts-section">
     <view class="contact-text-header">
       <view class="contacts-text" bindtap="toggleMultiSelect">
-        <view class="contact-text">Contact</view> <!-- Texte d'en-tête -->
+        <view class="contact-text">Contact</view>
       </view>
-      <view class="select-text" bindtap="toggleMultiSelect">Sélectionner plusieurs</view> <!-- Bouton pour activer la sélection multiple -->
+      <view class="select-text" bindtap="toggleMultiSelect">Sélectionner plusieurs</view>
     </view>
-    <scroll-view class="contacts-list" scroll-y> <!-- Liste défilante des contacts -->
+
+    <scroll-view class="contacts-list" scroll-y>
       <block wx:for="{{contacts}}" wx:key="id">
         <view class="contact-item" data-index="{{index}}" bindtap="selectContact">
-          <text class="contact-circle">AG</text> <!-- Cercle avec initiales -->
+          <text class="contact-circle">AG</text>
           <view class="contact-details">
-            <text class="contact-name">{{item.name}}</text> <!-- Nom du contact -->
-            <text class="contact-phone">{{item.phone}}</text> <!-- Numéro de téléphone -->
+            <text class="contact-name">{{item.name}}</text>
+            <text class="contact-phone">{{item.phone}}</text>
           </view>
-          <checkbox class="checkbox" hidden="{{!multiSelect}}" checked="{{item.selected}}" /> <!-- Case à cocher à droite, cachée sauf en mode multi-sélection -->
+          <checkbox class="checkbox" hidden="{{!multiSelect}}" checked="{{item.selected}}" />
         </view>
       </block>
     </scroll-view>
-    <button class="ignore-button" bindtap="navigateAway">Ignorer</button> <!-- Bouton pour ignorer et naviguer -->
+  </view>
+
+  <!-- Bouton texte flottant en bas de la page -->
+  <view class="floating-ignore" bindtap="navigateAway">
+    Ignorer
   </view>
 </view>
