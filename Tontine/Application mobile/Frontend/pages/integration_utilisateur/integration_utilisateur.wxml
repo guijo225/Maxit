@@ -1,0 +1,46 @@
+<!--pages/integration_utilisateur/integration_utilisateur.wxml-->
+<page_couverture></page_couverture>
+<scroll-view class="integrer" scroll-y="true" show-scrollbar="false" >
+
+  <view class="conteneur_premier " >
+
+    <view class="bouton" bindtap="Integrer" >Integrer</view>
+  
+    <view class="description">Description</view>
+  
+    <view class="description_text {{isExpanded ? 'expanded' : 'collapsed'}}" >
+      <text style="position:relative;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo adipisci consectetur aperiam natus consequuntur. Dolorem deserunt dicta impedit quia sapiente quos minus laborum, sint quisquam eligendi cum, vero, atque voluptate!
+      </text>
+      <text style="position: relative;">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      </text>
+      <text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas quae reprehenderit ipsum minus a sed quidem, nisi maiores suscipit enim quasi impedit delectus sunt possimus! Quibusdam quod enim voluptatem at?</text>
+    <text>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae enim a rerum vero suscipit fugiat sit veritatis, blanditiis neque, deleniti, quasi facere ipsum omnis illo necessitatibus labore asperiores reiciendis veniam.</text>
+    <text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia blanditiis repellat perferendis vel quas illum distinctio rem, fuga non voluptates reprehenderit asperiores ex obcaecati sit unde in exercitationem autem maiores.</text>
+    </view>
+  
+   <view class="voir_plus" bindtap="toggleText" style="position: relative; left: 55rpx; top: 171rpx">
+    {{isExpanded ? 'voir moins' : 'voir plus'}}
+  </view>
+  </view>
+
+
+  <view class="conteneur_second" style="position: relative; left: -1rpx; top: 0rpx">
+  <view class="Avis">Note & Avis d'utilisateurs</view>
+  
+  <view class="Avis_view avis-{{index}}" wx:for="{{avisList}}" wx:key="id">
+    <view class="ensemble">
+      <image src="{{item.avatar}}" class="avatar" />
+      <view class="nom">{{item.nom}}</view>
+      <view class="note">{{item.note}}</view>
+    </view>
+    
+    <view class="description_avis">
+      <text class="{{item.expanded ? 'full-text' : 'truncated-text'}}">{{item.description}}</text>
+      <view class="voir_plus_avis" wx:if="{{item.showButton}}" bindtap="toggleExpand" data-index="{{index}}">
+        {{item.expanded ? 'Voir moins' : 'Voir plus'}}
+      </view>
+    </view>
+  </view>
+</view>
+
+  </scroll-view>

@@ -1,0 +1,32 @@
+<!--pages/PageContact/PageContact.wxml-->
+<navigation-bar></navigation-bar>
+<view class="container">
+  <view class="header">
+    <image src="/assets/retour.png" class="back-icon" bindtap="goBack" /> 
+    <text>Ajouter participants</text> <!-- Titre de la section -->
+  </view>
+  <view class="search-bar">
+    <input type="text" placeholder="Entrez un nom ou un numéro" /> <!-- Champ de recherche -->
+  </view>
+  <view class="contacts-section">
+    <view class="contact-text-header">
+      <view class="contacts-text" bindtap="toggleMultiSelect">
+        <view class="contact-text">Contact</view> <!-- Texte d'en-tête -->
+      </view>
+      <view class="select-text" bindtap="toggleMultiSelect">Sélectionner plusieurs</view> <!-- Bouton pour activer la sélection multiple -->
+    </view>
+    <scroll-view class="contacts-list" scroll-y> <!-- Liste défilante des contacts -->
+      <block wx:for="{{contacts}}" wx:key="id">
+        <view class="contact-item" data-index="{{index}}" bindtap="selectContact">
+          <text class="contact-circle">AG</text> <!-- Cercle avec initiales -->
+          <view class="contact-details">
+            <text class="contact-name">{{item.name}}</text> <!-- Nom du contact -->
+            <text class="contact-phone">{{item.phone}}</text> <!-- Numéro de téléphone -->
+          </view>
+          <checkbox class="checkbox" hidden="{{!multiSelect}}" checked="{{item.selected}}" /> <!-- Case à cocher à droite, cachée sauf en mode multi-sélection -->
+        </view>
+      </block>
+    </scroll-view>
+    <button class="ignore-button" bindtap="navigateAway">Ignorer</button> <!-- Bouton pour ignorer et naviguer -->
+  </view>
+</view>

@@ -1,0 +1,17 @@
+.nav{
+    display: flex;
+    width: auto;
+    height: auto;
+    border-bottom: solid 1rpx rgba(219, 119, 37, 0.527);
+    margin-top: 10%;
+    justify-content: space-between;
+    padding: 3%;
+  }
+  .orange image{
+    height: 30px;
+    width: 30px;
+  }
+  .profil image{
+    height: 30px;
+    width: 30px;
+  }
