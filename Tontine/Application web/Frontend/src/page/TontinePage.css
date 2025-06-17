@@ -1,0 +1,359 @@
+/* Importez les variables si vous les avez définies globalement */
+/* @import "./variables.css"; ou collez les :root variables ici si elles ne sont pas globales */
+
+/* Si vous n'avez pas de fichier variables.css, assurez-vous d'avoir ces définitions */
+:root {
+    --orange-primary: #ff6b00;
+    --text-dark: #333;
+    --text-medium: #666;
+    --border-light: #eee;
+    --bg-light: #f5f5f5;
+    --bg-white: #ffffff;
+    --shadow-light: rgba(0, 0, 0, 0.05);
+  }
+  
+
+  
+  
+  /* Corps de la page Tontine */
+  .tontine-body {
+    background-color: var(--bg-white);
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 15px var(--shadow-light);
+  }
+
+  .dashboard-container{
+    margin: 70px;
+  }
+  
+  .tontine-body .section-title {
+    font-size: 24px; /* Taille plus grande pour le titre de la page */
+    font-weight: bold;
+    color: var(--text-dark);
+    margin-bottom: 25px;
+  }
+  
+  .tontine-header-row {
+    display: flex;
+    justify-content: flex-end; /* Aligner la recherche à droite */
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  
+  .search-box-tontine {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--border-light);
+    border-radius: 5px;
+    padding: 8px 12px;
+    background-color: var(--bg-white);
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+    width: 300px; /* Largeur fixe pour la recherche */
+  }
+  
+  .search-box-tontine label {
+    color: var(--text-medium);
+    font-size: 14px;
+    margin-right: 8px;
+  }
+  
+  .search-box-tontine input {
+    border: none;
+    outline: none;
+    flex: 1;
+    padding: 0;
+    font-size: 14px;
+    color: var(--text-dark);
+  }
+  
+  .search-box-tontine input::placeholder {
+    color: #aaa;
+  }
+  
+  .search-box-tontine .search-icon {
+    width: 18px;
+    height: 18px;
+    color: var(--text-medium);
+    margin-left: 10px; /* Espacement de l'icône de recherche */
+    cursor: pointer;
+  }
+  
+  /* Tableau */
+  .table-container {
+    overflow-x: auto;
+    border: 1px solid var(--border-light);
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 15px 20px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-light);
+    font-size: 14px;
+  }
+  
+  th {
+    background-color: #fcfcfc;
+    color: var(--text-medium);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2px;
+  }
+  
+  td {
+    color: var(--text-dark);
+  }
+  
+  tr:last-child td {
+    border-bottom: none;
+  }
+  
+  /* Style de la colonne Inscription */
+  .inscription-status {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+  
+  .status-dot.green {
+    background-color: #4CAF50;
+  }
+  
+  .inscription-text {
+    color: #4CAF50;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .inscription-text:hover {
+    color: #2E7D32;
+    text-decoration: underline;
+  }
+  
+  /* Contrôles de pagination */
+  .pagination-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .items-per-page-select {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .pagination-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .pagination-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+  }
+  
+  .pagination-button:hover:not(:disabled) {
+    background-color: #ff6b00;
+    color: white;
+    border-color: #ff6b00;
+  }
+  
+  .pagination-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: #f5f5f5;
+  }
+  
+  .button-icon {
+    font-size: 16px;
+  }
+  
+  .page-numbers {
+    display: flex;
+    gap: 5px;
+  }
+  
+  .page-number {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+  }
+  
+  .page-number:hover:not(.active) {
+    background-color: #f5f5f5;
+    border-color: #ff6b00;
+    color: #ff6b00;
+  }
+  
+  .page-number.active {
+    background-color: #ff6b00;
+    color: white;
+    border-color: #ff6b00;
+  }
+  
+  /* Animation pour les boutons */
+  .pagination-button:active,
+  .page-number:active {
+    transform: scale(0.95);
+  }
+  
+  /* Style pour le select */
+  .items-per-page-select:focus {
+    outline: none;
+    border-color: #ff6b00;
+    box-shadow: 0 0 0 2px rgba(255, 107, 0, 0.2);
+  }
+  
+  /* Responsive */
+  @media (max-width: 992px) {
+    .main-content {
+      padding: 20px;
+    }
+    .tontine-body {
+      padding: 20px;
+    }
+    .tontine-header-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+    }
+    .search-box-tontine {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .main-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+    }
+    .header-actions {
+      width: 100%;
+      justify-content: flex-end;
+    }
+    .pagination-controls {
+      flex-direction: column;
+      gap: 15px;
+    }
+    .pagination-buttons {
+      width: 100%;
+      justify-content: space-around;
+    }
+    .pagination-controls select {
+      width: 100%;
+    }
+  }
+
+  /* Styles pour les boutons d'action */
+  .tontine-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .add-button {
+    background-color: #ff6b00;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s;
+  }
+
+  .add-button:hover {
+    background-color: #e05a00;
+  }
+
+  .actions-cell {
+    display: flex;
+    gap: 8px;
+  }
+
+  .action-button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.3s;
+  }
+
+  .action-button.view {
+    background-color: #4CAF50;
+    color: white;
+  }
+
+  .action-button.edit {
+    background-color: #2196F3;
+    color: white;
+  }
+
+  .action-button.delete {
+    background-color: #f44336;
+    color: white;
+  }
+
+  .action-button:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+
+  .rapport1 {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-right: 10px;
+    border-radius: 20px;
+    background: #f5f5f5;
+    color: #333;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .rapport1.active {
+    background: #ff6b00;
+    color: #fff;
+  }
