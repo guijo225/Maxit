@@ -22,6 +22,13 @@ Page({
       wx.navigateTo({
         url: '/pages/Historique/Historique'
       });
-    }
+    },
+    openModal() {
+        this.setData({ showModal: true });
+      },
+    
+      closeModal() {
+        this.setData({ showModal: false });
+      },
   })
   

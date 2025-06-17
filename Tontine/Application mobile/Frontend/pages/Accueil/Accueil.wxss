@@ -124,3 +124,189 @@
     height: 120rpx;
   }
   
+  .image-lien {
+    width: 40rpx;
+    height: 40rpx;
+  }
+  
+  .modal-title-container {
+      display: flex;
+  }
+
+
+  /* Modal Styles */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .modal-container {
+    width: 95%;
+    max-height: 85vh;
+    background: #fff;
+    border-radius: 24rpx 24rpx 24rpx 24rpx;
+    display: flex;
+    flex-direction: column;
+    animation: slideUp 0.3s ease-out;
+    overflow: hidden;
+  }
+  
+  @keyframes slideUp {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+    padding: 30rpx;
+  }
+  
+  .modal-title {
+    font-size: 30rpx;
+    font-weight: 600;
+    color: #111827;
+    text-align: center;
+
+  }
+  
+
+  
+  .modal-scroll {
+    flex: 1;
+    max-height: calc(85vh - 200rpx);
+    overflow-y: auto;
+  }
+  
+  .modal-body {
+    padding: 32rpx;
+  }
+  
+  .input-group {
+    margin-bottom: 30rpx;
+  }
+  
+  .input-label {
+    font-size: 28rpx;
+    font-weight: 500;
+    color: black;
+    margin-bottom: 12rpx;
+    display: block;
+  }
+  
+  .input-field,
+  .textarea-field {
+    width: 100%;
+    padding: 15rpx 15rpx;
+    border: 1rpx solid #ff77006c;
+    border-radius: 15rpx;
+    font-size: 28rpx;
+    color: black;
+    background: #fff;
+    transition: border-color 0.2s ease;
+  }
+  
+  .input-field:focus,
+  .textarea-field:focus {
+    border-color: #FF7900;
+    outline: none;
+  }
+  
+  .textarea-field {
+    min-height: 140rpx;
+  }
+  
+  
+  .select-value.placeholder {
+    color: #9ca3af;
+  }
+  
+  .select-arrow {
+    font-size: 24rpx;
+    color: #6b7280;
+    margin-left: 12rpx;
+  }
+  
+  .modal-footer {
+    background: #fff;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-right: 5%;
+
+  }
+  
+  .confirm-button {
+    width: 100%;
+    height: auto;
+    background-color: #FF7900;
+    color: #ffffff;
+    border-radius: 20rpx;
+    font-size: 32rpx;
+    font-weight: 600;
+    border: none;
+    box-shadow: 0 6rpx 20rpx rgba(255, 121, 0, 0.4);
+    transition: transform 0.2s ease;
+    padding: 20rpx;
+  }
+  
+  .confirm-button:active {
+    transform: scale(0.98);
+  }
+  
+  /* Responsive Design */
+  @media screen and (max-width: 375px) {
+    .carousel-section {
+      padding: 15rpx;
+    }
+    
+    .swiper-container {
+      height: 250rpx;
+    }
+    
+    .condition-card {
+      padding: 24rpx;
+    }
+    
+    .condition-text {
+      font-size: 26rpx;
+    }
+    
+    .footer-fixed {
+      padding: 24rpx 15rpx;
+      padding-bottom: calc(24rpx + env(safe-area-inset-bottom));
+    }
+    
+    .modal-body {
+      padding: 24rpx;
+    }
+  }
+  
+  @media screen and (min-width: 414px) {
+    .carousel-section {
+      padding: 30rpx;
+    }
+    
+    .swiper-container {
+      height: 350rpx;
+    }
+    
+    .condition-card {
+      padding: 40rpx;
+    }
+  }
+    
