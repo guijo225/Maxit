@@ -30,5 +30,16 @@ Page({
       closeModal() {
         this.setData({ showModal: false });
       },
+
+      openModalConsultation() {
+        this.setData({ showModalConsultation: true });
+      },
+    
+      closeModalConsultation() {
+        this.setData({ showModalConsultation: false });
+      },
+
+      preventClose(){
+      },
   })
   

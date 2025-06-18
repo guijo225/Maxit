@@ -36,7 +36,7 @@
                 <image src="/assets/add-membre.png" class="card-image" />
             </view>
 
-            <view class="action-card" bindtap="goToCotisation" style="width: 330rpx; height: 324rpx; display: flex; box-sizing: border-box">
+            <view class="action-card" bindtap="openModalConsultation" style="width: 330rpx; height: 324rpx; display: flex; box-sizing: border-box">
                 <text class="card-title">Consulter les règles
                     et modalités</text>
                 <text class="card-text">Voir nos règles et
@@ -71,23 +71,23 @@
     </scroll-view>
 
 
-    <!-- Modal -->
+    <!-- Modal invitation-->
     <view wx:if="{{showModal}}" class="modal-overlay" bindtap="closeModal">
-        <view class="modal-container" catchtap="preventClose">
+        <view class="modal-container1" catchtap="preventClose">
 
-            <view class="modal-header">
-                <view class="modal-title-container" bindtap="">
-                    <text class="modal-title">Copier le lien</text>
-                    <image src="/assets/material-symbols_link.png" class="image-lien" />
+            <view class="modal-header1">
+                <view class="modal-title-container1" bindtap="">
+                    <text class="modal-title1">Copier le lien</text>
+                    <image src="/assets/material-symbols_link.png" class="image-lien1" />
                 </view>
-                
+
             </view>
 
-            <scroll-view scroll-y="true" class="modal-scroll" enhanced="true">
-                <view class="modal-body">
+            <scroll-view scroll-y="true" class="modal-scroll1" enhanced="true">
+                <view class="modal-body1">
                     <view style="display: flex; justify-content: space-between;">
-                        <view class="input-group">
-                            <input class="input-field" placeholder="Inviter des proches" value="{{formData.nom}}" bindinput="onInputChange" data-field="nom" maxlength="50" />
+                        <view class="input-group1">
+                            <input class="input-field1" placeholder="Inviter des proches" value="{{formData.nom}}" bindinput="onInputChange" data-field="nom" maxlength="50" />
                         </view>
                         <view class="modal-footer">
                             <view class="confirm-button" bindtap="confirmModal">
@@ -99,4 +99,41 @@
             </scroll-view>
         </view>
     </view>
+
+
+    <!-- Modal règle et modalités-->
+
+    <view wx:if="{{showModalConsultation}}" class="modal-overlay1" bindtap="closeModalConsultation">
+        <view class="modal-container1" catchtap="preventClose">
+
+            <view class="modal-header1">
+                <view class="close-button" bindtap="closeModalConsultation">
+                    <text class="close-icon">×</text>
+                </view>
+            </view>
+
+            <view class="modal-title-container1">
+                <text class="modal-title1">Consultation des règles</text>
+            </view>
+
+            <scroll-view scroll-y="true" class="modal-scroll1" enhanced="true">
+                <view class="modal-body1">
+                    <text style="font-size: 28rpx;">Voici les règles et modalités de la tontine :</text>
+                    <view style="margin-top: 20rpx;">
+                        <text class="modaliteText">- Chaque membre cotise avant le 5 du mois  
+                        -L’ordre de récupération est défini par tirage au sort  
+                        - En cas de retard, une pénalité de 5% est appliquée</text>
+                        <!-- etc -->
+                    </view>
+                </view>
+                <view class="modal-footer1">
+                    <view class="confirm-button1" bindtap="closeModalConsultation">
+                        Modifier
+                    </view>
+                </view>
+            </scroll-view>
+
+        </view>
+    </view>
+
 </view>
