@@ -12,8 +12,73 @@ Page({
      * Page initial data
      */
     data: {
-        imagePath: ''
+      imagePath: '',
+        nom : "",
+        prenoms : "",
+        pseudo : "",
+        date : "",
+        contact : "",  
+        mot_de_passe: ""
     },
+
+     // Mises à jour des champs
+    onNomChange(e) {
+        this.setData({ nom: e.detail.value });
+    },
+    onPrenomsChange(e) {
+        this.setData({ prenoms: e.detail.value });
+    },
+    onPseudoChange(e) {
+        this.setData({ pseudo: e.detail.value });
+    },
+    onContactChange(e) {
+        this.setData({ contact: e.detail.value });
+    },
+    onDateChange(e) {
+        this.setData({ date: e.detail.value });
+    },
+    onPasswordChange(e) {
+        this.setData({
+        mot_de_passe: e.detail.value
+        });
+    },
+
+    inscription(e){
+        wx.request({
+          url: 'http://192.168.252.90:8000/api/inscription',
+          // url: 'http://127.0.0.1:8000/api/inscription',
+          method : "POST",
+          header: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          data: {
+            nom: this.data.nom,
+            prenoms: this.data.prenoms,
+            pseudo: this.data.pseudo,
+            date_de_naissance: this.data.date,
+            contact: this.data.contact,
+            mot_de_passe: this.data.mot_de_passe
+          },
+          success : (res) => {
+            console.log(res)
+            if(res.statusCode == 200){
+                wx.showToast({
+                  title: 'Enregistrer avec succès',
+                  icon : "none",
+                })
+            }
+          },
+          fail : (err) =>{
+            console.error("Erreur d'enregistrement" , err);
+            wx.showToast({
+              title: "Erreur d'enregistrement",
+              icon : "error"
+            });
+            }
+        });
+    },
+
     chooseImage() {
         wx.chooseImage({
           count: 1, // nombre d’images à sélectionner

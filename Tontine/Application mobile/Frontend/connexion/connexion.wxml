@@ -5,21 +5,19 @@
 <view style="text-align : center ; font-weight:900; font-size: larger; margin-bottom: 50px;">Connexion</view>
 
 <!-- Les champs du fomulaire  -->
-<form bindsubmit="">
+<form bindsubmit="connexion">
     
-    <input type="text" placeholder="Pseudo ou Numéro de Téléphone" style="border: solid 3rpx; padding: 15px; margin: 20px; border-radius: 10px;" value=""/>
-    <input type="password" placeholder="code secret" style="border: solid 3rpx; padding: 15px; margin: 20px; border-radius: 10px;" value=""/>
+    <input type="text" placeholder="Pseudo ou Numéro de Téléphone" style="border: solid 3rpx; padding: 15px; margin: 20px; border-radius: 10px;" bindinput="onPseudoChange" value="{{pseudo}}"/>
+    <input type="password" placeholder="code secret" style="border: solid 3rpx; padding: 15px; margin: 20px; border-radius: 10px;" bindinput="onPasswordChange" value="{{mot_de_passe}}"/>
 
     <view style="display: flex; justify-content: center;">
     <label class="checkbox">
         <checkbox value="" checked=""/> Se souvenir de moi
     </label>
-
-
     <text style="color: rgb(255, 135, 23); margin-left: 40px;">Mot de pass oublié? </text>
     </view>
 
-    <button style="margin-top: 50px ;color: white; background-color: rgb(255, 135, 23); font-weight: 400;">Valider
+    <button style="margin-top: 50px ;color: white; background-color: rgb(255, 135, 23); font-weight: 400;" form-type="submit">Valider
     </button>
 </form>
 
