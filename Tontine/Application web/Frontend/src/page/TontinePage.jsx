@@ -89,34 +89,6 @@ const TontinePage = () => {
     }
   };
 
-  // Générer les numéros de page à afficher
-  const getPageNumbers = () => {
-    const pages = [];
-    const maxVisiblePages = 5;
-    
-    if (totalPages <= maxVisiblePages) {
-      for (let i = 1; i <= totalPages; i++) {
-        pages.push(i);
-      }
-    } else {
-      if (currentPage <= 3) {
-        for (let i = 1; i <= 5; i++) {
-          pages.push(i);
-        }
-      } else if (currentPage >= totalPages - 2) {
-        for (let i = totalPages - 4; i <= totalPages; i++) {
-          pages.push(i);
-        }
-      } else {
-        for (let i = currentPage - 2; i <= currentPage + 2; i++) {
-          pages.push(i);
-        }
-      }
-    }
-    
-    return pages;
-  };
-
   return (
     <div className="dashboard-container">
       <main className="main-content">
@@ -165,10 +137,8 @@ const TontinePage = () => {
                           <span className="status-dot green"></span>
                           <span 
                             className="inscription-text"
-                            onClick={() => {
-                              // Ajoutez ici la logique de navigation ou d'action
-                              console.log('Statut cliqué:', tontine.inscription);
-                            }}
+                            onClick={() => navigate('/DetailTontine')}
+                            style={{ cursor: "pointer" }}
                           >
                             {tontine.inscription}
                           </span>

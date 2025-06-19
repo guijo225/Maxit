@@ -35,10 +35,10 @@ function RapportPage() {
       </div>
 
       <div className='deuxieme_vue'>
-        <h5>Retrouvez ici les documents qui vous permettent de suivre en détail l'évolution de votre activité, 
+        <h4>Retrouvez ici les documents qui vous permettent de suivre en détail l’évolution de votre activité, 
             notamment le nombre de tontines ouvertes cette année, les transactions effectuées, les fonds
             disponibles, ainsi que les redistributions réalisées par période.
-        </h5>
+        </h4>
       </div>
       <div className="troisieme_vue">
         <div className="rapport1">Rapport hebdomadaire</div>
@@ -48,38 +48,38 @@ function RapportPage() {
       <div className="quatrieme_vue">
         <table>
           <thead>
-            <tr>
-              <th className='nomDoc'>Nom du document</th>
-              <th>Date</th>
-              <th>Action</th>
+            <tr className="entete">
+              <th className="nomDoc">Nom du document</th>
+              <th className="date">Date</th>
+              <th className="action" >Action</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td className='nomDoc'>Rapport hebdomadaire</td>
-              <td>01/01/2023</td>
-              <td>
-                <button style={{ display: "flex",alignItems:"center", gap: 6 }}>
+              <td className="nomDoc">Rapport hebdomadaire</td>
+              <td className="date">01/01/2023</td>
+              <td className="action">
+                <button style={{  gap: 1 }}>
                   <BiDownload style={{ fontSize: 18 }} />
                   Télécharger
                 </button>
               </td>
             </tr>
             <tr>
-              <td className='nomDoc'>Rapport mensuel</td>
-              <td>01/02/2023</td>
-              <td>
-                <button style={{ display: "flex", alignItems: "center", gap: 6 }}>
+              <td className="nomDoc">Rapport mensuel</td>
+              <td className="date">01/02/2023</td>
+              <td className="action">
+                <button style={{  gap: 1 }}>
                   <BiDownload style={{ fontSize: 18 }} />
                   Télécharger
                 </button>
               </td>
             </tr>
             <tr>
-              <td className='nomDoc'>Rapport annuel</td>
-              <td>01/12/2023</td>
-              <td>
-                <button style={{ display: "flex", alignItems: "center", gap: 6 }}>
+              <td className="nomDoc">Rapport annuel</td>
+              <td className="date">01/12/2023</td>
+              <td className="action">
+                <button style={{  gap: 1 }}>
                   <BiDownload style={{ fontSize: 18 }} />
                   Télécharger
                 </button>

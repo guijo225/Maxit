@@ -1,22 +1,31 @@
 import React, { useState, useMemo } from "react";
+import { useNavigate } from 'react-router-dom'; // <-- AJOUTÉ
 import "./DashboardPage.css";
 
 const DashboardPage = () => {
   const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
   const [sortColumn, setSortColumn] = useState(null);
   const [sortDirection, setSortDirection] = useState('asc');
-  const [openFilterColumn, setOpenFilterColumn] = useState(null); // Null si aucun filtre n'est ouvert, sinon le nom de la colonne
-  const [filters, setFilters] = useState({}); // { 'colonne': 'valeurDeFiltre' }
+  const [openFilterColumn, setOpenFilterColumn] = useState(null);
+  const [filters, setFilters] = useState({});
+
+  const navigate = useNavigate(); // <-- INITIALISÉ
 
   const toggleSubmenu = () => {
     setIsSubmenuOpen(!isSubmenuOpen);
   };
 
-  // Données initiales pour le tableau. C'est votre source de vérité non-filtrée/non-triée.
+  // Données initiales pour le tableau avec des types de transaction et des titres de tontine plus réalistes
   const initialTransactions = [
-    { id: 1, title: "dépôt", date: "12/02/25", relatedTo: "Tontine Frean", status: "Terminer" },
-    { id: 2, title: "retrait", date: "12/04/25", relatedTo: "Tontine yayo", status: "En cours" },
-      ];
+    { id: 1, title: "Dépôt initial", date: "12/02/25", relatedTo: "Tontine Mensuelle A", status: "Terminer" },
+    { id: 2, title: "Retrait exceptionnel", date: "12/04/25", relatedTo: "Tontine Annuelle B", status: "Terminer" },
+    { id: 3, title: "Dépôt régulier", date: "11/01/25", relatedTo: "Tontine Hebdomadaire C", status: "En cours" },
+    { id: 4, title: "Retrait de dividende", date: "01/03/25", relatedTo: "Tontine Mensuelle A", status: "Terminer" },
+    { id: 5, title: "Dépôt complémentaire", date: "20/02/25", relatedTo: "Tontine Annuelle B", status: "En cours" },
+    { id: 6, title: "Dépôt initial", date: "05/01/25", relatedTo: "Tontine Hebdomadaire C", status: "Terminer" },
+    { id: 7, title: "Retrait partiel", date: "15/03/25", relatedTo: "Tontine Mensuelle A", status: "En cours" },
+    { id: 8, title: "Dépôt d'urgence", date: "25/02/25", relatedTo: "Tontine Annuelle B", status: "Terminer" },
+  ];
 
   // Helper pour obtenir les valeurs uniques pour les options de filtre
   const getUniqueValues = (columnName) => {
@@ -89,60 +98,18 @@ const DashboardPage = () => {
     return currentData;
   }, [initialTransactions, filters, sortColumn, sortDirection]); // Dépendances de useMemo
 
+  // NOUVELLE FONCTION: Gère le clic sur le bouton Détails de la carte Tontines
+  const handleTontineDetailsClick = () => {
+    navigate('/tontines'); // <-- Navigue vers la nouvelle route /tontines
+  };
+
   return (
     <div className="dashboard-container">
       {/* Colonne de navigation latérale (Sidebar) */}
-      <aside className="sidebar">
-        <div className="sidebar-header">
-          {/* Remplace orange-logo.png par ton propre logo */}
-          <img src="/images/orange.png" alt="Orange Logo" className="orange-logo" />
-        </div>
-        <nav className="sidebar-nav">
-          <p className="nav-section-title">GÉNÉRAL</p>
-          <ul>
-            <li className="nav-item active">
-              <img src="/images/accueil.png" alt="home" className="icon" />
-              <button className="nav-link">Accueil</button>
-            </li>
-            <li className={`nav-item has-submenu ${isSubmenuOpen ? 'open' : ''}`}>
-              <img src="/images/compte.png" alt="compte" className="icon" />
-              <button className="nav-link" onClick={toggleSubmenu}>Compte</button>
-              <span className="submenu-arrow">▼</span>
-              <ul className="submenu">
-                {/* Seul "Gains" est maintenu comme option du sous-menu "Compte" */}
-                <li><button className="submenu-link">Gains</button></li>
-              </ul>
-            </li>
-            <li className="nav-item">
-              <img src="/images/rapports.png" alt="user" className="icon" />
-              <button className="nav-link">Rapports</button>
-            </li>
-            <li className="nav-item">
-              <img src="/images/man-profile.jpg" alt="user" className="icon" />
-              <button className="nav-link">Fichier clients</button>
-            </li>
-          </ul>
-        </nav>
-        <div className="sidebar-footer">
-          <img src="/images/man-profile.jpg" alt="user" className="icon" />
-          {/* Icône de déconnexion */}
-          <button className="nav-link">Déconnexion</button>
-        </div>
-      </aside>
+      
 
       {/* Contenu principal du tableau de bord */}
       <main className="main-content">
-        <header className="main-header">
-          <div className="breadcrumb">Accueil / Tableau de bord</div>
-          <div className="header-actions">
-            <img src="/images/man-profile.jpg" alt="user" className="icon" />
-            {/* Icône de notification */}
-            {/* Remplace user-profile.jpg par ton image de profil */}
-            <img src="/images/user-profile.jpg" alt="User Profile" className="profile-pic" />
-            <img src="/images/man-profile.jpg" alt="user" className="icon" />
-            {/* Icône de menu déroulant */}
-          </div>
-        </header>
 
         <section className="dashboard-body">
           <p className="current-date">Nous sommes mercredi 04 Juin</p>
@@ -170,13 +137,13 @@ const DashboardPage = () => {
               <img src="/images/man-profile.jpg" alt="user" className="icon" />
               <h3>Nombres de Tontines</h3>
               <p className="card-value">10</p>
-              <button className="card-details">Détails</button>
+              <button className="card-details" onClick={handleTontineDetailsClick}>Détails</button> {/* <-- MODIFIÉ */}
             </div>
             <div className="card orange-card">
               <img src="/images/man-profile.jpg" alt="user" className="icon" />
               <h3>Nombres d'utilisateurs</h3>
               <p className="card-value">120</p>
-              <button className="card-details">Détails</button>
+              <button className="card-details" onClick={() => navigate('/detailpage')}>Détails</button>
             </div>
             {/* Ajoute d'autres cartes si nécessaire */}
           </div>

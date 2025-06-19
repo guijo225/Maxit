@@ -6,6 +6,8 @@ import TontinePage from './page/TontinePage';
 import DashboardPage from './page/DashboardPage';
 import RapportPage from './page/RapportPage'
 import './App.css';
+import DetailPage from './page/DetailPage';
+import DetailTontine from './page/DetailTontine';
 
 function App() {
   const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
@@ -30,12 +32,13 @@ function App() {
           <header className="header-container">
             <Header />
           </header>
-          
           <main className="page-container">
             <Routes>
               <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/tontines" element={<TontinePage />} />
               <Route path="/Rapport" element={<RapportPage />} />
+              <Route path="/DetailPage" element={<DetailPage/>} />
+              <Route path="/DetailTontine" element={<DetailTontine/>}/>
             </Routes>
           </main>
         </div>
