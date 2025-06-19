@@ -39,6 +39,14 @@ Page({
         this.setData({ showModalConsultation: false });
       },
 
+      openModalHistorique() {
+        this.setData({ showModalHistorique: true });
+      },
+    
+      closeModalHistorique() {
+        this.setData({ showModalHistorique: false });
+      },
+
       preventClose(){
       },
 

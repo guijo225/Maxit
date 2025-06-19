@@ -1,9 +1,11 @@
 {
   "pages": [
-    "pages/integration_utilisateur/integration_utilisateur",
+    
     "pages/index/index",
     "pages/PageContact/PageContact",
-    "pages/Accueil/Accueil"
+    "pages/Accueil/Accueil",
+    "pages/Tour/Tour"
+
   ],
   "window": {
     "navigationBarTextStyle": "black",

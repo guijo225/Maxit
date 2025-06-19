@@ -13,7 +13,7 @@
     <scroll-view class="content" scroll-y="true" enhanced="true" show-scrollbar="false">
 
         <!-- Carte récapitulative du tour de tontine -->
-        <view class="tour-card">
+        <view class="tour-card" bindtap="goToTour">
             <image src="/assets/envoyer.png" class="tour-image" />
             <view class="tour-info">
                 <text class="tour-title">Tour N°2</text>
@@ -61,7 +61,7 @@
                 <image src="/assets/cagnotte.png" class="card-image" />
             </view>
 
-            <view class="action-card" bindtap="goToHistorique" style="width: 330rpx; height: 324rpx; display: flex; box-sizing: border-box">
+            <view class="action-card" bindtap="openModalHistorique" style="width: 330rpx; height: 324rpx; display: flex; box-sizing: border-box">
                 <text class="card-title">Historique</text>
                 <text class="card-text">Ajouter des proches a
                     rejoindre votre tontine</text>
@@ -120,14 +120,56 @@
                 <view class="modal-body1">
                     <text style="font-size: 28rpx;">Voici les règles et modalités de la tontine :</text>
                     <view style="margin-top: 20rpx;">
-                        <text class="modaliteText">- Chaque membre cotise avant le 5 du mois  
-                        -L’ordre de récupération est défini par tirage au sort  
-                        - En cas de retard, une pénalité de 5% est appliquée</text>
+                        <text class="modaliteText">- Chaque membre cotise avant le 5 du mois
+                            -L’ordre de récupération est défini par tirage au sort
+                            - En cas de retard, une pénalité de 5% est appliquée</text>
                     </view>
                 </view>
                 <view class="modal-footer1">
                     <view class="confirm-button1" bindtap="Modif">
                         Modifier
+                    </view>
+                </view>
+            </scroll-view>
+
+        </view>
+    </view>
+
+
+    <!-- Modal historique des transaction-->
+    <view wx:if="{{showModalHistorique}}" class="modal-overlay2" bindtap="closeModalHistorique">
+        <view class="modal-container2" catchtap="preventClose">
+
+            <view class="modal-header1">
+                <view class="close-button" bindtap="closeModalHistorique">
+                    <text class="close-icon">×</text>
+                </view>
+            </view>
+
+            <view class="modal-title-container1">
+                <text class="modal-title1">Historique des transations</text>
+            </view>
+
+            <scroll-view scroll-y="true" class="modal-scroll2" enhanced="true">
+                <view class="modal-body2">
+                    <view style="margin-top: 10rpx; display: flex; justify-content: space-between; align-items: center;">
+                        <view>
+                            <view>
+                                <text class="modaliteText">
+                                    Frean Debohi Grâce 076922147
+                                </text>
+                            </view>
+                            <view style="margin-top: -10%;">
+                                <text style="font-weight: 100; font-size: 28rpx;">
+                                    19 mai 2025 à 18:35
+                                </text>
+                            </view>
+                        </view>
+                        <view style="margin-top: -5%;">
+                            <text style="font-weight: normal; font-size: 30rpx;">
+                                22.47 F
+                            </text>
+                        </view>
                     </view>
                 </view>
             </scroll-view>
