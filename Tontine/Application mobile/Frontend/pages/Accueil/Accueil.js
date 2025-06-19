@@ -41,5 +41,12 @@ Page({
 
       preventClose(){
       },
+
+      Modif() {
+        //Navigation
+        wx.redirectTo({
+          url: '/pages/index/index',
+        })
+      },
   })
   

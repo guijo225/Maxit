@@ -123,11 +123,10 @@
                         <text class="modaliteText">- Chaque membre cotise avant le 5 du mois  
                         -L’ordre de récupération est défini par tirage au sort  
                         - En cas de retard, une pénalité de 5% est appliquée</text>
-                        <!-- etc -->
                     </view>
                 </view>
                 <view class="modal-footer1">
-                    <view class="confirm-button1" bindtap="closeModalConsultation">
+                    <view class="confirm-button1" bindtap="Modif">
                         Modifier
                     </view>
                 </view>

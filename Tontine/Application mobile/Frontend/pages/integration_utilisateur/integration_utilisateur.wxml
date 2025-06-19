@@ -1,46 +1,78 @@
-<!--pages/integration_utilisateur/integration_utilisateur.wxml-->
+<!-- Conteneur principal de la page avec défilement vertical -->
 <page_couverture></page_couverture>
-<scroll-view class="integrer" scroll-y="true" show-scrollbar="false" >
+<scroll-view class="integrer" scroll-y="true" show-scrollbar="false">
 
-  <view class="conteneur_premier " >
-
-    <view class="bouton" bindtap="Integrer" >Integrer</view>
-  
-    <view class="description">Description</view>
-  
-    <view class="description_text {{isExpanded ? 'expanded' : 'collapsed'}}" >
-      <text style="position:relative;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo adipisci consectetur aperiam natus consequuntur. Dolorem deserunt dicta impedit quia sapiente quos minus laborum, sint quisquam eligendi cum, vero, atque voluptate!
-      </text>
-      <text style="position: relative;">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      </text>
-      <text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas quae reprehenderit ipsum minus a sed quidem, nisi maiores suscipit enim quasi impedit delectus sunt possimus! Quibusdam quod enim voluptatem at?</text>
-    <text>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae enim a rerum vero suscipit fugiat sit veritatis, blanditiis neque, deleniti, quasi facere ipsum omnis illo necessitatibus labore asperiores reiciendis veniam.</text>
-    <text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia blanditiis repellat perferendis vel quas illum distinctio rem, fuga non voluptates reprehenderit asperiores ex obcaecati sit unde in exercitationem autem maiores.</text>
+    <!-- Premier conteneur pour le bouton et la description -->
+    <view class="conteneur_premier">
+        <view class="bouton" bindtap="openModal">Intégrer</view>
+        <view class="description">Description</view>
+        <view class="description_text {{isExpanded ? 'expanded' : 'collapsed'}}">
+            <text style="position:relative;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo adipisci consectetur aperiam natus consequuntur. Dolorem deserunt dicta impedit quia sapiente quos minus laborum, sint quisquam eligendi cum, vero, atque voluptate!</text>
+            <text style="position: relative;">Lorem ipsum dolor sit amet consectetur adipisicing elit.</text>
+            <text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas quae reprehenderit ipsum minus a sed quidem, nisi maiores suscipit enim quasi impedit delectus sunt possimus! Quibusdam quod enim voluptatem at?</text>
+            <text>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae enim a rerum vero suscipit fugiat sit veritatis, blanditiis neque, deleniti, quasi facere ipsum omnis illo necessitatibus labore asperiores reiciendis veniam.</text>
+            <text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia blanditiis repellat perferendis vel quas illum distinctio rem, fuga non voluptates reprehenderit asperiores ex obcaecati sit unde in exercitationem autem maiores.</text>
+        </view>
+        <view class="voir_plus" bindtap="toggleText" style="position: relative; left: 55rpx; top: 171rpx">
+            {{isExpanded ? 'voir moins' : 'voir plus'}}
+        </view>
     </view>
-  
-   <view class="voir_plus" bindtap="toggleText" style="position: relative; left: 55rpx; top: 171rpx">
-    {{isExpanded ? 'voir moins' : 'voir plus'}}
-  </view>
-  </view>
 
-
-  <view class="conteneur_second" style="position: relative; left: -1rpx; top: 0rpx">
-  <view class="Avis">Note & Avis d'utilisateurs</view>
-  
-  <view class="Avis_view avis-{{index}}" wx:for="{{avisList}}" wx:key="id">
-    <view class="ensemble">
-      <image src="{{item.avatar}}" class="avatar" />
-      <view class="nom">{{item.nom}}</view>
-      <view class="note">{{item.note}}</view>
+    <!-- Second conteneur pour les avis utilisateurs -->
+    <view class="conteneur_second" style="position: relative; left: -1rpx; top: 0rpx">
+        <view class="Avis">Note & Avis d'utilisateurs</view>
+        <view class="Avis_view avis-{{index}}" wx:for="{{avisList}}" wx:key="id">
+            <view class="ensemble">
+                <image src="{{item.avatar}}" class="avatar" />
+                <view class="nom">{{item.nom}}</view>
+                <view class="note">{{item.note}}</view>
+            </view>
+            <view class="description_avis">
+                <text class="{{item.expanded ? 'full-text' : 'truncated-text'}}">{{item.description}}</text>
+                <view class="voir_plus_avis" wx:if="{{item.showButton}}" bindtap="toggleExpand" data-index="{{index}}">
+                    {{item.expanded ? 'Voir moins' : 'Voir plus'}}
+                </view>
+            </view>
+        </view>
     </view>
-    
-    <view class="description_avis">
-      <text class="{{item.expanded ? 'full-text' : 'truncated-text'}}">{{item.description}}</text>
-      <view class="voir_plus_avis" wx:if="{{item.showButton}}" bindtap="toggleExpand" data-index="{{index}}">
-        {{item.expanded ? 'Voir moins' : 'Voir plus'}}
-      </view>
-    </view>
-  </view>
-</view>
 
-  </scroll-view>
+    <!-- Modal pour l'intégration avec champ de mot de passe et bouton de fermeture -->
+    <view wx:if="{{showModal}}" class="modal-overlay" bindtap="closeModal">
+        <view class="modal-container1" catchtap="preventClose">
+            <!-- En-tête de la modal avec titre et bouton de fermeture -->
+            <view class="modal-header1">
+                <view class="modal-title-container1">
+                    <text class="modal-title1">Entrer le mot de passe</text>
+                </view>
+                <view class="close-button" bindtap="closeModal">
+                    <image src="/assets/mingcute_close-fill.png" class="close-icon" />
+                </view>
+            </view>
+
+            <!-- Corps de la modal avec champ de saisie stylisé -->
+            <scroll-view scroll-y="true" class="modal-scroll1" enhanced="true">
+                <view class="modal-body1">
+                    <!-- Champ pour le mot de passe (nombres uniquement) -->
+                    <view class="input-group1">
+                        <text class="input-label">Mot de passe</text>
+                        <view class="pin-container">
+                            <input class="pin-field" type="number" placeholder="Entrez le code" value="{{formData.code}}" bindinput="onInputChange" data-field="code" maxlength="5" />
+                            <view class="pin-boxes">
+                                <view class="pin-box" wx:for="{{5}}" wx:key="index" wx:for-item="box">
+                                    <text class="pin-digit">{{formData.code.length >= index + 1 ? formData.code[index] : ''}}</text>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <!-- Bouton de confirmation -->
+                    <view class="modal-footer">
+                        <view class="confirm-button" bindtap="Integrer">
+                            Valider
+                        </view>
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+    </view>
+
+</scroll-view>

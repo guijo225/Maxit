@@ -1,28 +1,31 @@
-/* pages/integration_utilisateur/integration_utilisateur.wxss */
+/* Style global de la page */
 page {
     height: 100vh;
     font-family: 'Times New Roman', Times, serif;
-    
-  }
-  .integrer {
+}
+
+/* Style du conteneur principal avec défilement */
+.integrer {
     flex: 1;
     overflow-y: auto;
-  margin-top: 5%;
-  width: 750rpx;
-  height: 1107rpx; 
-  display: block;
-  box-sizing: border-box;
-   animation: containerSlide 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-  .conteneur_premier{
-    position: relative; 
-    width: 100%; 
+    margin-top: 5%;
+    width: 750rpx;
+    height: 1107rpx;
+    display: block;
+    box-sizing: border-box;
+    animation: containerSlide 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Style du premier conteneur */
+.conteneur_premier {
+    position: relative;
+    width: 100%;
     max-width: 750rpx;
     min-height: 492rpx;
     height: auto;
-    display: block; 
-    box-sizing: border-box; 
-    left: 0rpx; 
+    display: block;
+    box-sizing: border-box;
+    left: 0rpx;
     top: -37rpx;
     margin: 0 auto;
     padding-bottom: 80rpx;
@@ -30,57 +33,59 @@ page {
     backdrop-filter: blur(10rpx);
     box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.1);
     animation: cardFloat 1s ease-out 0.2s both;
-  }
-  
-  .bouton{
-    position: relative; 
-    width: min(412rpx, 55%); 
+}
+
+/* Style du bouton principal */
+.bouton {
+    position: relative;
+    width: min(412rpx, 55%);
     background: #FF7900;
-    height: 48rpx; 
-    display: block; 
-    box-sizing: border-box; 
+    height: 48rpx;
+    display: block;
+    box-sizing: border-box;
     left: 50%;
     transform: translateX(-50%);
-    top: 93rpx; 
-    border-radius: 15px; 
-    text-align: center; 
-    padding-top: 1%; 
-    color: white; 
+    top: 93rpx;
+    border-radius: 15px;
+    text-align: center;
+    padding-top: 1%;
+    color: white;
     font-weight: bold;
     transition: all 0.3s ease;
     box-shadow: 0 4rpx 8rpx rgba(255, 121, 0, 0.3);
-  }
-  
-  .bouton:hover {
+}
+
+.bouton:hover {
     background: #e66b00;
     box-shadow: 0 6rpx 12rpx rgba(255, 121, 0, 0.4);
-  }
-  
-  .bouton:active {
+}
+
+.bouton:active {
     box-shadow: 0 2rpx 4rpx rgba(255, 121, 0, 0.2);
-     background: linear-gradient(135deg, #e66b00 0%, #FF7900 100%);
-  
-  }
-  
-  .description{
-    position: relative; 
-    width: calc(100% - 70rpx); 
-    height: 53rpx; 
-    left: 35rpx; 
-    top: 147rpx; 
-    display: block; 
+    background: linear-gradient(135deg, #e66b00 0%, #FF7900 100%);
+}
+
+/* Style de la section description */
+.description {
+    position: relative;
+    width: calc(100% - 70rpx);
+    height: 53rpx;
+    left: 35rpx;
+    top: 147rpx;
+    display: block;
     box-sizing: border-box;
     animation: slideInLeft 0.8s ease-out 0.4s both;
     font-weight: bold;
     font-size: 20px;
-  }
-  
-  .description_text{
-    position: relative; 
-    width: calc(100% - 70rpx); 
-    left: 35rpx; 
-    top: 174rpx; 
-    display: block; 
+}
+
+/* Style du texte de description */
+.description_text {
+    position: relative;
+    width: calc(100% - 70rpx);
+    left: 35rpx;
+    top: 174rpx;
+    display: block;
     box-sizing: border-box;
     line-height: 1.6;
     color: #666;
@@ -88,18 +93,18 @@ page {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     transform-origin: top;
     margin-bottom: 20rpx;
-    transform-origin: top;
     animation: fadeInText 1s ease-out 0.6s both;
-  }
-  
-  .description_text.collapsed {
+}
+
+.description_text.collapsed {
     max-height: 120rpx;
     overflow: hidden;
     opacity: 0.9;
     transform: scaleY(0.95);
     position: relative;
-  }
-  .description_text.collapsed::after {
+}
+
+.description_text.collapsed::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -108,154 +113,162 @@ page {
     height: 60rpx;
     background: linear-gradient(transparent, rgba(255, 255, 255, 0.9));
     pointer-events: none;
-  }
-  .description_text.expanded {
+}
+
+.description_text.expanded {
     max-height: none;
     height: auto;
     opacity: 1;
     transform: scaleY(1);
     animation: scaleIn 0.5s ease-out;
-  }
-  
-  .voir_plus{
-    position: relative; 
-    width: 238rpx; 
+}
+
+/* Style du bouton "voir plus" */
+.voir_plus {
+    position: relative;
+    width: 238rpx;
     color: #FF7900;
-    height: 48rpx; 
-    display: inline-block; 
-    box-sizing: border-box; 
+    height: 48rpx;
+    display: inline-block;
+    box-sizing: border-box;
     cursor: pointer;
-    left: 65rpx; 
+    left: 65rpx;
     top: 20rpx;
     padding: 10rpx 20rpx;
     border-radius: 20rpx;
-    cursor: pointer;
     transition: all 0.3s ease;
     font-weight: 500;
     margin-bottom: 20rpx;
-  }
-  
-  .voir_plus:hover {
+}
+
+.voir_plus:hover {
     color: #e66b00;
     transform: translateY(-2rpx);
-  }
-  
-  .voir_plus:active {
+}
+
+.voir_plus:active {
     transform: translateY(0rpx) scale(0.98);
-     background: rgba(255, 121, 0, 0.2);
-  }
-  
-  .conteneur_second {
-    position: relative; 
+    background: rgba(255, 121, 0, 0.2);
+}
+
+/* Style du second conteneur */
+.conteneur_second {
+    position: relative;
     width: calc(100% - 40rpx);
-    height: auto; 
-    display: block; 
-    box-sizing: border-box; 
-    left: 31rpx; 
-    top: 0rpx; 
-    border-top: solid 1rpx #ff77002f; 
+    height: auto;
+    display: block;
+    box-sizing: border-box;
+    left: 31rpx;
+    top: 0rpx;
+    border-top: solid 1rpx #ff77002f;
     justify-content: space-around;
     margin: 0 auto;
-   
-  }
-  
-  .Avis {
-    position: relative; 
+}
+
+/* Style de la section avis */
+.Avis {
+    position: relative;
     width: 100%;
-    height: 53rpx; 
-    left: 33rpx; 
-    top: 25rpx; 
-    display: block; 
+    height: 53rpx;
+    left: 33rpx;
+    top: 25rpx;
+    display: block;
     box-sizing: border-box;
     font-weight: bold;
     animation: scaleIn 0.5s ease-out;
-  }
-  
-  .Avis_view {
-    position: relative; 
-    width: 682rpx; 
-    height: auto; 
+}
+
+/* Style de chaque avis */
+.Avis_view {
+    position: relative;
+    width: 682rpx;
+    height: auto;
     min-height: 157rpx;
-    left: 0rpx; 
-    top: 25rpx; 
-    display: block; 
-    box-sizing: border-box; 
-    border: solid #FF7900 0.2px; 
+    left: 0rpx;
+    top: 25rpx;
+    display: block;
+    box-sizing: border-box;
+    border: solid #FF7900 0.2px;
     border-radius: 10px;
     margin-top: 2%;
     margin-bottom: 3%;
     transition: all 0.3s ease-in-out;
     animation: scaleIn 0.5s ease-out;
-  }
-  
-  .Avis_view:hover {
+}
+
+.Avis_view:hover {
     box-shadow: 0 4rpx 12rpx rgba(255, 121, 0, 0.2);
     transform: translateY(-2rpx);
-  }
-  
-  .ensemble {
-    position: relative; 
-    width: 658rpx; 
-    height: 107rpx; 
-    left: 13rpx; 
-    top: 8rpx; 
-    display: block; 
+}
+
+/* Style de l'ensemble avatar, nom, note */
+.ensemble {
+    position: relative;
+    width: 658rpx;
+    height: 107rpx;
+    left: 13rpx;
+    top: 8rpx;
+    display: block;
     box-sizing: border-box;
-  }
-  
-  .ensemble image {
-    position: relative; 
-    width: 100rpx; 
-    height: 100rpx; 
-    display: inline-block; 
-    box-sizing: border-box; 
-    left: 0rpx; 
+}
+
+.ensemble image {
+    position: relative;
+    width: 100rpx;
+    height: 100rpx;
+    display: inline-block;
+    box-sizing: border-box;
+    left: 0rpx;
     top: 0rpx;
     border-radius: 30px;
     transition: transform 0.3s ease;
-  }
-  
-  .ensemble image:hover {
+}
+
+.ensemble image:hover {
     transform: scale(1.05);
-  }
-  
-  .nom {
-    position: relative; 
-    width: 278rpx; 
-    height: 37rpx; 
-    display: block; 
-    box-sizing: border-box; 
-    left: 123rpx; 
-    top: -94rpx; 
-    font-weight: bold; 
+}
+
+/* Style du nom */
+.nom {
+    position: relative;
+    width: 278rpx;
+    height: 37rpx;
+    display: block;
+    box-sizing: border-box;
+    left: 123rpx;
+    top: -94rpx;
+    font-weight: bold;
     font-size: 15px;
     animation: scaleIn 0.5s ease-out;
-  }
-  
-  .note {
-    position: relative; 
-    width: 278rpx; 
-    height: 37rpx; 
-    display: block; 
-    box-sizing: border-box; 
-    left: 123rpx; 
+}
+
+/* Style de la note */
+.note {
+    position: relative;
+    width: 278rpx;
+    height: 37rpx;
+    display: block;
+    box-sizing: border-box;
+    left: 123rpx;
     top: -90rpx;
     animation: scaleIn 0.5s ease-out;
-  }
-  
-  .description_avis {
-    position: relative; 
-    width: 632rpx; 
+}
+
+/* Style de la description des avis */
+.description_avis {
+    position: relative;
+    width: 632rpx;
     height: auto;
     min-height: 51rpx;
-    display: block; 
-    box-sizing: border-box; 
-    left: 13rpx; 
+    display: block;
+    box-sizing: border-box;
+    left: 13rpx;
     top: -2rpx;
     overflow: hidden;
-  }
-  
-  .truncated-text {
+}
+
+/* Style du texte tronqué */
+.truncated-text {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
@@ -263,17 +276,19 @@ page {
     text-overflow: ellipsis;
     line-height: 1.4;
     transition: all 0.3s ease-in;
-  }
-  
-  .full-text {
+}
+
+/* Style du texte complet */
+.full-text {
     display: block;
     line-height: 1.6;
     font-size: 28rpx;
     color: #666;
     animation: expandTextAvis 0.5s ease-out;
-  }
-  
-  .voir_plus_avis{
+}
+
+/* Style du bouton "voir plus" pour les avis */
+.voir_plus_avis {
     position: relative;
     font-size: 26rpx;
     color: #FF7900;
@@ -285,80 +300,237 @@ page {
     border-radius: 16rpx;
     background: rgba(255, 121, 0, 0.1);
     display: inline-block;
-    animation: fadeInUp 0.5s ease-out 0.6s both;}
-  
-  @keyframes slideInUp {
-    from {
-      opacity: 0;
-      transform: translateY(50rpx);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  @keyframes slideInRight {
-    from {
-      opacity: 0;
-      transform: translateX(-30rpx);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-  
-  @keyframes scaleIn {
-    from {
-      opacity: 0;
-      transform: scale(0.9);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-  
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20rpx);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  @keyframes expandText {
-    from {
-      opacity: 0.7;
-      max-height: 0;
-    }
-    to {
-      opacity: 1;
-      max-height: 1000rpx;
-    }
-  }
-  @keyframes fadeInText {
-    0% {
-      opacity: 0;
-      transform: translateY(30rpx);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  @keyframes expandTextSmooth {
-    0% {
-      opacity: 0.8;
-      transform: scaleY(0.9);
-    }
-    100% {
-      opacity: 1;
-      transform: scaleY(1);
-    }
-  }
+    animation: fadeInUp 0.5s ease-out 0.6s both;
+}
+
+/* Style de l'overlay de la modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease-in;
+}
+
+/* Style du conteneur de la modal */
+.modal-container1 {
+    width: 90%;
+    max-width: 650rpx;
+    max-height: 80vh;
+    background: linear-gradient(145deg, #ffffff, #f9fafb);
+    border-radius: 24rpx;
+    display: flex;
+    flex-direction: column;
+    animation: slideUp 0.3s ease-out;
+    overflow: hidden;
+    box-shadow: 0 10rpx 30rpx rgba(0, 0, 0, 0.2);
+}
+
+/* Style de l'en-tête de la modal */
+.modal-header1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30rpx;
+    border-bottom: 1rpx solid #e5e7eb;
+}
+
+/* Style du conteneur du titre */
+.modal-title-container1 {
+    flex: 1;
+    text-align: center;
+}
+
+/* Style du titre de la modal */
+.modal-title1 {
+    font-size: 34rpx;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+/* Style du bouton de fermeture */
+.close-button {
+    width: 48rpx;
+    height: 48rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #f3f4f6;
+    transition: background 0.2s ease;
+}
+
+.close-button:hover {
+    background: #e5e7eb;
+}
+
+/* Style de l'icône de fermeture */
+.close-icon {
+    width: 24rpx;
+    height: 24rpx;
+}
+
+/* Style du conteneur de défilement */
+.modal-scroll1 {
+    flex: 1;
+    max-height: calc(80vh - 200rpx);
+    overflow-y: auto;
+}
+
+/* Style du corps de la modal */
+.modal-body1 {
+    padding: 32rpx;
+}
+
+/* Style des groupes d'entrée */
+.input-group1 {
+    margin-bottom: 30rpx;
+}
+
+/* Style des étiquettes */
+.input-label {
+    font-size: 28rpx;
+    font-weight: 500;
+    color: #1f2937;
+    margin-bottom: 12rpx;
+    display: block;
+}
+
+/* Style du conteneur des carrés de PIN */
+.pin-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* Style du champ de saisie caché */
+.pin-field {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100rpx;
+    z-index: 10;
+}
+
+/* Style des carrés de PIN */
+.pin-boxes {
+    display: flex;
+    gap: 16rpx;
+    justify-content: center;
+}
+
+.pin-box {
+    width: 64rpx;
+    height: 64rpx;
+    border: 2rpx solid #ff77006c;
+    border-radius: 12rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    transition: all 0.2s ease;
+    box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+}
+
+.pin-box.active {
+    border-color: #FF7900;
+    box-shadow: 0 0 0 4rpx rgba(255, 121, 0, 0.1);
+}
+
+.pin-digit {
+    font-size: 32rpx;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+/* Style du pied de page de la modal */
+.modal-footer {
+    background: #fff;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20rpx 0;
+}
+
+/* Style du bouton de confirmation */
+.confirm-button {
+    width: 100%;
+    max-width: 300rpx;
+    height: 88rpx;
+    background: linear-gradient(135deg, #FF7900, #e66b00);
+    color: #ffffff;
+    border-radius: 20rpx;
+    font-size: 32rpx;
+    font-weight: 600;
+    border: none;
+    box-shadow: 0 6rpx 20rpx rgba(255, 121, 0, 0.4);
+    transition: all 0.2s ease;
+    padding: 0rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 24%;
+
+}
+
+.confirm-button:hover {
+    transform: translateY(-2rpx);
+    box-shadow: 0 8rpx 24rpx rgba(255, 121, 0, 0.5);
+}
+
+.confirm-button:active {
+    transform: scale(0.98);
+}
+
+/* Animations */
+@keyframes slideInUp {
+    from { opacity: 0; transform: translateY(50rpx); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(-30rpx); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20rpx); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes expandText {
+    from { opacity: 0.7; max-height: 0; }
+    to { opacity: 1; max-height: 1000rpx; }
+}
+
+@keyframes fadeInText {
+    0% { opacity: 0; transform: translateY(30rpx); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes expandTextSmooth {
+    0% { opacity: 0.8; transform: scaleY(0.9); }
+    100% { opacity: 1; transform: scaleY(1); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(100rpx); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
