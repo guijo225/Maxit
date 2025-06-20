@@ -6,6 +6,8 @@ use App\Models\Utilisateur;
 use App\Http\Controllers\Controller;
 use Hash;
 use Illuminate\Http\Request;
+//use Illuminate\Support\Facades\Hash;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UtilisateurController extends Controller
 {
@@ -56,7 +58,7 @@ class UtilisateurController extends Controller
                 ]);
                 //$utilisateur = new Utilisateur();
 
-                return response()->json(['message' => 'Compte créé avec succès'], 201);
+                return response()->json(['message' => 'Compte créé avec succès', 'utilisateur' => $utilisateur], 201);
 
             }
         }
@@ -64,7 +66,7 @@ class UtilisateurController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'identifiant' => 'required', // pseudo ou contact
+            'identifiant' => 'required',
             'mot_de_passe' => 'required|string',
         ]);
 
@@ -77,14 +79,28 @@ class UtilisateurController extends Controller
             return response()->json(['message' => 'Identifiant ou mot de passe incorrect'], 401);
         }
 
-        // Générer un token simple
-        $token = base64_encode(random_bytes(40));
+        // Générer un token JWT
+        $token = JWTAuth::fromUser($utilisateur);
 
         return response()->json([
             'message' => 'Connexion réussie',
             'utilisateur' => $utilisateur,
-            'token' => $token
+            'token' => $token,
+            'type' => 'bearer',
+            'expires_in' => auth('api')->factory()->getTTL() * 60
         ]);
+    }
+
+    //liste des tontines pour un utilisateur
+    public function TontinesParUtilisateur($id_utilisateur)
+    {
+        $utilisateur = Utilisateur::with('tontines')->find($id_utilisateur);
+
+        if (!$utilisateur) {
+            return response()->json(['message' => 'Utilisateur non trouvé'], 404);
+        }
+
+        return response()->json($utilisateur->tontines);
     }
 
 }

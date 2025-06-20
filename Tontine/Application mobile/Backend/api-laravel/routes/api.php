@@ -21,9 +21,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
+// Route publique
 Route::post('/inscription', [UtilisateurController::class, 'inscription']);
 Route::post('/login', [UtilisateurController::class, 'login']);
-Route::get('/tontine/{id}', [TontineController::class, 'afficheTontine']);
-Route::get('/participant/{id}', [ParticipantController::class, 'participantTontine']);
+
+Route::get('/TontinesParUtilisateur/{id}', [UtilisateurController::class, 'TontinesParUtilisateur']);
+// Route protégée
+Route::middleware('auth:api')->group(function () {
+    Route::get('/tontine/{id}', [TontineController::class, 'afficheTontine']);
+    Route::get('/participant/{id}', [ParticipantController::class, 'participantTontine']);
+});
 
