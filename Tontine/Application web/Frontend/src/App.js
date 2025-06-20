@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import TontinePage from './page/TontinePage';
@@ -8,43 +8,56 @@ import RapportPage from './page/RapportPage'
 import './App.css';
 import DetailPage from './page/DetailPage';
 import DetailTontine from './page/DetailTontine';
+import LoginPage from './page/LoginPage';
+import ComptePage from './page/ComptePage'
 
-function App() {
+function AppLayout() {
   const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
-
-  const toggleSubmenu = () => {
-    setIsSubmenuOpen(!isSubmenuOpen);
-  };
+  const toggleSubmenu = () => setIsSubmenuOpen(!isSubmenuOpen);
 
   return (
-    <Router>
-      <div className="app-layout">
-        {/* Sidebar fixe */}
-        <aside className="sidebar-container">
-          <Sidebar 
-            isSubmenuOpen={isSubmenuOpen}
-            toggleSubmenu={toggleSubmenu}
-          />
-        </aside>
-
-        {/* Contenu principal avec header et routes */}
-        <div className="main-layout">
-          <header className="header-container">
-            <Header />
-          </header>
-          <main className="page-container">
-            <Routes>
-              <Route path="/dashboard" element={<DashboardPage />} />
-              <Route path="/tontines" element={<TontinePage />} />
-              <Route path="/Rapport" element={<RapportPage />} />
-              <Route path="/DetailPage" element={<DetailPage/>} />
-              <Route path="/DetailTontine" element={<DetailTontine/>}/>
-            </Routes>
-          </main>
-        </div>
+    <div className="app-layout">
+      <aside className="sidebar-container">
+        <Sidebar 
+          isSubmenuOpen={isSubmenuOpen}
+          toggleSubmenu={toggleSubmenu}
+        />
+      </aside>
+      <div className="main-layout">
+        <header className="header-container">
+          <Header />
+        </header>
+        <main className="page-container">
+          <Routes>
+            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/tontines" element={<TontinePage />} />
+            <Route path="/Rapport" element={<RapportPage />} />
+            <Route path="/DetailPage" element={<DetailPage/>} />
+            <Route path="/DetailTontine" element={<DetailTontine/>}/>
+            <Route path="/ComptePage" element={<ComptePage/>}/>
+          </Routes>
+        </main>
       </div>
-    </Router>
+    </div>
   );
 }
 
-export default App;
+function App() {
+  const location = useLocation();
+
+  // Si on est sur la page de connexion on affiche uniquement LoginPage
+  if (location.pathname === "/") {
+    return <LoginPage />;
+  }
+
+  // Sinon, on affiche le layout normal
+  return <AppLayout />;
+}
+
+export default function RootApp() {
+  return (
+    <Router>
+      <App />
+    </Router>
+  );
+}

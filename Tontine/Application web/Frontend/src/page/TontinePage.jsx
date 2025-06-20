@@ -173,19 +173,15 @@ const TontinePage = () => {
             
             <div className="pagination-buttons">
               <button 
-                className="pagination-button prev" 
+                className="pagination-button-prev" 
                 onClick={goToPreviousPage} 
                 disabled={currentPage === 1}
               >
                 Précédent
               </button>
               
-              <span className="page-number-indicator">
-                Page {currentPage} sur {totalPages}
-              </span>
-              
               <button 
-                className="pagination-button next" 
+                className="pagination-button-next" 
                 onClick={goToNextPage} 
                 disabled={currentPage === totalPages}
               >

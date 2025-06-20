@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useMemo } from "react";
 
 import './DetailTontine.css'
 
 function DetailTontine() {
+
+    const initialTransactions = useMemo(() => [
+        // ... vos transactions initiales ...
+    ], []);
+
+    const transactions = useMemo(() => {
+        // ... logique utilisant initialTransactions ...
+    }, [initialTransactions]);
 
     return (
         <div className="page-container">

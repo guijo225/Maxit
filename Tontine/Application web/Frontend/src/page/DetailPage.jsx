@@ -143,8 +143,10 @@ const DetailPage = () => {
               </tbody>
             </table>
           </div>
-          <button onClick={goToPreviousPage} disabled={currentPage === 1}>Précédent</button>
-          <button onClick={goToNextPage} disabled={currentPage === totalPages}>Suivant</button>
+          <div className="mesbouton">
+                 <button className="monbout" onClick={goToPreviousPage} disabled={currentPage === 1}>Précédent</button>
+                 <button className="monbou" onClick={goToNextPage} disabled={currentPage === totalPages}>Suivant</button> 
+          </div>
         </section>
       </main>
     </div>
