@@ -2,7 +2,7 @@
 .container {
     padding: 20px;
     background-color: #FFFFFF;
-    padding-bottom: 70px; /* Pour éviter que le scroll cache le bouton flottant */
+    padding-bottom: 100px; /* Augmenté pour éviter que les boutons flottants soient cachés */
   }
   
   /* Header de la page */
@@ -104,12 +104,12 @@
     margin-right: 10px;
   }
   
-  /* Bouton flottant sous forme de texte en bas de la page */
+  /* Bouton flottant "Ignorer" */
   .floating-ignore {
     position: fixed;
     bottom: 20px;
-    left: 0;
-    width: 100%;
+    left: 20px; /* Aligné à gauche */
+    width: 175rpx;
     text-align: center;
     font-size: 32rpx;
     color: #FF7900;
@@ -119,3 +119,18 @@
     z-index: 999;
   }
   
+  /* Bouton flottant "Ajouter" */
+  .floating-add {
+    position: fixed;
+    bottom: 20px;
+    right: 20px; /* Aligné à droite */
+    width: 175rpx;
+    text-align: center;
+    font-size: 32rpx;
+    color: #FFFFFF;
+    padding: 20rpx 0;
+    background: #FF6200; /* Couleur de fond pour le bouton Ajouter */
+    box-shadow: 0 -4rpx 8rpx rgba(0, 0, 0, 0.05);
+    z-index: 999;
+    border-radius: 10rpx; /* Coins arrondis */
+  }

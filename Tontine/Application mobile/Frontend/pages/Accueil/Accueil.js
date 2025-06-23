@@ -13,6 +13,11 @@ Page({
         url: '/pages/Cotisation/Cotisation'
       });
     },
+    goToNotification() {
+        wx.navigateTo({
+          url: '/pages/Notification/Notification'
+        });
+      },
     goToTour() {
       wx.navigateTo({
         url: '/pages/Tour/Tour'

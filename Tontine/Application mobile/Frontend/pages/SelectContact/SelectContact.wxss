@@ -1,0 +1,83 @@
+/* Conteneur principal */
+.container {
+    padding: 20px;
+    background-color: #FFFFFF;
+    min-height: 100vh; /* Assure que le conteneur couvre toute la hauteur de l'écran */
+  }
+  
+  /* Header de la page */
+  .header {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+  /* Icône de retour */
+  .back-icon {
+    width: 24px;
+    height: 24px;
+  }
+  
+  /* Section des contacts */
+  .contacts-section {
+    margin-top: 10px;
+    width: 100%;
+  }
+  
+  /* Message affiché si aucun contact sélectionné */
+  .no-contacts {
+    text-align: center;
+    font-size: 16px;
+    color: #666;
+    margin-top: 50px;
+  }
+  
+  /* Liste des contacts */
+  .contacts-list {
+    margin-top: 10px;
+    height: 400px; /* Hauteur fixe pour la liste défilante */
+    top: -20%;
+  }
+  
+  /* Élément de contact */
+  .contact-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+  }
+  
+  /* Cercle avec initiales */
+  .contact-circle {
+    width: 40px;
+    height: 40px;
+    background-color: #ff6200;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+  }
+  
+  /* Détails du contact */
+  .contact-details {
+    flex: 1;
+  }
+  
+  /* Nom du contact */
+  .contact-name {
+    display: block;
+    font-size: 16px;
+  }
+  
+  /* Numéro de téléphone */
+  .contact-phone {
+    font-size: 14px;
+    color: #666;
+  }

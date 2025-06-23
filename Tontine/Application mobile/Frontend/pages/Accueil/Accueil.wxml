@@ -6,7 +6,7 @@
     <view class="header">
         <image src="/assets/retour.png" class="back-icon" bindtap="goBack" />
         <text>Gestion tontine</text>
-        <image src="/assets/active.png" class="back-icon" bindtap="goBack" />
+        <image src="/assets/active.png" class="back-icon" bindtap="goToNotification" />
     </view>
 
     <!-- Contenu principal scrollable -->
@@ -44,7 +44,7 @@
                 <image src="/assets/modlite.png" class="card-image" />
             </view>
 
-            <view class="action-card" bindtap="goToTour" style="width: 330rpx; height: 324rpx; display: flex; box-sizing: border-box">
+            <view class="action-card" bindtap="" style="width: 330rpx; height: 324rpx; display: flex; box-sizing: border-box">
                 <text class="card-title">Payer sa
                     cotisation</text>
                 <text class="card-text">Regler vos cotisations ,

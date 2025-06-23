@@ -56,9 +56,9 @@
                     <view class="input-group1">
                         <text class="input-label">Mot de passe</text>
                         <view class="pin-container">
-                            <input class="pin-field" type="number" placeholder="Entrez le code" value="{{formData.code}}" bindinput="onInputChange" data-field="code" maxlength="5" />
+                            <input class="pin-field" type="number" placeholder="Entrez le code" value="{{formData.code}}" bindinput="onInputChange" data-field="code" maxlength="6" />
                             <view class="pin-boxes">
-                                <view class="pin-box" wx:for="{{5}}" wx:key="index" wx:for-item="box">
+                                <view class="pin-box" wx:for="{{6}}" wx:key="index" wx:for-item="box">
                                     <text class="pin-digit">{{formData.code.length >= index + 1 ? formData.code[index] : ''}}</text>
                                 </view>
                             </view>

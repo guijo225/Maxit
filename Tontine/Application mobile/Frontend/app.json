@@ -1,10 +1,11 @@
 {
   "pages": [
-    
     "pages/index/index",
     "pages/PageContact/PageContact",
     "pages/Accueil/Accueil",
-    "pages/Tour/Tour"
+    "pages/Tour/Tour",
+    "pages/SelectContact/SelectContact",
+    "pages/Notification/Notification"
 
   ],
   "window": {

@@ -1,0 +1,25 @@
+<!--pages/historique/historique.wxml-->
+<nav>
+</nav>
+<scroll-view>
+    <view style="margin-bottom: 20rpx;">
+    <view style="position: relative; width: 720rpx; background: #d3d3d3; height: 197rpx; left: 15rpx; top: 90rpx; display: block; box-sizing: border-box; border-radius: 15px">
+        <view style="position: relative; left: 181rpx; top: 40rpx; font-size: 30rpx; font-weight: bold; width: 422rpx; height: 38rpx; display: block; box-sizing: border-box">Titre de la tontine</view>
+        <view style="position: relative; left: 181rpx; top: 40rpx; width: 454rpx; height: 39rpx; display: block; box-sizing: border-box; font-size: 28rpx">Ceci est le text de la notification</view>
+        <view style="position: relative; left: 181rpx; top: 40rpx; font-size: 28rpx">il y a 2 min</view>
+    </view>
+
+<view style="position: relative; width: 106rpx; background: #ED6C30; height: 97rpx; display: block; box-sizing: border-box; left: 52rpx; top: -58rpx; border-radius: 50rpx;">
+    <image style="position: relative; width: 68rpx; height: 68rpx; display: inline-block; box-sizing: border-box; left: 19rpx; top: 15rpx" src="/assets/mynaui_message-solid.png" />
+</view>
+</view>
+
+
+<view style="text-align: center; margin-top: 150rpx; width: 750rpx; height: 1107rpx; display: block; box-sizing: border-box">
+    Vous n'avez tontine trouvée.
+
+    <image style="position: relative; left: 24rpx; top: 62rpx; width: 539rpx; height: 502rpx; display: inline-block; box-sizing: border-box" src="/assets/ion_notifications-off.png" />
+</view>
+
+
+</scroll-view>

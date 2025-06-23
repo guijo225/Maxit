@@ -1,0 +1,32 @@
+<!-- Barre de navigation -->
+<navigation-bar></navigation-bar>
+
+<!-- Conteneur principal -->
+<view class="container">
+  <!-- En-tête avec icône de retour et titre -->
+  <view class="header">
+    <image src="/assets/retour.png" class="back-icon" bindtap="goBack" />
+    <text>Contacts sélectionnés</text>
+  </view>
+
+  <!-- Section des contacts sélectionnés -->
+  <view class="contacts-section">
+    <!-- Affichage conditionnel si aucun contact n'est sélectionné -->
+    <view wx:if="{{selectedContacts.length === 0}}" class="no-contacts">
+      <text>Aucun contact sélectionné</text>
+    </view>
+
+    <!-- Liste défilante des contacts sélectionnés -->
+    <scroll-view class="contacts-list" scroll-y wx:if="{{selectedContacts.length > 0}}">
+      <block wx:for="{{selectedContacts}}" wx:key="id">
+        <view class="contact-item">
+          <text class="contact-circle">{{item.name.slice(0, 2).toUpperCase()}}</text>
+          <view class="contact-details">
+            <text class="contact-name">{{item.name}}</text>
+            <text class="contact-phone">{{item.phone}}</text>
+          </view>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+</view>

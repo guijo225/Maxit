@@ -1,14 +1,20 @@
+<!-- Barre de navigation -->
 <navigation-bar></navigation-bar>
+
+<!-- Conteneur principal -->
 <view class="container">
+  <!-- En-tête avec icône de retour et titre -->
   <view class="header">
     <image src="/assets/retour.png" class="back-icon" bindtap="goBack" />
     <text>Ajouter participants</text>
   </view>
 
+  <!-- Barre de recherche -->
   <view class="search-bar">
     <input type="text" placeholder="Entrez un nom ou un numéro" />
   </view>
 
+  <!-- Section des contacts -->
   <view class="contacts-section">
     <view class="contact-text-header">
       <view class="contacts-text" bindtap="toggleMultiSelect">
@@ -17,6 +23,7 @@
       <view class="select-text" bindtap="toggleMultiSelect">Sélectionner plusieurs</view>
     </view>
 
+    <!-- Liste défilante des contacts -->
     <scroll-view class="contacts-list" scroll-y>
       <block wx:for="{{contacts}}" wx:key="id">
         <view class="contact-item" data-index="{{index}}" bindtap="selectContact">
@@ -31,8 +38,13 @@
     </scroll-view>
   </view>
 
-  <!-- Bouton texte flottant en bas de la page -->
+  <!-- Bouton texte flottant "Ignorer" en bas de la page -->
   <view class="floating-ignore" bindtap="navigateAway">
     Ignorer
+  </view>
+
+  <!-- Bouton texte flottant "Ajouter" en bas de la page, affiché en mode multi-sélection -->
+  <view class="floating-add" bindtap="addSelectedContacts" wx:if="{{multiSelect}}">
+    Ajouter
   </view>
 </view>
