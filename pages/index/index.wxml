@@ -1,0 +1,60 @@
+<!--index.wxml-->
+    <navigation-bar title="Odi Mariano" back="{{false}}" color="black" background="#FFF" ></navigation-bar>
+
+    <view class="center">
+        <text class="mabox">Bienvenue, MAMADOU DIACK </text>
+        <view class="noir">
+            <text> Vous n'avez pas de ligne fibre ? </text>
+            <text class="rattacher"> Rattacher une ligne fibre</text>
+            <view class="btn"> + </view>
+        </view>
+    </view>
+    <view class="credit">
+      <image src="../../images/phone.png" class="icon-image"></image>
+      <text class="credit-text">Crédit</text>
+      <image src="../../images/eyes.png" class="icon-image-eyes" ></image>
+      <text>***** Fcfa</text>
+      <image src="../../images/next.png" class="icon-image-eyes"></image>
+  </view>
+  <scroll-view scroll-x="true" scroll-with-animation="true" class="scroll-container"> 
+      <image src="../../images/odc.png" alt="mon image" class="image-style"></image>
+      <image src="../../images/odc.png" alt="mon image" class="image-style"></image>
+      <image src="../../images/odc.png" alt="mon image" class="image-style"></image>
+      <image src="../../images/odc.png" alt="mon image" class="image-style"></image>
+      <image src="../../images/odc.png" alt="mon image" class="image-style"></image>
+      
+  </scroll-view>
+  <view class="trait"></view>
+  <text class="services">Services </text>
+  
+  <view style="display: flex; justify-content: space-around; align-items: center; margin-top: 10px; flex-wrap: wrap;">
+    <view>    
+        <image src="../../images/odc.png" alt="mon image" class="image-service"></image>
+        <view>Recharge</view>
+  </view>
+  <view>   
+        <image src="../../images/odc.png" alt="mon image" class="image-service"></image>
+        <view>Recharge</view>
+  </view>
+  <view>   
+        <image src="../../images/odc.png" alt="mon image" class="image-service"></image>
+        <view>Recharge</view>
+  </view>
+  <view>   
+        <image src="../../images/odc.png" alt="mon image" class="image-service"></image>
+        <view>Recharge</view>
+  </view>
+  
+  </view>
+  
+
+
+    <!-- <icon class="icon-box-img" type="success" size="25"></icon> -->
+
+
+  
+
+
+    
+
+

@@ -1,0 +1,9 @@
+<!--components/nav/nav.wxml-->
+<view class="nav">
+  <view class="orange">
+    <image src="../../images/logo-orange.png" mode=""/>
+  </view>
+  <view class="profil">
+    <image src="../../images/profile-user.png" mode=""/>
+  </view>
+</view>

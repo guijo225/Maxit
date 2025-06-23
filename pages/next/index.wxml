@@ -1,0 +1,9 @@
+
+<navigation-bar title="Max-IT" color="black" background="#FFF"></navigation-bar>
+<scroll-view class="scrollarea" scroll-y type="list">
+<view style="text-align: center;">
+  <image src="/images/weixin-image.jpg"></image>
+</view>
+  <text class="container"> {{name}} </text>
+  <button bind:tap="changeText" class="btn">Afficher</button>
+</scroll-view>

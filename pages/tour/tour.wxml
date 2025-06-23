@@ -1,0 +1,46 @@
+<!-- Bouton pour ouvrir la modal -->
+<view style="display: flex; justify-content: center; margin-top: 100px;">
+  <button bind:tap="lancerPaiement" style="background-color: rgb(255, 135, 23); color: white; border-radius: 10px; padding: 10px; font-weight: bold;">
+    Ouvrir la modal
+  </button>
+</view>
+
+<!-- Overlay semi-transparent -->
+<view wx:if="{{showModal}}" class="overlay" bindtap="closeModal">
+  <!-- Modal fixe en bas avec animation -->
+  <view class="bottom-modal {{modalVisible ? 'show' : 'hide'}}" catchtap="true">
+    
+    <!-- Croix de fermeture -->
+    <view bindtap="closeModal" style="position: absolute; top: 10px; right: 15px; font-size: 20px; font-weight: bold;">X</view>
+
+    <!-- Contenu de la modal -->
+    <view style="text-align: center; font-weight: bold; font-size: 20px; margin-bottom: 20px;">Paiement Cotisation 😂</view>
+
+    <view style="padding-left: 10px; padding-right: 10px;">
+      <view style="text-align: center;">Paiement Cotisation 😂</view>
+      <input type="text" value="{{ montant }}" 
+        disabled
+       style="text-align: center; border: solid 2rpx; border-radius: 15px; margin-top: 15px; padding: 10px;" />
+    </view>
+
+    <view style="padding-left: 10px; padding-right: 10px;">
+      <view style="text-align: center;">Compte à débiter</view>
+      <input type="text" value="{{contact}}" style="text-align: center; border: solid 2rpx; border-radius: 15px; margin-top: 15px; padding: 10px;" />
+    </view>
+
+<!--
+    <view style="background-color: rgb(65, 63, 63); height: 0.25px; margin: 30px"></view>
+
+     <view style="text-align: center; color: gray;">Entrer un autre numéro à débiter</view>
+    <view style="padding-left: 10px; padding-right: 10px;">
+      <input type="text" value="" style="text-align: center; border: solid 2rpx; border-radius: 15px; margin-top: 15px; padding: 10px;" />
+    </view> 
+
+    form-type="submit" 
+    -->
+
+    <button style="margin-top: 30px; color: white; background-color: rgb(255, 135, 23); font-weight: 400; border-radius: 10px;" bind:tap="paiement">
+      Valider
+    </button>
+  </view>
+</view>
