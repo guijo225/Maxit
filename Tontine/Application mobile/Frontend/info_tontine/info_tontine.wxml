@@ -1,0 +1,78 @@
+<!--index.wxml-->
+<navigation-bar title="Weixin" back="{{false}}" color="black" background="#FFF"></navigation-bar>
+
+<view class="conteneur">
+  <block wx:for="{{result}}" wx:key="id">
+  <view style="position: relative; left: 291rpx; top: 0rpx">{{item.nom_tontine}}</view>   
+  </block>
+</view>
+
+<!-- Informations tontine -->
+<view style="width: 750rpx; height: 262rpx; display: block; box-sizing: border-box" class="conteneur">
+    <block wx:for="{{result}}" wx:key="id">
+  
+  <view style="position: relative; left: 34rpx; top: 26rpx" class="stat"> Nombre de participant.e.s
+    <view style="position: relative; left: 55rpx; top: 57rpx; width: 244rpx; height: 42rpx; display: block; box-sizing: content-box; text-align: end; padding-right: 5px;">{{item.nombre_participants}}</view>
+  </view>
+
+  <view style="position: relative; left: 410rpx; top: -168rpx" class="stat">
+    Montant de la cagnotte
+    <view style="position: relative; left: 11rpx; top: 58rpx; text-align: end; padding-right: 5px;">
+      {{item.montant_total}} Fcfa</view>
+  </view>
+  </block>
+</view>
+
+<!-- Participants -->
+<view style="width: 750rpx; height: 340rpx; display: block; box-sizing: border-box" class="conteneur">
+<block wx:for="{{result}}" wx:key="id">
+  <text style="position: relative; left: 22rpx; top: 0rpx" class="h1">Participants</text>
+  <view style="position: relative; width: 100%; background: white; height: 100px; left: 0rpx; top: 24rpx">
+    <view data-index="{{index}}">
+      <block wx:for="{{item.participant}}" wx:for-item="participant" wx:key="participant.id_participant">
+        <view class="listParticipant" style="width: 736rpx; height: 64rpx; display: flex; box-sizing: border-box">
+            <view class="nom">
+              {{participant.utilisateur.nom}}  {{participant.utilisateur.prenoms}}
+            </view>        
+          <view class="montant">{{item.montant_a_cotise}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+  </block>
+</view>
+
+<view class="conteneur" style="width: 750rpx; height: 138rpx; display: block; box-sizing: border-box">
+  <view style="position: relative; width: 328rpx; height: 92rpx; left: 396rpx; top: 22rpx; display: block; box-sizing: border-box" class="btnModifier" bind:tap="chargePage">Modifier l'ordre</view>
+</view>
+
+<!-- Pénalités -->
+<view style="width: 750rpx; height: 340rpx; display: block; box-sizing: border-box" class="conteneur">
+  <text style="position: relative; left: 22rpx; top: 0rpx" class="h1">Pénalités</text>
+  <view style="position: relative; width: 100%; background: white; height: 100px; left: 0rpx; top: 24rpx">
+  <block wx:for="{{result}}" wx:key="id">
+    <view data-index="{{index}}">
+      <block wx:for="{{item.participant}}" wx:for-item="participant" wx:key="participant.id_participant">
+        <block wx:if="{{participant.penalite && participant.penalite.length>0}}">
+            <block wx:for="{{participant.penalite}}" wx:for-item="penalite" wx:key="penalite.id_penalite">
+        <view class="listParticipant" style="width: 736rpx; height: 64rpx; display: flex; box-sizing: border-box">
+          <view class="nom">
+          {{participant.utilisateur.nom}}  {{participant.utilisateur.prenoms}}
+          </view>
+          <!-- <block wx:if="{{participant.penalite && participant.penalite.length>0}}">
+            <block wx:for="{{participant.penalite}}" wx:for-item="penalite" wx:key="penalite.id_penalite"> -->
+            <view class="montant">
+              {{penalite.montant_penalite}}
+            </view>
+            <!-- </block>
+          </block> -->
+        </view>
+      </block>
+          </block>
+      </block>
+    </view>
+  </block>
+  </view>
+</view>
+
+
