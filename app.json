@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/integration_utilisateur/integration_utilisateur",
     "pages/creation_tontine/creation_tontine" ,
+    "pages/integration_utilisateur/integration_utilisateur",
     "pages/inscription/inscription",
     "pages/PageGestion/PageGestion",
     "pages/PageContact/PageContact",

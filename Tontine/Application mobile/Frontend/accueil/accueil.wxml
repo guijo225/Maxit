@@ -1,0 +1,11 @@
+<!--pages/accueil/accueil.wxml-->
+<nav></nav>
+
+    
+
+    <text style="position: relative; width: 527rpx; height: 44rpx; left: 112rpx; top: 332rpx; display: block; box-sizing: border-box; font-weight: bold"> Vous n'avez pas de tontine disponible!
+    </text>
+   
+    <button style="position: relative; left: 179rpx; top: 1235rpx; background-color: rgb(255, 135, 23); color: white; border-radius: 10px">Creer tontine</button>
+
+

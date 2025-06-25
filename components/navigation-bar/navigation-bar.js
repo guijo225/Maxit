@@ -72,18 +72,10 @@ Component({
         })
       },
     },
-
-    
-    
     /**
      * 组件的方法列表
      */
     methods: {
-        historique(){
-            wx.navigateTo({
-              url: '/pages/historique/historique',
-            })
-         },
       _showChange(show) {
         const animated = this.data.animated
         let displayStyle = ''
