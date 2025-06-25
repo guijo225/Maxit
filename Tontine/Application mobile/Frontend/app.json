@@ -1,0 +1,34 @@
+{
+  "pages": [
+    "pages/creation_tontine/creation_tontine" ,
+    "pages/integration_utilisateur/integration_utilisateur",
+    "pages/inscription/inscription",
+    "pages/PageGestion/PageGestion",
+    "pages/PageContact/PageContact",
+    "pages/historique/historique",
+    "pages/accueil/accueil",
+    "pages/tour/tour",
+    "pages/connexion/connexion",
+    "pages/index/index",
+    "pages/next/index"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
+  },
+  "style": "v2",
+  "renderer": "skyline",
+  "rendererOptions": {
+    "skyline": {
+      "defaultDisplayBlock": true,
+      "defaultContentBox": true,
+      "tagNameStyleIsolation": "legacy",
+      "disableABTest": true,
+      "sdkVersionBegin": "3.0.0",
+      "sdkVersionEnd": "15.255.255"
+    }
+  },
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}
