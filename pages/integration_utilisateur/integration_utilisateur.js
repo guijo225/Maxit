@@ -1,3 +1,5 @@
+const API_URL = 'http://192.168.252.43:3000';
+
 // Gestion de la logique de la page
 Page({
     /**
@@ -37,7 +39,60 @@ Page({
                 expanded: false,
                 showButton: false
             }
-        ]
+        ],
+        otp: '',
+        numeroTelephone:''
+    },
+
+    onPhoneNumberInput: function(e) {
+        this.setData({
+            numeroTelephone:e.detail.value
+        })
+    },
+
+    onOtpInput: function(e) {
+        const field = e.currentTarget.dataset.field;
+        let value = e.detail.value;
+        // Restreindre aux nombres uniquement
+        value = value.replace(/[^0-9]/g, '').slice(0, 6); // Max 6 chiffres
+        this.setData({
+             otp: value
+        });
+    },
+
+    verifyOtp() {
+        const {numeroTelephone, otp} = this.data;
+        if (!numeroTelephone || !otp) {
+            console.log("Veuillez entrer votre numéro et le code otp", 'error');
+            return;
+        }
+        console.log("Vérification de l'otp", 'info');
+        wx.request({
+          url: `http://192.168.252.43:3000/verify-otp`,
+          method: 'POST',
+          header: {
+              'Content-Type' : 'application/json'
+          },
+          data: {
+              numeroTelephone: numeroTelephone,
+              otp: otp
+          },
+          success: (res) => {
+            if (res.statusCode === 200) {
+                console.log('OTP vérifié avec succès!');
+                    this.setData({otpSent : false, otp:''});
+                    wx.navigateTo({
+                      url: '/pages/PageGestion/PageGestion',
+                    })
+                } else {
+                console.log(`Erreur: ${res.data.message || "OTP invalide ou expiré"}`, 'error')
+            }
+        },
+        fail: (err) => {
+            console.error('Erreur réseau sendOtp:', err);
+            console.log('Échec de la connexion au serveur.', 'error');
+        }
+        });
     },
 
     /**
@@ -60,7 +115,7 @@ Page({
     /**
      * Gère les changements dans le champ de saisie
      */
-    onInputChange(e) {
+    /*onInputChange(e) {
         const field = e.currentTarget.dataset.field;
         let value = e.detail.value;
         // Restreindre aux nombres uniquement
@@ -68,7 +123,7 @@ Page({
         this.setData({
             [`formData.${field}`]: value
         });
-    },
+    },*/
 
     /**
      * Confirme l'action de la modal
@@ -131,5 +186,9 @@ Page({
         wx.redirectTo({
             url: '/pages/PageGestion/PageGestion',
         });
+    },
+
+    preventClose() {
+
     }
 });

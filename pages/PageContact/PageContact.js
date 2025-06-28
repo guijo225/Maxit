@@ -1,3 +1,5 @@
+const API_URL = 'http://192.168.252.43:3000';
+
 // pages/PageContact/PageContact.js
 Page({
     /**
@@ -16,9 +18,60 @@ Page({
         { id: 9, name: "Angban Gpt", phone: "+228 07481777" },
         { id: 10, name: "Angban Gpt", phone: "+228 07481777" }
       ].map(item => ({ ...item, selected: false })), // Ajout de la propriété "selected" pour chaque contact
-      multiSelect: false // État du mode multi-sélection
+      multiSelect: false, // État du mode multi-sélection
+      numeroTelephone:'',
+      recipients:[]
     },
-  
+
+    onPhoneNumberInput: function(e) {
+        this.setData({
+            numeroTelephone:e.detail.value
+        })
+    },
+
+    // Api d'envoie d'otp
+    sendOtp(){
+        const {numeroTelephone, name} = this.data;
+        if (!numeroTelephone) {
+            //this.showMessage("Veuillez sélectionner ou saisir au moins un contact", 'error');
+            console.log("Veuillez sélectionner ou saisir au moins un contact", 'error')
+            return;
+        }
+
+        //this.showMessage('Envoi des invitations...', 'info');
+        console.log('Envoi des invitations...', 'info')
+
+        const recipients = [{numeroTelephone: numeroTelephone, name: name || 'Invité'}]
+        wx.request({
+            url: `http://192.168.252.43:3000/send-otp`,
+            method: 'POST',
+            header: {
+                'Content-Type':'application/json'
+            },
+            data: {
+                recipients: recipients
+            },
+            succes: (res) => {
+                if (res.statusCode === 200) {
+                    const firstResult = res.data.results[0];
+                    let msg = 'Invitations envoyées !';
+                    if (firstResult && firstResult.status === 'success') {
+                        msg =+ `Lien d'invitation: ${firstResult.invitationlink}`;
+                    }
+                    //this.showMessage(msg, 'success');
+                    console.log(msg, 'success')
+                } else {
+                    //this.showMessage(`Erreur: ${res.data.message || "Problème lors de l'envoi des invitations"}`, 'error')
+                    console.log(`Erreur: ${res.data.message || "Problème lors de l'envoi des invitations"}`, 'error')
+                }
+            },
+            fail: (err) => {
+                console.error('Erreur réseau sendOtp:', err);
+                //this.showMessage('Échec de la connexion au serveur.', 'error');
+            }
+        });
+    },
+
     /**
      * Active ou désactive le mode multi-sélection
      */
@@ -63,9 +116,11 @@ Page({
       // Stocke les contacts sélectionnés dans le stockage local
       wx.setStorageSync('selectedContacts', selectedContacts);
       // Navigue vers la page cible
+
+      
       wx.navigateTo({
         url: '/pages/PageGestion/PageGestion'
-      });
+      }); 
     },
   
     /**

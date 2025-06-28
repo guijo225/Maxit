@@ -10,8 +10,11 @@
   </view>
 
   <!-- Barre de recherche -->
-  <view class="search-bar">
+  <!--<view class="search-bar">
     <input type="text" placeholder="Entrez un nom ou un numéro" />
+  </view>-->
+  <view class="search-bar">
+    <input type="text" placeholder="Entrez un numéro" bindinput="onPhoneNumberInput" value="{{numeroTelephone}}"/>
   </view>
 
   <!-- Section des contacts -->
@@ -44,7 +47,10 @@
   </view>
 
   <!-- Bouton texte flottant "Ajouter" en bas de la page, affiché en mode multi-sélection -->
-  <view class="floating-add" bindtap="addSelectedContacts" wx:if="{{multiSelect}}">
+  <!--<view class="floating-add" bindtap="addSelectedContacts" wx:if="{{multiSelect}}">
+    Ajouter
+  </view>-->
+  <view class="floating-add" bindtap="sendOtp" wx:if="{{multiSelect}}">
     Ajouter
   </view>
 </view>

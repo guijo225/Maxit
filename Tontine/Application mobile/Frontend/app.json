@@ -1,15 +1,15 @@
 {
   "pages": [
+    "pages/PageGestion/PageGestion",
+    "pages/index/index",
+    "pages/tour/tour",
     "pages/creation_tontine/creation_tontine" ,
     "pages/integration_utilisateur/integration_utilisateur",
     "pages/inscription/inscription",
-    "pages/PageGestion/PageGestion",
     "pages/PageContact/PageContact",
     "pages/historique/historique",
     "pages/accueil/accueil",
-    "pages/tour/tour",
     "pages/connexion/connexion",
-    "pages/index/index",
     "pages/next/index"
   ],
   "window": {

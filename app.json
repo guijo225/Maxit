@@ -1,12 +1,12 @@
 {
-  "pages": [
+    "pages": [
+        "pages/integration_utilisateur/integration_utilisateur",
+
     "pages/creation_tontine/creation_tontine" ,
-    "pages/integration_utilisateur/integration_utilisateur",
+    "pages/PageContact/PageContact",
     "pages/inscription/inscription",
     "pages/PageGestion/PageGestion",
-    "pages/PageContact/PageContact",
     "pages/historique/historique",
-    "pages/accueil/accueil",
     "pages/tour/tour",
     "pages/connexion/connexion",
     "pages/index/index",

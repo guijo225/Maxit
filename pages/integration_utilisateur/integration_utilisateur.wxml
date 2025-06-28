@@ -4,8 +4,8 @@
 <scroll-view class="integrer" scroll-y="true" show-scrollbar="false">
     <!-- Premier conteneur pour le bouton et la description -->
     <view class="conteneur_premier">
-       <view class="bouton" bindtap="openModal">Intégrer</view> 
-       
+        <view class="bouton" bindtap="openModal">Intégrer</view>
+
         <view class="description">Description</view>
         <view class="description_text {{isExpanded ? 'expanded' : 'collapsed'}}">
             <text style="position:relative;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo adipisci consectetur aperiam natus consequuntur. Dolorem deserunt dicta impedit quia sapiente quos minus laborum, sint quisquam eligendi cum, vero, atque voluptate!</text>
@@ -22,7 +22,7 @@
     <!-- Second conteneur pour les avis utilisateurs -->
     <view class="conteneur_second" style="position: relative; left: -1rpx; top: 0rpx">
         <view class="Avis">Note & Avis d'utilisateurs</view>
-        <view class="Avis_view avis-{{index}}" wx:for="{{avisList}}" wx:key="id">
+        <view class="Avis_view avis-{{index}}" wx:for="{{avisList}}" wx:key="id" style="position: relative; left: 26rpx; top: 20rpx">
             <view class="ensemble">
                 <image src="{{item.avatar}}" class="avatar" />
                 <view class="nom">{{item.nom}}</view>
@@ -55,19 +55,26 @@
                 <view class="modal-body1">
                     <!-- Champ pour le mot de passe (nombres uniquement) -->
                     <view class="input-group1">
-                        <text class="input-label">Mot de passe</text>
-                        <view class="pin-container">
-                            <input class="pin-field" type="number" placeholder="Entrez le code" value="{{formData.code}}" bindinput="onInputChange" data-field="code" maxlength="6" />
-                            <view class="pin-boxes">
-                                <view class="pin-box" wx:for="{{6}}" wx:key="index" wx:for-item="box">
-                                    <text class="pin-digit">{{formData.code.length >= index + 1 ? formData.code[index] : ''}}</text>
+                        <!-- Champ pour le numéro de téléphone -->
+                        <text class="input-label">Numéro de téléphone</text>
+                        <view class="phone-input-container">
+                            <input type="number" placeholder="Entrez votre numéro" class="phone-input" bindinput="onPhoneNumberInput" value="{{numeroTelephone}}" maxlength="14" />
+                        </view>
+
+                        <!-- Champ pour le code OTP -->
+                        <text class="input-label">Code OTP</text>
+                        <view class="otp-container">
+                            <input type="number" class="otp-input" placeholder="Entrez le code OTP" bindinput="onOtpInput" value="{{otp}}" ma xlength="6" focus="{{true}}" />
+                            <view class="otp-boxes">
+                                <view class="otp-box" wx:for="{{6}}" wx:key="index">
+                                    <text class="otp-digit">{{otp.length >= index + 1 ? otp[index] : ''}}</text>
                                 </view>
                             </view>
                         </view>
                     </view>
                     <!-- Bouton de confirmation -->
                     <view class="modal-footer">
-                        <view class="confirm-button" bindtap="Integrer">
+                        <view class="confirm-button" bindtap="verifyOtp">
                             Valider
                         </view>
                     </view>
