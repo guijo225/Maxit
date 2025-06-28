@@ -8,14 +8,14 @@
 </view>
 
 <!-- Informations -->
-<view style="width: 750rpx; height: 262rpx; display: block; box-sizing: border-box" class="conteneur">
+<view style="width: 750rpx; height: 260rpx; display: block; box-sizing: border-box" class="conteneur">
   <block wx:for="{{result}}" wx:key="id">
 
-    <view style="position: relative; left: 34rpx; top: 26rpx" class="stat"> Nombre de participant.e.s
+    <view style="position: relative; left: 30rpx; top: 53rpx" class="stat"> Nombre de participant.e.s
       <view style="position: relative; left: 52rpx; top: 37%; width: 244rpx; height: 42rpx; display: block; box-sizing: content-box; text-align: end; padding-right: 5px">{{item.nombre_participants}}</view>
     </view>
 
-    <view style="position: relative; left: 407rpx; top: -184rpx" class="stat">
+    <view style="position: relative; left: 403rpx; top: -157rpx" class="stat">
       Montant de la cagnotte
       <view style="position: relative; left: 13rpx; top: 37%; text-align: end; padding-right: 5px">
         {{item.montant_total}} Fcfa
@@ -25,7 +25,7 @@
 </view>
 
 <!-- Participants -->
-<view style="width: 95%; height: 491rpx; margin-left: 18rpx; display: block; box-sizing: border-box" class="conteneur contour">
+<view style="width: 710rpx; height: 470rpx; margin-left: 18rpx; display: block; box-sizing: border-box" class="conteneur contour">
   <block wx:for="{{result}}" wx:key="id">
     <text style="position: relative; left: 22rpx; top: 0rpx" class="h1">Participants</text>
     <scroll-view scroll-y="true" class="scrollarea" style="width: 710rpx; height: 351rpx; display: block; box-sizing: border-box">
@@ -56,7 +56,7 @@
 <!-- Pénalités -->
 <view style="width: 750rpx; height: 306rpx; display: block; box-sizing: border-box" class="conteneur">
   <text style="position: relative; left: 22rpx; top: 0rpx" class="h1">Pénalités</text>
-  <Scroll-view scroll-y="true" class="scrollarea" style="width: 750rpx; height: 256rpx; display: block; box-sizing: border-box">
+  <Scroll-view scroll-y="true" class="scrollarea" style="width: 750rpx; height: 295rpx; display: block; box-sizing: border-box">
     <view style="position: relative; width: 100%; background: white; height: 100px; left: 0rpx; top: 24rpx">
       <block wx:for="{{result}}" wx:key="id">
         <view data-index="{{index}}">

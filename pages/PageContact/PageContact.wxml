@@ -50,7 +50,7 @@
   <!--<view class="floating-add" bindtap="addSelectedContacts" wx:if="{{multiSelect}}">
     Ajouter
   </view>-->
-  <view class="floating-add" bindtap="sendOtp" wx:if="{{multiSelect}}">
+  <view class="floating-add" bindtap="sendOtp " wx:if="{{multiSelect}}">
     Ajouter
   </view>
 </view>

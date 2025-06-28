@@ -129,8 +129,8 @@
 
             </view>
             <view class="modal-footer">
-                <!--<button class="confirm-button" bindtap="confirmModal">-->
-                <button class="confirm-button" bindtap="navigation">
+                <!--<button class="confirm-button" bindtap="navigation ">-->
+                <button class="confirm-button" bind:tap="confirmModal">
                     Suivant
                 </button>
             </view>

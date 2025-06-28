@@ -1,8 +1,9 @@
 {
     "pages": [
+    "pages/integration_utilisateur/integration_utilisateur",
+    "pages/condition_generale/condition_generale",
     "pages/accueil/accueil",
     "pages/inscription/inscription",
-    "pages/integration_utilisateur/integration_utilisateur",
     "pages/PageContact/PageContact",
     "pages/PageGestion/PageGestion",
     "pages/connexion/connexion",

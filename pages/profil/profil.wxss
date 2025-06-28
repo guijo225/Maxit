@@ -1,5 +1,3 @@
-/* pages/profil/profil.wxss */
-/* Container principal */
 page{
     font-family: 'Times New Roman', Times, serif;
   }

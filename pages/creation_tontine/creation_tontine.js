@@ -112,7 +112,7 @@ Page({
     },
   
     // Validation et navigation vers une autre page
-    /*confirmModal() {
+    confirmModal() {
       const { formData } = this.data;
   
       // Vérification locale des champs requis
@@ -138,7 +138,7 @@ Page({
       });
   
       wx.request({
-        url: 'http://192.168.252.236:3000/first',
+        url: 'http://192.168.252.213:3000/first',
         method: 'POST',
         data: formDataWithId,
         header: {
@@ -186,7 +186,7 @@ Page({
         }
       });
     }
-  ,*/
+  ,
     preventClose(){
     },
 

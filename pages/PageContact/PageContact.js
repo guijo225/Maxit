@@ -57,7 +57,10 @@ Page({
                     let msg = 'Invitations envoyées !';
                     if (firstResult && firstResult.status === 'success') {
                         msg =+ `Lien d'invitation: ${firstResult.invitationlink}`;
-                    }
+                    };
+                    wx.navigateTo({
+                        url: '/pages/PageGestion/PageGestion'
+                      });
                     //this.showMessage(msg, 'success');
                     console.log(msg, 'success')
                 } else {
@@ -128,7 +131,7 @@ Page({
      */
     goBack() {
       wx.navigateTo({
-        url: '/pages/index/index'
+        url: '/pages/creation_tontine/creation_tontine'
       });
     },
   

@@ -1,0 +1,54 @@
+<!--pages/accueil/accueil.wxml-->
+<nav></nav>
+
+    
+<view class="container">
+  <view class="header">
+    <text class="title">Conditions d'utilisation</text>
+  </view>
+
+  <scroll-view scroll-y="true" class="content">
+    <text class="paragraph">
+      Bienvenue sur notre application de tontine. En utilisant cette mini app, vous acceptez les conditions suivantes :
+    </text>
+
+    <text class="subtitle">1. Objet</text>
+    <text class="paragraph">
+      Cette application permet de gérer des tontines de manière sécurisée et transparente entre utilisateurs.
+    </text>
+
+    <text class="subtitle">2. Inscription</text>
+    <text class="paragraph">
+      Pour participer à une tontine, l'utilisateur doit créer un compte avec des informations valides.
+    </text>
+
+    <text class="subtitle">3. Engagements des membres</text>
+    <text class="paragraph">
+      Chaque membre s'engage à verser sa contribution à chaque cycle selon les modalités définies par la tontine.
+    </text>
+
+    <text class="subtitle">4. Sécurité</text>
+    <text class="paragraph">
+      Nous mettons en œuvre des mesures de sécurité pour protéger vos données, mais l'utilisateur est aussi responsable de la confidentialité de ses informations.
+    </text>
+
+    <text class="subtitle">5. Responsabilité</text>
+    <text class="paragraph">
+      L’application ne peut être tenue responsable des différends entre membres. Elle agit uniquement comme outil de gestion.
+    </text>
+
+    <text class="subtitle">6. Modification</text>
+    <text class="paragraph">
+      Les présentes conditions peuvent être modifiées à tout moment. Vous serez notifié en cas de changement important.
+    </text>
+
+    <text class="subtitle">7. Contact</text>
+    <text class="paragraph">
+      Pour toute question, contactez-nous à support@tontineapp.com.
+    </text>
+    <!--<button class="valider" bind:tap="onValider">Valider</button>-->
+    <button class="valider" bind:tap="next">Valider</button>
+  </scroll-view>
+</view>
+
+

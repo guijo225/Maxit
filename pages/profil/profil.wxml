@@ -1,4 +1,3 @@
-<!--pages/profil/profil.wxml-->
 <nav></nav>
 <view class="container">
   
@@ -8,39 +7,39 @@
     
     <view class="profile-content">
       <view class="profile-image-container">
-        <image class="profile-image" src="/assets/profile-user.png" mode="aspectFill" />
-        <image class="camera-icon" src="/assets/appareil.png" />
+        <image class="profile-image" src="/pages/assets/profile-user.png" mode="aspectFill" />
+        <image class="camera-icon" src="/pages/assets/appareil.png" />
       </view>
       
-      <view class="phone-number">0505050505</view>
+      <view class="phone-number">0707070707</view>
     </view>
   </view>
 
   <!-- Section Menu -->
-  <view class="menu-section">
+  <view class="menu-section" style="width: 750rpx; height: 1028rpx; display: flex; box-sizing: border-box">
     
     <view class="menu-item" bindtap="goToTontines">
-      <image class="menu-icon" src="/assets/Liste.png" />
+      <image class="menu-icon" src="/pages/assets/Liste.png" />
       <view class="menu-text">Mes tontines</view>
-      <image class="arrow-icon" src="/assets/greastess.png" />
+      <image class="arrow-icon" src="/pages/assets/greastess.png" />
     </view>
 
     <view class="menu-item" bindtap="goToInfo">
-      <image class="menu-icon" src="/assets/information.png" />
+      <image class="menu-icon" src="/pages/assets/information.png" />
       <view class="menu-text">Mes informations</view>
-      <image class="arrow-icon" src="/assets/greastess.png" />
+      <image class="arrow-icon" src="/pages/assets/greastess.png" />
     </view>
 
     <view class="menu-item" bindtap="goToAssistance">
-      <image class="menu-icon" src="/assets/assistance.png" />
+      <image class="menu-icon" src="/pages/assets/assistance.png" />
       <view class="menu-text">Assistance</view>
-      <image class="arrow-icon" src="/assets/greastess.png" />
+      <image class="arrow-icon" src="/pages/assets/greastess.png" />
     </view>
 
     <view class="menu-item" bindtap="goToAbout">
-      <image class="menu-icon" src="/assets/propos.png" />
+      <image class="menu-icon" src="/pages/assets/propos.png" />
       <view class="menu-text">A propos</view>
-      <image class="arrow-icon" src="/assets/greastess.png" />
+      <image class="arrow-icon" src="/pages/assets/greastess.png" />
     </view>
     
   </view>
