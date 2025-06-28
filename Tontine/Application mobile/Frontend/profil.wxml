@@ -1,0 +1,48 @@
+<!--pages/profil/profil.wxml-->
+<navigation-bar></navigation-bar>
+<view class="container">
+  
+  <!-- Section Profil -->
+  <view class="profile-section">
+    <view class="profile-title">Mon profil</view>
+    
+    <view class="profile-content">
+      <view class="profile-image-container">
+        <image class="profile-image" src="/assets/profile-user.png" mode="aspectFill" />
+        <image class="camera-icon" src="/assets/appareil.png" />
+      </view>
+      
+      <view class="phone-number">0505050505</view>
+    </view>
+  </view>
+
+  <!-- Section Menu -->
+  <view class="menu-section">
+    
+    <view class="menu-item" bindtap="goToTontines">
+      <image class="menu-icon" src="/assets/Liste.png" />
+      <view class="menu-text">Mes tontines</view>
+      <image class="arrow-icon" src="/assets/greastess.png" />
+    </view>
+
+    <view class="menu-item" bindtap="goToInfo">
+      <image class="menu-icon" src="/assets/information.png" />
+      <view class="menu-text">Mes informations</view>
+      <image class="arrow-icon" src="/assets/greastess.png" />
+    </view>
+
+    <view class="menu-item" bindtap="goToAssistance">
+      <image class="menu-icon" src="/assets/assistance.png" />
+      <view class="menu-text">Assistance</view>
+      <image class="arrow-icon" src="/assets/greastess.png" />
+    </view>
+
+    <view class="menu-item" bindtap="goToAbout">
+      <image class="menu-icon" src="/assets/propos.png" />
+      <view class="menu-text">A propos</view>
+      <image class="arrow-icon" src="/assets/greastess.png" />
+    </view>
+    
+  </view>
+  
+</view>
