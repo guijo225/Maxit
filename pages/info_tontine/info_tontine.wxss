@@ -1,0 +1,202 @@
+/**index.wxss**/
+page {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .scrollarea {
+    flex: 1;
+    overflow-y: hidden;
+    height: 100%;
+  }
+  
+  .conteneur{
+    margin-bottom: 5%;
+    margin-top: 2%;
+  }
+  
+  .contour {
+    border: lightgray solid 1px;
+    border-radius: 5px;
+  }
+  
+  .stat{
+    font-weight: bold;
+    padding: 1%;
+    border-style: solid;
+    border-color: rgb(255, 135, 23);
+    box-shadow: 0px 2px lightgray;
+    position: relative; 
+    width: 42%; 
+    background: white; 
+    height: 80%; 
+    left: 38rpx; 
+    top: 26rpx; 
+    display: block; 
+    box-sizing: border-box
+  }
+  
+  .listParticipant{
+    padding: 2%;
+    font-weight: bold;
+  }
+  
+  .h1{
+    font-weight: bold;
+    color: rgb(255, 135, 23);
+    font-size: 120%;
+  }
+  
+  .btnModifier{
+    background: rgb(255, 135, 23);
+    color: white;
+    text-align: center;
+    padding: 3%;
+    border-radius: 5px;
+  }
+  
+  .nom{
+    width: 70%;
+  }
+  
+  .montant{
+    width: 30%; 
+    text-align: end;
+  }
+  
+  /* Style de l'overlay de la modal */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Style du conteneur de la modal */
+  .modal-container1 {
+    width: 90%;
+    max-width: 650rpx;
+    max-height: 80vh;
+    background: #ffffff;
+    border-radius: 24rpx;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  
+  /* Style de l'en-tête de la modal */
+  .modal-header1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30rpx;
+    border-bottom: 1rpx solid #e5e7eb;
+  }
+  
+  /* Style du conteneur du titre */
+  .modal-title-container1 {
+    flex: 1;
+    text-align: center;
+  }
+  
+  /* Style du titre de la modal */
+  .modal-title1 {
+    font-size: 34rpx;
+    font-weight: 700;
+    color: #1f2937;
+  }
+  
+  /* Style du bouton de fermeture */
+  .close-button {
+    width: 48rpx;
+    height: 48rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #f3f4f6;
+  }
+  
+  /* Style de l'icône de fermeture */
+  .close-icon {
+    width: 24rpx;
+    height: 24rpx;
+  }
+  
+  /* Style du conteneur de défilement */
+  .modal-scroll1 {
+    flex: 1;
+    max-height: calc(80vh - 200rpx);
+    overflow-y: auto;
+  }
+  
+  /* Style du corps de la modal */
+  .modal-body1 {
+    padding: 32rpx;
+  }
+  
+  /* Style du conteneur de la liste des membres */
+  .modal-background {
+    width: 100%;
+    background-color: #f9fafb;
+    padding: 20rpx;
+    border-radius: 10rpx;
+  }
+  
+  /* Style de chaque élément de la liste des membres */
+  .member-item {
+    padding: 20rpx 0;
+    background-color: #fff;
+    border-radius: 8rpx;
+    margin-bottom: 10rpx;
+    touch-action: none; /* Empêche le défilement par défaut pendant le drag */
+  }
+  
+  /* Style du texte des membres */
+  .member-text {
+    font-size: 32rpx;
+    color: #1f2937;
+    font-weight: 500;
+    padding: 0 20rpx;
+  }
+  
+  /* Style du séparateur */
+  .separator {
+    width: 100%;
+    height: 1rpx;
+    background-color: #e5e7eb;
+    margin-top: 10rpx;
+  }
+  
+  /* Style pour un élément en cours de déplacement */
+  .member-item.dragging {
+    opacity: 0.7;
+    transform: scale(1.02);
+  }
+  
+  /* Style du pied de page de la modal */
+  .modal-footer {
+    padding: 20rpx 0;
+    text-align: center;
+  }
+  
+  /* Style du bouton de confirmation */
+  .confirm-button {
+    width: 300rpx;
+    height: 88rpx;
+    background: #FF7900;
+    color: #ffffff;
+    border-radius: 20rpx;
+    font-size: 32rpx;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+  }

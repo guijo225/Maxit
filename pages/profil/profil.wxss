@@ -1,0 +1,156 @@
+/* pages/profil/profil.wxss */
+/* Container principal */
+page{
+    font-family: 'Times New Roman', Times, serif;
+  }
+  .container {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40rpx 30rpx;
+    box-sizing: border-box;
+  }
+  
+  /* Section Profil */
+  .profile-section {
+    width: 100%;
+    max-width: 600rpx;
+    border-radius: 20rpx;
+    padding: 60rpx 40rpx;
+    margin-bottom: 40rpx;
+    box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .profile-title {
+    font-size: 32rpx;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 40rpx;
+    align-self: flex-start;
+  }
+  
+  .profile-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .profile-image-container {
+    position: relative;
+    margin-bottom: 30rpx;
+  }
+  
+  .profile-image {
+    width: 160rpx;
+    height: 160rpx;
+    border-radius: 50%;
+    border: 4rpx solid #f0f0f0;
+  }
+  
+  .camera-icon {
+    position: absolute;
+    bottom: 10rpx;
+    right: 10rpx;
+    width: 40rpx;
+    height: 40rpx;
+    background: white;
+    border-radius: 50%;
+    padding: 8rpx;
+    box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.15);
+  }
+  
+  .phone-number {
+    font-size: 28rpx;
+    color: #666;
+    font-weight: 500;
+  }
+  
+  /* Section Menu */
+  .menu-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20rpx;
+    padding: 0 30rpx;
+  }
+  
+  .menu-item {
+    width: 100%;
+    max-width: 500rpx;
+    height: 100rpx;
+    background: white;
+    border-radius: 16rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30rpx;
+    box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.06);
+    border: 2rpx solid #FF7900;
+    transition: all 0.3s ease;
+  }
+  
+  .menu-item:active {
+    background-color: #fff5f0;
+    transform: scale(0.98);
+  }
+  
+  .menu-icon {
+    width: 40rpx;
+    height: 40rpx;
+    margin-right: 24rpx;
+    flex-shrink: 0;
+  }
+  
+  .menu-text {
+    flex: 1;
+    font-size: 28rpx;
+    color: #333;
+    font-weight: 500;
+    margin-left: 20rpx;
+  }
+  
+  .arrow-icon {
+    width: 20rpx;
+    height: 20rpx;
+    opacity: 0.6;
+    flex-shrink: 0;
+  }
+  
+  /* Responsive pour différentes tailles d'écran */
+  @media screen and (max-width: 375px) {
+    .container {
+      padding: 30rpx 20rpx;
+    }
+    
+    .profile-section {
+      padding: 50rpx 30rpx;
+    }
+    
+    .menu-item {
+      height: 90rpx;
+      padding: 0 24rpx;
+    }
+    
+    .menu-text {
+      font-size: 26rpx;
+    }
+  }
+  
+  @media screen and (min-width: 768px) {
+    .container {
+      max-width: 800rpx;
+      margin: 0 auto;
+    }
+    
+    .profile-section,
+    .menu-section {
+      max-width: 500rpx;
+    }
+  }

@@ -1,0 +1,18 @@
+<!--components/page_couverture.wxml-->
+<view class="image_couverture">
+    <view class="retour">
+      <image src="../../images/retour.png" />
+    </view>
+    <view class="menu" >
+      <image src="../../images/trois_point.png" />
+      </view>
+    <view class="textCentre" >MAX TONTINE</view>
+    <view class="transparent">
+      <view class="transparent_conteneur">
+        <image src="../../images/pieces.jpg" /> 
+        <view class="premierText" >MAX TONTINE</view>
+      
+        <view class="secondText" >Epargne,Info</view>
+        </view>
+      </view>
+  </view>

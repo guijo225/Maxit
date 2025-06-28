@@ -1,0 +1,32 @@
+ /* Grille de cards */
+ .card-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  /* Card individuelle */
+  .action-card {
+    width: 48%;
+    background: #fff;
+    border-radius: 20rpx;
+    padding: 20rpx;
+    margin-bottom: 20rpx;
+    box-shadow: 0 4rpx 8rpx rgba(0.1,0.1,0.1,0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .card-title {
+    font-size: 28rpx;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10rpx;
+  }
+  
+  .card-text {
+    font-size: 24rpx;
+    text-align: center;
+    margin-bottom: 20rpx;
+  }

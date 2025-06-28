@@ -1,0 +1,73 @@
+<!--pages/inscription/inscription.wxml-->
+<navigation-bar back="{{true}}" color="black" background="#FFF" ></navigation-bar>
+<view style="background-color: rgb(65, 63, 63); height: 0.25px;"></view>
+
+<scroll-view scroll-y="true" show-scrollbar="true" style="height: 100vh;">
+    
+<view style="text-align : center ; font-weight:900; font-size: larger; margin-top: 20px;">Création de compte</view>
+
+<!-- box google et facebook -->
+<view style="display: flex; justify-content: space-between; margin : 30px">
+
+    <view style="align-items: center; display: flex; padding: 15px; border: solid 3rpx; border-radius: 10px;"> 
+        <image src="../../images/google.png" style="height: 20px; width: 20px; "></image> 
+        <text style="margin-left: 5px;">Avec Google</text> 
+    </view>
+
+    <view style="align-items: center; display: flex; padding: 15px; border: solid 3rpx; border-radius: 10px;"> 
+        <image src="../../images/facebook.png" style="height: 30px; width: 30px; ">
+        </image> <text>Avec Facebook</text> 
+    </view>
+</view>
+
+<view style="background-color: rgb(65, 63, 63); height: 0.25px; margin-left: 50px ; margin-right: 50px"> 
+</view>
+<!-- Les champs du fomulaire  -->
+<form bindsubmit="inscription">
+    <input type="text" placeholder="Nom" style="border: solid 3rpx; padding: 15px; margin: 20px; border-radius: 10px;" bindinput="onNomChange" value="{{nom}}"/>
+    <input type="text" placeholder="Prénom" style="border: solid 3rpx; padding: 15px; margin: 20px; border-radius: 10px;" bindinput="onPrenomsChange" value="{{prenoms}}"/>
+    <input type="text" placeholder="Pseudo" style="border: solid 3rpx; padding: 15px; margin: 20px; border-radius: 10px;" bindinput="onPseudoChange" value="{{pseudo}}"/>
+    <!-- Champs date de naissance -->
+    <picker mode="date" start="2000-09-01" end="2025-06-01" bindchange="onDateChange" value="{{date_de_naissance}}">
+        <view style="position: relative; margin: 20px;">
+            <input
+            type="text"
+            placeholder="Date de Naissance"
+            style="border: solid 3rpx; padding: 15px ; border-radius: 10px;"
+            />
+            <image
+            src="../../images/calendar.png"
+            style="width: 24px; height: 24px; position: absolute; right: 15px; top: 50%; transform: translateY(-50%); pointer-events: none;"
+            />
+        </view>
+    </picker>
+    <input type="number" placeholder="Numéro de Téléphone" style="border: solid 3rpx; padding: 15px; margin: 20px 20px 0px 20px; border-radius: 10px;" bindinput="onContactChange" value="{{contact}}"/>
+    <!-- Champs d'image -->
+    <view>
+    <input 
+        type="password" 
+        placeholder="Mot de passe" 
+        style="border: solid 3rpx; padding: 15px; margin: 20px; border-radius: 10px;" 
+        value="{{mot_de_passe}}" 
+        bindinput="onPasswordChange"
+    />
+
+  <!-- Conteneur centré pour l’image -->
+  <view wx:if="{{imagePath}}" style="text-align: center; margin-top: 10px;">
+    <image src="{{imagePath}}" style="width: 100px; height: 100px;" />
+  </view>
+</view>
+
+    <label class="checkbox">
+    <checkbox value="" checked="" style="margin-left: 30px;"/> Conditions d'utilisations
+    </label>
+
+    <button style="margin-top: 30px ;color: white; background-color: rgb(255, 135, 23); font-weight: 400; " form-type="submit">Valider
+    </button>
+</form>
+<!-- Texte création de compte et se connecter -->
+<view style="text-align: center; margin-top: 20px;">Créer un compte ? 
+    <text style="color: rgb(255, 135, 23);" bind:tap="pageConnexion">Se connecter</text> 
+</view>
+
+</scroll-view>

@@ -1,0 +1,23 @@
+<!--pages/aPropos/aPropos.wxml-->
+<nav></nav>
+<view>
+  <text style="position: relative; left: 305rpx; top: 154rpx">A propos</text>
+</view>
+
+<scroll-view class="scrollarea" scroll-y="true">
+  <text style="position: relative; left: 276rpx; top: 226rpx;" class="titre">Titre I</text>
+  <view style="position: relative; width: 714rpx; height: 668rpx; left: 18rpx; top: 253rpx; display: block; box-sizing: border-box" class="contour">
+    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</view>
+
+  <text style="position: relative; left: 276rpx; top: 280rpx; " class="titre">Titre II</text>
+
+  <view style="position: relative; width: 714rpx; height: 496rpx; left: 18rpx; top: 306rpx; display: block; box-sizing: border-box" class="contour">
+    Duis consectetur pretium consectetur. Nam malesuada ex sit amet facilisis tincidunt. Fusce rhoncus, eros eget pharetra tempor, nibh turpis faucibus libero, id molestie nisi dolor in risus. Morbi quis volutpat quam, sed porttitor tortor. Nulla nisl metus, posuere vel enim ut, posuere ultricies urna. Nam vestibulum sed nulla et posuere. Ut finibus risus in libero eleifend, ac commodo magna varius. Donec eu placerat lorem. Fusce id ex risus.
+  </view>
+
+  <text style="position: relative; left: 276rpx; top: 394rpx;" class="titre">Titre III</text>
+
+  <view style="position: relative; width: 712rpx; height: 630rpx; left: 18rpx; top: 422rpx; display: block; box-sizing: border-box" class="contour">
+    In hac habitasse platea dictumst. Fusce mattis convallis nibh, et vehicula metus venenatis vitae. Nunc accumsan tellus ac enim consectetur, a malesuada sem posuere. Aenean blandit lobortis purus et vestibulum. Morbi et metus lacinia, pharetra magna non, suscipit dolor. Curabitur eu lorem a lorem vestibulum elementum ut mollis leo. Aenean id tempor ante, imperdiet lobortis quam. Curabitur quam felis, egestas ut magna non, semper pharetra neque. Phasellus ut accumsan dui. Fusce erat erat, laoreet nec laoreet ac, faucibus vitae dui.
+  </view>
+  </scroll-view>
