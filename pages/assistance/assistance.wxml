@@ -1,0 +1,44 @@
+<navigation-bar title="Weixin" back="{{false}}" color="black" background="#FFF"></navigation-bar>
+
+<scroll-view class="scrollarea" scroll-y="true" style="width: 750rpx; height: 1614rpx; display: block; box-sizing: border-box">
+  <view style="position: relative; width: 714rpx; background: white; height: 140rpx; top: 104rpx; left: 18rpx; display: block; box-sizing: border-box">
+    <view style="position: relative; text-align: center; width: 714rpx; height: 100rpx; display: block; box-sizing: border-box; left: 0rpx; top: 0rpx" class="h1">
+      Assistance
+    </view>
+  </view>
+  <view style="position: relative; width: 714rpx; height: 254rpx; left: 18rpx; margin-top: 10%; padding: 5rpx 5rpx 0px 0px; display: block; box-sizing: border-box; top: 0rpx" class="contour">
+    <view style="position: relative; width: 676rpx; height: 52rpx; display: block; box-sizing: border-box; left: 30rpx; top: 22rpx" class="h1">Besoin d'aide ?</view>
+    <view style="position: relative; width: 95%; left: 30rpx; top: 44rpx">
+      En cas de problème ou pour toute préoccupation, n'hésitez pas à contacter notre service client.
+    </view>
+  </view>
+
+  <view style="position: relative; width: 714rpx; left: 18rpx; margin-top: 10%; height: 352rpx; display: block; box-sizing: border-box; top: -36rpx" class="contour">
+    <view style="position: relative; width: 668rpx; height: 52rpx; display: block; box-sizing: border-box; left: 22rpx; top: 24rpx" class="h1">Gestionnaire:
+    </view>
+    <view style="position: relative; left: 22rpx; top: 46rpx; width: 668rpx; height: 236rpx; display: block; box-sizing: border-box; justify-content: space-between;">
+      <text>Téléphone: +225 0708621891
+      </text>
+      <text>Disponible du lundi au vendredi, de 8h à 20h.
+      </text>
+      <text>Nous sommes là pour vous accompagner à chaque étape.</text>
+    </view>
+  </view>
+
+  <view style="position: relative; width: 714rpx; left: 18rpx; margin-top: 10%; height: 496rpx; display: block; box-sizing: border-box; top: -72rpx" class="contour">
+    <view style="position: relative; width: 682rpx; height: 82rpx; font-weight: bold; font-size: larger; display: block; box-sizing: border-box; left: 34rpx; top: 22rpx">Conseils avant de contacter:
+    </view>
+    <view style="position: relative; width: 646rpx; height: 82rpx; left: 34rpx; top: 22rpx; display: block; box-sizing: border-box">
+      Vérifiez que vous avez une connexion internet stable
+    </view>
+    <view style="position: relative; width: 646rpx; height: 82rpx; left: 34rpx; top: 43rpx; display: block; box-sizing: border-box"> 
+     Notez le numéro de transaction ou le code utilisateur concerné
+    </view>
+    <view style="position: relative; width: 624rpx; height: 82rpx; display: block; box-sizing: border-box; left: 34rpx; top: 72rpx">Essayez de faire une capture d'écran du problème si possible
+    </view>
+  </view>
+
+  <view style="position: relative; width: 624rpx; height: 140rpx; left: 64rpx; top: -32rpx; display: block; box-sizing: border-box">
+    <view style="position: relative; width: 446rpx; background: #f16e00; height: 84rpx; display: block; box-sizing: border-box; left: 89rpx; top: 29rpx; color: white; text-align: center; border-radius: 5px" class="btnModifier">Contactez via Mail</view>
+  </view>
+  </scroll-view>

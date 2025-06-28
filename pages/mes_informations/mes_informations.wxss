@@ -1,0 +1,22 @@
+page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.scrollarea {
+  flex: 1;
+  overflow-y: hidden;
+  display: block;
+  height: 100%;
+}
+
+.titre{
+  font-weight: bold; 
+  font-size: 25px;
+  color: orange;
+}
+
+.input{
+  border: lightgray solid 1px; 
+  height: 20%; margin: 5px 0px 10px 0px; padding: 5px; border-radius: 5px;
+}

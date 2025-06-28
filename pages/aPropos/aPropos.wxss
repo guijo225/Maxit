@@ -1,0 +1,24 @@
+page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.scrollarea {
+  flex: 1;
+  overflow-y: hidden;
+  display: block;
+  justify-content: space-around;
+}
+
+
+.contour{
+  border: lightgray solid 0.5px;
+  border-radius: 5px;
+  padding: 8px;
+}
+
+.titre{
+  font-weight: bold; 
+  font-size: 30px;
+  color: orange;
+}

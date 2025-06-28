@@ -1,0 +1,30 @@
+page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.scrollarea {
+  flex: 1;
+  overflow-y: hidden;
+  display: block;
+  height: 100%;
+}
+
+.btnModifier{
+  background: rgb(255, 135, 23);
+  color: white;
+  text-align: center;
+  padding: 3%;
+  border-radius: 5px;
+}
+
+.contour{
+  border: lightgray solid 0.5px;
+  border-radius: 5px;
+}
+
+.h1{
+  font-weight: bold; 
+  font-size: larger;
+  text-align: start;
+}

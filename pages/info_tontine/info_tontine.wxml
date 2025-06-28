@@ -3,76 +3,144 @@
 
 <view class="conteneur">
   <block wx:for="{{result}}" wx:key="id">
-  <view style="position: relative; left: 291rpx; top: 0rpx">{{item.nom_tontine}}</view>   
+    <view style="position: relative; left: 291rpx; top: 0rpx">{{item.nom_tontine}}</view>
   </block>
 </view>
 
-<!-- Informations tontine -->
+<!-- Informations -->
 <view style="width: 750rpx; height: 262rpx; display: block; box-sizing: border-box" class="conteneur">
-    <block wx:for="{{result}}" wx:key="id">
-  
-  <view style="position: relative; left: 34rpx; top: 26rpx" class="stat"> Nombre de participant.e.s
-    <view style="position: relative; left: 55rpx; top: 57rpx; width: 244rpx; height: 42rpx; display: block; box-sizing: content-box; text-align: end; padding-right: 5px;">{{item.nombre_participants}}</view>
-  </view>
+  <block wx:for="{{result}}" wx:key="id">
 
-  <view style="position: relative; left: 410rpx; top: -168rpx" class="stat">
-    Montant de la cagnotte
-    <view style="position: relative; left: 11rpx; top: 58rpx; text-align: end; padding-right: 5px;">
-      {{item.montant_total}} Fcfa</view>
-  </view>
+    <view style="position: relative; left: 34rpx; top: 26rpx" class="stat"> Nombre de participant.e.s
+      <view style="position: relative; left: 49rpx; top: 34rpx; width: 244rpx; height: 42rpx; display: block; box-sizing: content-box; text-align: end; padding-right: 5px">{{item.nombre_participants}}</view>
+    </view>
+
+    <view style="position: relative; left: 408rpx; top: -183rpx" class="stat">
+      Montant de la cagnotte
+      <view style="position: relative; left: 12rpx; top: 34rpx; text-align: end; padding-right: 5px">
+        {{item.montant_total}} Fcfa
+      </view>
+    </view>
   </block>
 </view>
 
 <!-- Participants -->
-<view style="width: 750rpx; height: 340rpx; display: block; box-sizing: border-box" class="conteneur">
-<block wx:for="{{result}}" wx:key="id">
-  <text style="position: relative; left: 22rpx; top: 0rpx" class="h1">Participants</text>
-  <view style="position: relative; width: 100%; background: white; height: 100px; left: 0rpx; top: 24rpx">
-    <view data-index="{{index}}">
-      <block wx:for="{{item.participant}}" wx:for-item="participant" wx:key="participant.id_participant">
-        <view class="listParticipant" style="width: 736rpx; height: 64rpx; display: flex; box-sizing: border-box">
-            <view class="nom">
-              {{participant.utilisateur.nom}}  {{participant.utilisateur.prenoms}}
-            </view>        
-          <view class="montant">{{item.montant_a_cotise}}</view>
+<view style="width: 95%; height: 491rpx; margin-left: 18rpx; display: block; box-sizing: border-box" class="conteneur contour">
+  <block wx:for="{{result}}" wx:key="id">
+    <text style="position: relative; left: 22rpx; top: 0rpx" class="h1">Participants</text>
+    <scroll-view scroll-y="true" class="scrollarea">
+
+      <view style="position: relative; width: 100%; background: white; height: 100px; left: 0rpx; top: 24rpx">
+        <view data-index="{{index}}">
+          <!-- <block wx:for="{{item.participant}}" wx:for-item="participant" wx:key="participant.id_participant"> -->
+          <block wx:for="{{item.participant}}" wx:for-item="participant" wx:key="id_participant">
+            <view class="listParticipant" style="width: 710rpx; height: 63rpx; display: flex; box-sizing: border-box">
+              <view class="nom">
+                {{participant.utilisateur.nom}} {{participant.utilisateur.prenoms}}
+              </view>
+              <view class="montant">{{item.montant_a_cotise}}</view>
+            </view>
+          </block>
         </view>
-      </block>
-    </view>
-  </view>
+      </view>
+    </scroll-view>
   </block>
 </view>
 
+
+
 <view class="conteneur" style="width: 750rpx; height: 138rpx; display: block; box-sizing: border-box">
-  <view style="position: relative; width: 328rpx; height: 92rpx; left: 396rpx; top: 22rpx; display: block; box-sizing: border-box" class="btnModifier" bind:tap="chargePage">Modifier l'ordre</view>
+  <view style="position: relative; width: 328rpx; height: 92rpx; left: 400rpx; top: 18rpx; display: block; box-sizing: border-box" class="btnModifier" bind:tap="openModal">Modifier l'ordre</view>
 </view>
 
 <!-- Pénalités -->
 <view style="width: 750rpx; height: 340rpx; display: block; box-sizing: border-box" class="conteneur">
   <text style="position: relative; left: 22rpx; top: 0rpx" class="h1">Pénalités</text>
-  <view style="position: relative; width: 100%; background: white; height: 100px; left: 0rpx; top: 24rpx">
-  <block wx:for="{{result}}" wx:key="id">
-    <view data-index="{{index}}">
-      <block wx:for="{{item.participant}}" wx:for-item="participant" wx:key="participant.id_participant">
-        <block wx:if="{{participant.penalite && participant.penalite.length>0}}">
-            <block wx:for="{{participant.penalite}}" wx:for-item="penalite" wx:key="penalite.id_penalite">
-        <view class="listParticipant" style="width: 736rpx; height: 64rpx; display: flex; box-sizing: border-box">
-          <view class="nom">
-          {{participant.utilisateur.nom}}  {{participant.utilisateur.prenoms}}
-          </view>
-          <!-- <block wx:if="{{participant.penalite && participant.penalite.length>0}}">
+  <Scroll-view scroll-y="true" class="scrollarea">
+    <view style="position: relative; width: 100%; background: white; height: 100px; left: 0rpx; top: 24rpx">
+      <block wx:for="{{result}}" wx:key="id">
+        <view data-index="{{index}}">
+          <!-- <block wx:for="{{item.participant}}" wx:for-item="participant" wx:key="participant.id_participant"> -->
+          <block wx:for="{{item.participant}}" wx:for-item="participant" wx:key="id_participant">
+            <block wx:if="{{participant.penalite && participant.penalite.length>0}}">
+              <block wx:for="{{participant.penalite}}" wx:for-item="penalite" wx:key="penalite.id_penalite">
+                <view class="listParticipant" style="width: 736rpx; height: 64rpx; display: flex; box-sizing: border-box">
+                  <view class="nom">
+                    {{participant.utilisateur.nom}} {{participant.utilisateur.prenoms}}
+                  </view>
+                  <!-- <block wx:if="{{participant.penalite && participant.penalite.length>0}}">
             <block wx:for="{{participant.penalite}}" wx:for-item="penalite" wx:key="penalite.id_penalite"> -->
-            <view class="montant">
-              {{penalite.montant_penalite}}
-            </view>
-            <!-- </block>
+                  <view class="montant">
+                    {{penalite.montant_penalite}}
+                  </view>
+                  <!-- </block>
           </block> -->
+                </view>
+              </block>
+            </block>
+          </block>
         </view>
       </block>
-          </block>
-      </block>
     </view>
-  </block>
-  </view>
+  </Scroll-view>
 </view>
 
+<!-- Modal de modification d'ordre -->
+<!-- <view class="modal-overlay" wx:if="{{showModal}}" bindtap="hideModal">
+  <view class="modal-container" catchtap="stopPropagation">
+    <text style="position: relative; left: 22rpx; top: 0rpx" class="h1">Modifier l'ordre de récupération</text>
+    <view style="position: relative; width: 100%; background: white; height: 100px; left: 0rpx; top: 24rpx">
+      <block wx:for="{{result}}" wx:key="id">
+        <view data-index="{{index}}">
+          <block wx:for="{{item.participant}}" wx:for-item="participant" wx:key="id_participant">
+            <view class="listParticipant" style="width: 90%; height: 64rpx; display: flex; box-sizing: border-box">
+              <view class="nom">
+                {{participant.utilisateur.nom}} {{participant.utilisateur.prenoms}}
+              </view>
+              <view class="montant">{{item.numero_ordre}}</view>
+            </view>
+          </block>
+        </view>
+      </block>
+    </view> -->
 
+<!-- Modal pour l'intégration avec liste scrollable et réorganisation -->
+<view wx:if="{{showModal}}" class="modal-overlay" bindtap="closeModal">
+        <view class="modal-container1" catchtap="preventClose">
+            <!-- En-tête de la modal -->
+            <view class="modal-header1">
+                <view class="modal-title-container1">
+                    <text class="modal-title1">Modifier l'ordre de la tontine</text>
+                </view>
+                <view class="close-button" bindtap="closeModal">
+                    <image src="../../images/mingcute_close-fill.png" class="close-icon" />
+                </view>
+            </view>
+
+            <!-- Corps de la modal avec liste scrollable -->
+            <!-- <scroll-view scroll-y="true" class="modal-scroll1" enhanced="true"> -->
+                <view class="modal-body1">
+                    <!-- Conteneur pour la liste des membres -->
+            <scroll-view scroll-y="true" class="modal-scroll1" enhanced="true">
+                    <view class="modal-background">
+                      <block wx:for="{{result}}" wx:key="id">
+                        <!-- Boucle dynamique sur la liste des membres -->
+                        <view class="member-item" wx:for="{{item.participant}}" wx:for-item="participant" wx:key="id_participant" bindtouchstart="onTouchStart" bindtouchmove="onTouchMove" bindtouchend="onTouchEnd">
+                            <text class="member-text">{{participant.numero_ordre}}. {{participant.utilisateur.nom}} {{participant.utilisateur.prenoms}}</text>
+                            <!-- Séparateur sauf pour le dernier élément -->
+                            <view wx:if="{{index < memberList.length - 1}}" class="separator"></view>
+                        </view>
+                      </block>
+                    </view>
+            </scroll-view>
+
+                    <!-- Bouton de validation -->
+                    <view class="modal-footer">
+                        <view class="confirm-button" bindtap="validateOrder">
+                            Valider
+                        </view>
+                    </view>
+                </view>
+            <!-- </scroll-view> -->
+        </view>
+    </view>
