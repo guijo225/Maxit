@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/assistance/assistance",
     "pages/info_tontine/info_tontine",
     "pages/mes_informations/mes_informations",
-    "pages/assistance/assistance",
     "pages/aPropos/aPropos"
 
   ],
