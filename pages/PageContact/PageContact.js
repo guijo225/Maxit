@@ -1,5 +1,5 @@
 const API_URL = 'http://192.168.252.43:3000';
-
+const app = getApp();
 // pages/PageContact/PageContact.js
 Page({
     /**
@@ -20,7 +20,15 @@ Page({
       ].map(item => ({ ...item, selected: false })), // Ajout de la propriété "selected" pour chaque contact
       multiSelect: false, // État du mode multi-sélection
       numeroTelephone:'',
+      tontine:'',
       recipients:[]
+    },
+    onLoad(options) {
+        const eventChannel = this.getOpenerEventChannel();
+        eventChannel.on('sendDataToDetail', (data) => {
+            console.log(data);
+            this.setData({tontine:data});
+        });
     },
 
     onPhoneNumberInput: function(e) {
@@ -30,7 +38,7 @@ Page({
     },
 
     // Api d'envoie d'otp
-    sendOtp(){
+    sendOtp(e){
         const {numeroTelephone, name} = this.data;
         if (!numeroTelephone) {
             //this.showMessage("Veuillez sélectionner ou saisir au moins un contact", 'error');
@@ -42,6 +50,7 @@ Page({
         console.log('Envoi des invitations...', 'info')
 
         const recipients = [{numeroTelephone: numeroTelephone, name: name || 'Invité'}]
+        const id_tontine = this.data.tontine;
         wx.request({
             url: `http://192.168.252.43:3000/send-otp`,
             method: 'POST',
@@ -49,7 +58,8 @@ Page({
                 'Content-Type':'application/json'
             },
             data: {
-                recipients: recipients
+                recipients: recipients,
+                id_tontine: id_tontine
             },
             succes: (res) => {
                 if (res.statusCode === 200) {
@@ -147,7 +157,6 @@ Page({
     /**
      * Lifecycle function--Called when page load
      */
-    onLoad(options) {},
   
     /**
      * Lifecycle function--Called when page is initially rendered

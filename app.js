@@ -1,6 +1,6 @@
 // app.js
 App({
     globalData: {
-        maxitId:1
+        maxitId:13
     }
 })

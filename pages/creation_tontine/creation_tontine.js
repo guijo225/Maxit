@@ -1,4 +1,5 @@
 // index.js
+const app = getApp();
 Page({
 
     data: {
@@ -6,10 +7,12 @@ Page({
         expanded: false,
         isApproved: false,
         showModal: false,
+      users :  {},
   
         formData: {
             nom: '',
             description: '',
+            type_tontine: '',
             regles: '',
             montant: '',
             frequence: '',
@@ -18,10 +21,37 @@ Page({
         },
   
         // Liste des fréquences possibles
-        frequenceOptions: ['Mensuelle', 'Hebdomadaire', 'Quinzaine', 'Année'],
-  
-        // Liste des rapelle possibles
-        rappelOptions: ['1 jours avant', '2 jours avants', '3 jours avant', '4 jours avant', '5 jours avant']
+        frequenceOptions: ['Hebdomadaire', 'Quinzaine', 'Mensuelle', 'Deux mois', 'Trimestrielle'],
+        // Liste des rappels possibles
+        rappelOptions: ['1 jours avant', '2 jours avant', '3 jours avant', '4 jours avant', '5 jours avant'],
+        // Liste des fréquences possibles
+        type_tontine: ['Tontine sans assurance', 'Tontine avec assurance', 'Tontine inversée']
+    },
+    onLoad(options){
+
+        const userId = app.globalData.maxitId;
+        
+        wx.request({
+          url: `http://192.168.252.213:8000/api/login/${userId}`,
+          method: "GET",
+          success: (res) => {
+            if (res.data.success && res.data.utilisateur) {
+              const utilisateur = res.data.utilisateur;
+              this.setData({
+                users: utilisateur
+              });
+              console.log("Utilisateur :", utilisateur);
+      
+            } else {
+              wx.redirectTo({
+                url: '/pages/condition_generale/condition_generale',
+              });
+            }
+          },
+          fail: (err) => {
+            console.error("Erreur requête API (login) :", err);
+          }
+        });
     },
   
     onSwiperChange(e) {
@@ -92,6 +122,24 @@ Page({
             }
         });
     },
+
+    // Ouvre le sélecteur de fréquence via wx.showActionSheet
+    openTypeTontineOptions() {
+        const that = this;
+        wx.showActionSheet({
+            itemList: this.data.type_tontine, // options à afficher
+            success(res) {
+                // si l'utilisateur sélectionne une option
+                const selected = that.data.type_tontine[res.tapIndex];
+                that.setData({
+                    'formData.type_tontine': selected
+                });
+            },
+            fail(err) {
+                console.log('Annulé ou erreur', err);
+            }
+        });
+    },
   
     // Ouvre le sélecteur de rapelle via wx.showActionSheet
     openRappelOptions() {
@@ -116,18 +164,18 @@ Page({
       const { formData } = this.data;
   
       // Vérification locale des champs requis
-      if (!formData.nom || !formData.montant || !formData.frequence || !formData.participants || !formData.date_echeance) {
+      if (!formData.nom || !formData.type_tontine || !formData.montant || !formData.frequence || !formData.participants || !formData.date_echeance) {
         wx.showToast({
           title: 'Champs requis manquants',
           icon: 'none'
         });
         return;
       }
-  
+      //console.log(this.users)
       // Ajout de l'id fictif dans les données envoyées
       const formDataWithId = {
         ...formData,
-        id: 1 // ID fictif du créateur
+        id_utilisateur: this.data.users.id_utilisateur
       };
   
       console.log('Données envoyées :', formDataWithId);
@@ -150,13 +198,15 @@ Page({
               title: 'Tontine créée',
               icon: 'success'
             });
-            console.log('Bravo');
+            console.log(res);
   
             setTimeout(() => {
-              wx.redirectTo({
+                const data = res.data;
+              wx.navigateTo({
                 url: '/pages/PageContact/PageContact',
-                success() {
+                success(res) {
                   wx.hideLoading();
+                  res.eventChannel.emit('sendDataToDetail', data)
                 },
                 fail(err) {
                   console.error('Erreur de navigation :', err);
@@ -191,6 +241,7 @@ Page({
     },
 
     navigation() {
+
         wx.navigateTo({
           url: '/pages/PageContact/PageContact',
         })

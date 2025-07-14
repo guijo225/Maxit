@@ -1,5 +1,5 @@
 const API_URL = 'http://192.168.252.43:3000';
-
+const app = getApp();
 // Gestion de la logique de la page
 Page({
     /**
@@ -41,7 +41,18 @@ Page({
             }
         ],
         otp: '',
+        idUser:'',
         numeroTelephone:''
+    },
+
+    onLoad(options) {
+        const eventChannel = this.getOpenerEventChannel();
+        eventChannel.on('sendDataToDetail', (data) => {
+            console.log(data);
+            this.setData({idUser:data});
+            //tontine = data;
+        });
+        this.checkTextLength();
     },
 
     onPhoneNumberInput: function(e) {
@@ -56,9 +67,11 @@ Page({
         // Restreindre aux nombres uniquement
         value = value.replace(/[^0-9]/g, '').slice(0, 6); // Max 6 chiffres
         this.setData({
-             otp: value
+            otp: value
         });
     },
+
+
 
     verifyOtp() {
         const {numeroTelephone, otp} = this.data;
@@ -67,6 +80,7 @@ Page({
             return;
         }
         console.log("Vérification de l'otp", 'info');
+        console.log(this.data.idUser)
         wx.request({
           url: `http://192.168.252.43:3000/verify-otp`,
           method: 'POST',
@@ -75,15 +89,37 @@ Page({
           },
           data: {
               numeroTelephone: numeroTelephone,
-              otp: otp
+              otp: otp, 
+              idUser: this.data.idUser
           },
           success: (res) => {
             if (res.statusCode === 200) {
-                console.log('OTP vérifié avec succès!');
-                    this.setData({otpSent : false, otp:''});
+                wx.showToast({
+                    title: 'OTP vérifié avec succès!',
+                    icon: 'success'
+                  });
+                  setTimeout(() => {
+                    const data = res.data;
+                    wx.navigateTo({
+                        url: '/pages/PageGestion/PageGestion',
+                        success(res) {
+                            wx.hideLoading();
+                            res.eventChannel.emit('sendDataToDetail', data)
+                        },
+                        fail(err) {
+                            console.error('Erreur de navigation :', err);
+                            wx.hideLoading();
+                            wx.showToast({
+                                title: 'Erreur de navigation',
+                                icon: 'none'
+                        });
+                        }
+                    });
+                }, 500);
+                    /*this.setData({otpSent : false, otp:''});
                     wx.navigateTo({
                       url: '/pages/PageGestion/PageGestion',
-                    })
+                    })*/
                 } else {
                 console.log(`Erreur: ${res.data.message || "OTP invalide ou expiré"}`, 'error')
             }
@@ -137,9 +173,6 @@ Page({
     /**
      * Charge la page
      */
-    onLoad() {
-        this.checkTextLength();
-    },
 
     /**
      * Vérifie la longueur des textes des avis

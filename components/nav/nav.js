@@ -74,8 +74,7 @@ Component({
     },
 
     historique(){
-        wx.navigateTo({
-          url: '/pages/accueil/accueil',
+        wx.navigateBack({
         })
      },
 
@@ -90,8 +89,7 @@ Component({
      */
     methods: {
         historique(){
-            wx.navigateTo({
-              url: '/pages/accueil/accueil',
+            wx.navigateBack({
             })
          },
          profil(){

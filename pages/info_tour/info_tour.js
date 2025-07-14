@@ -1,4 +1,5 @@
 // pages/Tour/Tour.js
+const app = getApp();
 Page({
 
     /**
@@ -12,8 +13,44 @@ Page({
      * Lifecycle function--Called when page load
      */
     onLoad(options) {
-
+        const eventChannel = this.getOpenerEventChannel();
+        eventChannel.on('sendDataToDetail', (data) => {
+            console.log(data);
+            this.setData({tontine:data});
+            //tontine = data;
+            wx.request({
+                url:`http://192.168.252.43:8000/api/tontine/${data.tontine.id_tontine}`,
+                method: 'GET',
+                success: (res) => {
+                  const result = res.data;
+                    console.log(result);
+                  this.setData({
+                    result
+                  });
+                },
+                fail:(err) => {
+                  console.error('Erreur chargement membres :', err);
+                }
+              });
+        });
+        //this.infoTontine();
     },
+
+    /*infoTontine () {
+        wx.request({
+          url: 'http://192.168.252.43:8000/api/tontine/14',
+          method: 'GET',
+          success: (res) => {
+              const result = res.data;
+              this.setData({
+                result
+              });
+          },
+          fail:(err) => {
+              console.error('Erreur de chargement :', err)
+          }
+        })
+    },*/
 
     /**
      * Lifecycle function--Called when page is initially rendered

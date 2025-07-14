@@ -30,3 +30,21 @@
     text-align: center;
     margin-bottom: 20rpx;
   }
+
+  .h1{
+    font-weight: bold;
+    color: rgb(255, 135, 23);
+    font-size: 120%;
+  }
+  .listParticipant{
+    padding: 2%;
+    font-weight: bold;
+  }
+  .nom{
+    width: 70%;
+  }
+
+  .montant{
+    width: 30%; 
+    text-align: end;
+  }

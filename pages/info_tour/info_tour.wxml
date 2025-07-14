@@ -1,53 +1,87 @@
 <!--pages/Tour/Tour.wxml-->
 <nav></nav>
+<title_bar label="Informations tour"></title_bar>
 <view style="justify-content: center;align-items: center; text-align: center;margin-top: 8%;margin-bottom: 5%;">
-    <text style="font-size: 36rpx; font-weight: bold;"> Tour N°2</text>
+    <block wx:for="{{result}}" wx:key="id">
+        <text style="font-size: 36rpx; font-weight: bold;"> Tour N°{{item.tour[0].numero_tour}}</text>
+    </block>
 </view>
-<scroll-view style="width: 750rpx; height: 1342rpx; display: block; box-sizing: border-box">
-    <view style="position: relative; width: 345rpx; background: #fff; height: 296rpx; display: block; box-sizing: border-box; left: 12rpx; box-shadow: 0 3rpx 8rpx rgba(255,121,0,1);">
-        <text style="position: relative; left: 17rpx; top: 26rpx; font-size: 35rpx; font-weight: bold;">Nombre de participants ayant cotisé a ce tour:</text>
+<view style="width: 750rpx; height: 323rpx; display: block; box-sizing: border-box">
+    <block wx:for="{{result}}" wx:key="id">
+        <view style="position: relative; width: 345rpx; background: #fff; height: 296rpx; display: block; box-sizing: border-box; left: 12rpx; box-shadow: 0 3rpx 8rpx rgba(255,121,0,1);" bind:tap="infoTontine">
+            <text style="position: relative; left: 17rpx; top: 26rpx; font-size: 35rpx; font-weight: bold;">Nombre de participants ayant cotisé a ce tour:</text>
 
-        <view style="position: relative; width: 95rpx; background: #ED6C30; height: 95rpx; left: 222rpx; top: 25rpx; display: block; box-sizing: border-box; border-radius: 99rpx">
-            <text style="position: relative; left: 23rpx; top: 18rpx; font-size: 30rpx; font-weight: bolder; color: #FFFFFFFF;">2/4</text>
+            <view style="position: relative; width: 95rpx; background: #ED6C30; height: 95rpx; left: 222rpx; top: 25rpx; display: block; box-sizing: border-box; border-radius: 99rpx">
+                <text style="position: relative; left: 23rpx; top: 18rpx; font-size: 30rpx; font-weight: bolder; color: #FFFFFFFF;">{{item.tour[0].cotisation.length}}/{{item.nombre_participants}}</text>
+            </view>
         </view>
-    </view>
 
-    <view style="position: relative; width: 345rpx; background:#fff; height: 296rpx; display: block; box-sizing: border-box; left: 392rpx; top: -296rpx; font-size: 35rpx; font-weight: bold; box-shadow: 0 3rpx 8rpx rgba(255,121,0,1);">
-        <text style="position: relative; left: 12rpx; top: 26rpx;font-size: 35rpx; font-weight: bold;">Argent collecté
-            pour ce tour:
-            750 000/1 500 000 Frcfa
-        </text>
+        <view style="position: relative; width: 345rpx; background:#fff; height: 296rpx; display: block; box-sizing: border-box; left: 392rpx; top: -296rpx; font-size: 35rpx; font-weight: bold; box-shadow: 0 3rpx 8rpx rgba(255,121,0,1);">
+            <text style="position: relative; left: 12rpx; top: 26rpx;font-size: 35rpx; font-weight: bold;">Argent collecté
+                pour ce tour:
+                {{item.tour[0].montant_distribue}}/{{item.montant_total}} Fcfa
+            </text>
 
-    </view>
+        </view>
+    </block>
+</view>
 
+<view style="width: 710rpx; height: 426rpx; margin-left: 18rpx; display: block; box-sizing: border-box; left: 0rpx; top: 0rpx" class="conteneur contour">
+    <block wx:for="{{result}}" wx:key="id">
+        <text style="position: relative; left: 0rpx; top: 0rpx" class="h1">Participants</text>
+        <scroll-view scroll-y="true" class="scrollarea" style="width: 710rpx; height: 348rpx; display: block; box-sizing: border-box">
+            <view style="position: relative; width: 710rpx; background: white; height: 74rpx; left: 0rpx; top: 23rpx; display: block; box-sizing: border-box">
+                <view data-index="{{index}}" style="width: 710rpx; height: 70rpx; display: block; box-sizing: border-box">
+                    <!-- <block wx:for="{{item.participant}}" wx:for-item="participant" wx:key="participant.id_participant"> -->
+                    <block wx:for="{{item.participant}}" wx:for-item="participant" wx:key="id_participant">
+                        <block wx:if="{{participant.cotisation && participant.cotisation.length>0}}">
+                            <view class="listParticipant" style="width: 710rpx; height: 63rpx; display: flex; box-sizing: border-box">
+                                <view class="nom">
+                                    {{participant.utilisateur.nom}} {{participant.utilisateur.prenoms}}
+                                </view>
+                                <view class="montant">{{participant.cotisation[0].montant_cotise}}</view>
+                            </view>
+                        </block>
+                    </block>
+                </view>
+            </view>
+        </scroll-view>
+    </block>
+</view>
 
+<view style="width: 750rpx; height: 384rpx; display: block; box-sizing: border-box" class="conteneur">
+    <text style="position: relative; left: 22rpx; top: 0rpx" class="h1">Pénalités</text>
+    <Scroll-view scroll-y="true" class="scrollarea" style="width: 733rpx; height: 307rpx; display: block; box-sizing: border-box">
+        <view style="position: relative; width: 750rpx; background: white; height: 88rpx; left: 0rpx; top: 23rpx; display: block; box-sizing: border-box">
+            <block wx:for="{{result}}" wx:key="id">
+                <view data-index="{{index}}">
+                    <!-- <block wx:for="{{item.participant}}" wx:for-item="participant" wx:key="participant.id_participant"> -->
+                    <block wx:for="{{item.participant}}" wx:for-item="participant" wx:key="id_participant">
+                        <block wx:if="{{participant.penalite && participant.penalite.length>0}}">
+                            <block wx:for="{{participant.penalite}}" wx:for-item="penalite" wx:key="penalite.id_penalite">
+                                <view class="listParticipant" style="width: 736rpx; height: 64rpx; display: flex; box-sizing: border-box">
+                                    <view class="nom">
+                                        {{participant.utilisateur.nom}} {{participant.utilisateur.prenoms}}
+                                    </view>
+                                    <!-- <block wx:if="{{participant.penalite && participant.penalite.length>0}}">
+            <block wx:for="{{participant.penalite}}" wx:for-item="penalite" wx:key="penalite.id_penalite"> -->
+                                    <view class="montant">
+                                        {{penalite.montant_penalite}}
+                                    </view>
+                                    <!-- </block>
+          </block> -->
+                                </view>
+                            </block>
+                        </block>
+                    </block>
+                </view>
+            </block>
+        </view>
+    </Scroll-view>
+</view>
 
+<view style="width: 730rpx; height: 130rpx; display: block; box-sizing: border-box">
+    <text style="position: relative; color: #FF7900; font-size: 36rpx; font-weight: bolder; left: 0rpx; top: 0rpx">Personne qui récupère</text>
+</view>
 
-    <text style="position: relative; left: 12rpx; top: -237rpx; color: #FF7900; font-size: 36rpx; font-weight: bolder">Participants ayant cotisé pour ce tour</text>
-
-    <view style="display: flex; justify-content: space-between;align-items: center; margin-bottom: 20rpx;">
-        <text style="position: relative; left: 15rpx; top: -211rpx; font-size: 31rpx; font-weight: bolder;">Frean Debohi grace</text>
-        <text style="position: relative; left: -17rpx; top: -211rpx; font-size: 31rpx; font-weight: bolder">250 000 Frcfa</text>
-    </view>
-
-    <view style="display: flex; justify-content: space-between;align-items: center; margin-bottom: 20rpx;">
-        <text style="position: relative; left: 15rpx; top: -211rpx; font-size: 31rpx; font-weight: bolder;">Guitto Joel</text>
-        <text style="position: relative; left: -17rpx; top: -211rpx; font-size: 31rpx; font-weight: bolder">250 000 Frcfa</text>
-    </view>
-
-    <view>
-        <text style="position: relative; color: #FF7900; font-size: 36rpx; font-weight: bolder; left: 12rpx; top: -132rpx">Pénalité</text>
-    </view>
-
-    <view>
-        <text style="position: relative; left: 10rpx; top: -111rpx; font-size: 31rpx; font-weight: bolder;">parrain Junior
-            <text style="position: relative; left: 540rpx; top: -52rpx; font-size: 31rpx; font-weight: bolder; color: red;">75 000 Frcfa</text>
-        </text>
-    </view>
-
-    <view>
-        <text style="position: relative; color: #FF7900; font-size: 36rpx; font-weight: bolder; left: 10rpx; top: -122rpx">Personne qui récupère</text>
-    </view>
-
-    <text style="position: relative; font-size: 31rpx; font-weight: bolder; left: 12rpx; top: -111rpx">Guitto Joel</text>
-</scroll-view>
+<text style="position: relative; font-size: 31rpx; font-weight: bolder; left: 11rpx; top: -67rpx">Camara Salimata</text>

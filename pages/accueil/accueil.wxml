@@ -4,7 +4,8 @@
 
 <scroll-view scroll-y="true" style="overflow-y: auto; width: 750rpx; height: 1399rpx; display: block; box-sizing: border-box">
 <view wx:for="{{tontines}}" wx:key="id_tontine" style="margin-bottom: 20rpx;">
-    <view style="position: relative; width: 721rpx;height: 267rpx; left: 15rpx; top: 51rpx; display: block; box-sizing: border-box; border-radius: 15px;border: solid 1rpx #FF7900;">
+    <view style="position: relative; width: 721rpx;height: 267rpx; left: 15rpx; top: 51rpx; display: block; box-sizing: border-box; border-radius: 15px;border: solid 1rpx #FF7900;" bindtap="NavPageGestion" data-tontine="{{item}}">
+        
         <view style="position: relative; left: 23rpx; top: 23rpx; font-size: 28rpx;">Tontine : {{ item.nom_tontine}} </view>
         <view style="position: relative; left: 25rpx; top: 41rpx; width: 454rpx; height: 39rpx; display: block; box-sizing: border-box ;  font-size: 28rpx;">Nombre de participant : {{item.nombre_participants}}</view>
         <view style="position: relative; left: 21rpx; top: 62rpx ;  font-size: 28rpx;">Date de création : {{item.date_creation}} </view>
@@ -19,8 +20,11 @@
     Créez des tontines sécurisées pour vous et vos proches
 </view>
 
-  <view style="position: fixed; bottom: calc(30rpx + env(safe-area-inset-bottom)); right: 24rpx; width: 345rpx; height: 73rpx; display: flex; align-items: center; justify-content: center; background-color: rgb(255, 135, 23); color: white; font-size: 28rpx; border-radius: 12rpx;" bind:tap="CreeTontine">
+ <view style="position: fixed; bottom: calc(30rpx + env(safe-area-inset-bottom)); right: 24rpx; width: 345rpx; height: 73rpx; display: flex; align-items: center; justify-content: center; background-color: rgb(255, 135, 23); color: white; font-size: 28rpx; border-radius: 12rpx;" bind:tap="CreeTontine">
     Créer une tontine
+  </view>
+   <view style="position: fixed; bottom: calc(30rpx + env(safe-area-inset-bottom)); left: 24rpx; width: 345rpx; height: 73rpx; display: flex; align-items: center; justify-content: center; background-color: rgb(255, 135, 23); color: white; font-size: 28rpx; border-radius: 12rpx;" bind:tap="IntegreTontine">
+    Intégrer une tontine
   </view>
 </scroll-view>
 

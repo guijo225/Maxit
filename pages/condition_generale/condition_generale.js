@@ -2,44 +2,40 @@
 const app = getApp();
 Page({
   data:{
-    users:[],
+    users:{},
     maxitid:app.globalData.maxitId,
   },
 
-  /*onValider :function(){
+  onValider :function(){
     wx.request({
       url: `http://192.168.252.30:8000/api/users/${app.globalData.maxitId}`,
       method : "GET",
       success : (res) => {
-        console.log(res.data);
         const users = res.data
             this.setData({
               users : users
             });
+            console.log(users);
 
         
+    wx.request({
+        url: 'http://192.168.252.213:8000/api/inscription',
+        method:"POST",
+        data:users,
+        success:(res)=>{
+            console.log(res.data);
+            wx.redirectTo({
+              url: '/pages/accueil/accueil',
+            })
+        }
+      })
       },
       fail: (err) => {
           console.error("Erreur requête API :", err);
         }
     })
-    const fakeData = [
-      {"id":1,
-        "nom":"diack",
-        "prenom":"mamadou",
-        "date_de_naissance": "2025-06-28 14:35:26",
-        "telephone":"2250700000001"
-       }
-    ];
-    wx.request({
-      url: 'http://192.168.252.213:8000/api/inscription',
-      method:"POST",
-      data:fakeData,
-      success:(res)=>{
-          console.log(res.data);
-      }
-    })
-  },*/
+    
+  },
       
   next() {
     wx.navigateTo({
@@ -49,9 +45,7 @@ Page({
     /**
      * Page initial data
      */
-    data: {
-
-    },
+    
 
     /**
      * Lifecycle function--Called when page load

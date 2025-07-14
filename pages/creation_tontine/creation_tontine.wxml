@@ -91,11 +91,24 @@
                     <text class="input-label">Description *</text>
                     <textarea class="textarea-field" placeholder="Ex: Tontine mensuelle entre collègues" value="{{formData.description}}" bindinput="onInputChange" data-field="description" maxlength="200" />
                 </view>
+                
+                <!--Liste déroulante type tontine-->
+                <view class="input-group">
+                    <text class="input-label">Type de tontine *</text>
+                    <view class="select-field" bindtap="openTypeTontineOptions">
+                        <view class="select-value {{formData.type_tontine? '' : 'placeholder'}}">
+                            {{formData.type_tontine || 'Choisir le type de tontine que vous désirez'}}
+                        </view>
+                        <view class="select-arrow">▼</view>
+                    </view>
+                </view>
+
                 <!-- Champ Description  de modalité (textarea plus grand) -->
                 <view class="input-group">
                     <text class="input-label">Règles*</text>
                     <textarea class="textarea-field" placeholder="Ex: Règles" value="{{formData.regles}}" bindinput="onInputChange" data-field="regles" maxlength="200" />
                 </view>
+
                 <view class="input-group">
                     <text class="input-label">Montant à cotiser *</text>
                     <input class="input-field" placeholder="Ex: 50 000" value="{{formData.montant}}" bindinput="onInputChange" data-field="montant" type="number" />
@@ -104,10 +117,10 @@
                 <view class="input-group">
                     <text class="input-label">Fréquence *</text>
                     <view class="select-field" bindtap="openFrequenceOptions">
-                        <text class="select-value {{formData.frequence ? '' : 'placeholder'}}">
+                        <view class="select-value {{formData.frequence ? '' : 'placeholder'}}">
                             {{formData.frequence || 'Choisir une fréquence'}}
-                        </text>
-                        <text class="select-arrow">▼</text>
+                        </view>
+                        <view class="select-arrow">▼</view>
                     </view>
                 </view>
 
@@ -115,10 +128,10 @@
                 <view class="input-group">
                     <text class="input-label">Date d'écheance *</text>
                     <view class="select-field" bindtap="openRappelOptions">
-                        <text class="select-value {{formData.date_echeance? '' : 'placeholder'}}">
+                        <view class="select-value {{formData.date_echeance? '' : 'placeholder'}}">
                             {{formData.date_echeance || 'Choisir un jours pour le Rappel'}}
-                        </text>
-                        <text class="select-arrow">▼</text>
+                        </view>
+                        <view class="select-arrow">▼</view>
                     </view>
                 </view>
 

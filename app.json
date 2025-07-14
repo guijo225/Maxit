@@ -1,19 +1,19 @@
 {
     "pages": [
-    "pages/integration_utilisateur/integration_utilisateur",
-    "pages/condition_generale/condition_generale",
     "pages/accueil/accueil",
-    "pages/inscription/inscription",
-    "pages/PageContact/PageContact",
+    "pages/condition_generale/condition_generale",
     "pages/PageGestion/PageGestion",
-    "pages/connexion/connexion",
+    "pages/integration_utilisateur/integration_utilisateur",
+    "pages/PageContact/PageContact",
     "pages/creation_tontine/creation_tontine",
     "pages/info_tour/info_tour",
     "pages/info_tontine/info_tontine",
     "pages/profil/profil",
     "pages/assistance/assistance",
     "pages/mes_informations/mes_informations",
-    "pages/a_propos/a_propos"
+    "pages/a_propos/a_propos",
+    "pages/inscription/inscription",
+    "pages/connexion/connexion"
   ],
   "window": {
     "navigationBarTextStyle": "black",

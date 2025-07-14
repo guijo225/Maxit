@@ -1,9 +1,9 @@
 <!--index.wxml-->
-<nav style="width: 750rpx; height: 100rpx; display: block; box-sizing: border-box"></nav>
+<nav></nav>
 
 <view class="conteneur">
   <block wx:for="{{result}}" wx:key="id">
-    <view style="position: relative; left: 291rpx; top: 18rpx">{{item.nom_tontine}}</view>
+    <view style="position: relative; top: 18rpx; text-align: center; font-weight: bolder; ">{{item.nom_tontine}}</view>
   </block>
 </view>
 
@@ -25,22 +25,31 @@
 </view>
 
 <!-- Participants -->
-<view style="width: 710rpx; height: 470rpx; margin-left: 18rpx; display: block; box-sizing: border-box" class="conteneur contour">
+<view style="width: 707rpx; height: 384rpx; margin-left: 18rpx; display: block; box-sizing: border-box" class="conteneur contour">
   <block wx:for="{{result}}" wx:key="id">
     <text style="position: relative; left: 22rpx; top: 0rpx" class="h1">Participants</text>
-    <scroll-view scroll-y="true" class="scrollarea" style="width: 710rpx; height: 351rpx; display: block; box-sizing: border-box">
+    <scroll-view scroll-y="true" class="scrollarea" style="width: 710rpx; height: 283rpx; display: block; box-sizing: border-box">
 
-      <view style="position: relative; width: 100%; background: white; height: 100px; left: 0rpx; top: 24rpx">
+      <view style="position: relative; width: 710rpx; background: white; height: 67rpx; left: 0rpx; top: 23rpx; display: block; box-sizing: border-box">
         <view data-index="{{index}}">
           <!-- <block wx:for="{{item.participant}}" wx:for-item="participant" wx:key="participant.id_participant"> -->
-          <block wx:for="{{item.participant}}" wx:for-item="participant" wx:key="id_participant">
+            <!--  <block wx:for="{{item.participant}}" wx:for-item="participant" wx:key="id_participant">
             <view class="listParticipant" style="width: 710rpx; height: 63rpx; display: flex; box-sizing: border-box">
               <view class="nom">
                 {{participant.utilisateur.nom}} {{participant.utilisateur.prenoms}}
               </view>
               <view class="montant">{{item.montant_a_cotise}}</view>
             </view>
-          </block>
+           </block>-->
+
+          <block wx:for="{{participantList}}" wx:for-item="participant" wx:key="id_participant">
+            <view class="listParticipant" style="width: 710rpx; height: 63rpx; display: flex; box-sizing: border-box">
+              <view class="nom">
+                {{participant.utilisateur.nom}} {{participant.utilisateur.prenoms}}
+              </view>
+              <view class="montant">{{item.montant_a_cotise}}</view>
+            </view>
+           </block>
         </view>
       </view>
     </scroll-view>
@@ -49,7 +58,7 @@
 
 
 
-<view class="conteneur" style="width: 750rpx; height: 138rpx; display: block; box-sizing: border-box">
+<view class="conteneur" style="width: 750rpx; height: 138rpx; display: block; box-sizing: border-box" wx:if="{{isAdmin}}">
   <view style="position: relative; width: 328rpx; height: 92rpx; left: 400rpx; top: 18rpx; display: block; box-sizing: border-box" class="btnModifier" bind:tap="openModal">Modifier l'ordre</view>
 </view>
 
@@ -57,13 +66,13 @@
 <view style="width: 750rpx; height: 306rpx; display: block; box-sizing: border-box" class="conteneur">
   <text style="position: relative; left: 22rpx; top: 0rpx" class="h1">Pénalités</text>
   <Scroll-view scroll-y="true" class="scrollarea" style="width: 750rpx; height: 295rpx; display: block; box-sizing: border-box">
-    <view style="position: relative; width: 100%; background: white; height: 100px; left: 0rpx; top: 24rpx">
+    <view style="position: relative; width: 750rpx; background: white; height: 88rpx; left: 0rpx; top: 23rpx; display: block; box-sizing: border-box">
       <block wx:for="{{result}}" wx:key="id">
         <view data-index="{{index}}">
           <!-- <block wx:for="{{item.participant}}" wx:for-item="participant" wx:key="participant.id_participant"> -->
           <block wx:for="{{item.participant}}" wx:for-item="participant" wx:key="id_participant">
             <block wx:if="{{participant.penalite && participant.penalite.length>0}}">
-              <block wx:for="{{participant.penalite}}" wx:for-item="penalite" wx:key="penalite.id_penalite">
+              <block wx:for="{{participant.penalite}}" wx:for-item="penalite" wx:key="id_penalite">
                 <view class="listParticipant" style="width: 736rpx; height: 64rpx; display: flex; box-sizing: border-box">
                   <view class="nom">
                     {{participant.utilisateur.nom}} {{participant.utilisateur.prenoms}}
@@ -122,23 +131,24 @@
                 <view class="modal-body1">
                     <!-- Conteneur pour la liste des membres -->
             <scroll-view scroll-y="true" class="modal-scroll1" enhanced="true">
-                    <view class="modal-background">
-                      <block wx:for="{{result}}" wx:key="id">
-                        <!-- Boucle dynamique sur la liste des membres -->
-                        <view class="member-item" wx:for="{{item.participant}}" wx:for-item="participant" wx:key="id_participant" bindtouchstart="onTouchStart" bindtouchmove="onTouchMove" bindtouchend="onTouchEnd">
-                            <text class="member-text">{{participant.numero_ordre}}. {{participant.utilisateur.nom}} {{participant.utilisateur.prenoms}}</text>
-                            <!-- Séparateur sauf pour le dernier élément -->
-                            <view wx:if="{{index < memberList.length - 1}}" class="separator"></view>
-                        </view>
-                      </block>
-                    </view>
+                <view class="user-list modal-background">
+  <view wx:for="{{participantList}}" wx:key="id"
+        data-index="{{index}}"
+        bindtouchstart="onTouchStart"
+        bindtouchmove="onTouchMove"
+        bindtouchend="onTouchEnd"
+        class="user-item {{currentDraggingIndex === index ? 'dragging' : ''}}">
+    <text class="member-text">{{index+1}}. {{item.utilisateur.nom}} {{item.utilisateur.prenoms}}</text>
+  </view>
+</view>
+
             </scroll-view>
 
                     <!-- Bouton de validation -->
                     <view class="modal-footer">
-                        <view class="confirm-button" bindtap="validateOrder">
+                         <!-- <view class="confirm-button" bindtap="validateOrder">
                             Valider
-                        </view>
+                        </view>-->
                     </view>
                 </view>
             <!-- </scroll-view> -->

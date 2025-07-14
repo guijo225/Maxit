@@ -1,0 +1,14 @@
+.back-icon {
+width: 48rpx;
+height: 48rpx;
+}
+
+.header {
+    font-size: 32rpx;
+    font-weight: bold;
+    margin: 5% 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 32rpx;
+}

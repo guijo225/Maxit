@@ -1,0 +1,5 @@
+<view class="header">
+    <image src="../../images/retour.png" class="back-icon" bind:tap="goBack" />
+    <text>{{label}}</text>
+    <image src="{{source_icon}}" class="back-icon" bindtap="goToNotification" />
+</view>

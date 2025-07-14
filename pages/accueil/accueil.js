@@ -8,9 +8,9 @@ Page({
      */
     data: {
       tontines : [] ,
-      users : [] ,
+      users :  {},
         loaded : false,
-        id : 20
+        id : 13
     },
 
     
@@ -19,6 +19,40 @@ Page({
         url: '/pages/creation_tontine/creation_tontine',
       })
     },
+
+    /*IntegreTontine :function(e){
+        const tontine = e.currentTarget.dataset.tontine;
+        const iduser = e.currentTarget.dataset.users;
+        wx.navigateTo({
+          url: '/pages/integration_utilisateur/integration_utilisateur',
+          success(res) {
+              res.eventChannel.emit('sendDataToDetail', tontine, iduser)
+          }
+        })
+      },*/
+
+    IntegreTontine :function(e){
+        //const idUser = e.currentTarget.dataset.users.id_utilisateur;
+        const idUser = this.data.users.id_utilisateur;
+        wx.navigateTo({
+          url: '/pages/integration_utilisateur/integration_utilisateur',
+          success(res) {
+                res.eventChannel.emit('sendDataToDetail', idUser)
+            }
+        })
+      },
+
+    NavPageGestion :function(e){
+        const tontine = e.currentTarget.dataset.tontine;
+        const idUser = this.data.users.id_utilisateur;
+        const data = {idUser, tontine}
+        wx.navigateTo({
+          url: '/pages/PageGestion/PageGestion',
+          success(res) {
+              res.eventChannel.emit('sendDataToDetail', data)
+          }
+        })
+      },
         
     
 
@@ -26,49 +60,51 @@ Page({
      * Lifecycle function--Called when page load
      */
     onLoad(options) {
+        const userId = app.globalData.maxitId;
+        
         wx.request({
-            url: 'http://192.168.252.213:3000/first/afficher',
-            method : "GET" ,
-            data:{id:1},
-            success : (res) => {
-              console.log(res.data); 
-              setTimeout(() => {
+          url: `http://192.168.252.213:8000/api/login/${userId}`,
+          method: "GET",
+          success: (res) => {
+            if (res.data.success && res.data.utilisateur) {
+              const utilisateur = res.data.utilisateur;
+      
+              this.setData({
+                users: utilisateur
+              });
+      
+              console.log("Utilisateur ID:", utilisateur.id_utilisateur);
+      
+              wx.request({
+                url: 'http://192.168.252.213:3000/first/afficher',
+                method: "GET",
+                data: {
+                  id: utilisateur.id_utilisateur
+                },
+                success: (res2) => {
+                  console.log("Tontines reçues:", res2.data);
+      
                   this.setData({
-                      tontines : res.data ,
-                      loaded: true 
+                    tontines: Array.isArray(res2.data) ? res2.data : [],
+                    loaded: true
                   });
-              }, 2000)    
-            },
-            fail: (err) => {
-                console.error("Erreur requête API :", err);
-              }
-          })
-
-          
-        /*wx.request({
-          url: `http://192.168.252.213:8000/api/login/${app.globalData.maxitId}`,
-          method : "GET" ,
-          success : (res) => {
-            console.log(res.data);
-            if(res.data.success){
-            setTimeout(() => {
-                this.setData({
-                  users : res.data
-                });
-            })  
-
-            }else{
+                },
+                fail: (err) => {
+                  console.error("Erreur requête API (afficher) :", err);
+                }
+              });
+      
+            } else {
               wx.redirectTo({
-                url: '/pages/accueil/accueil',
-              })
+                url: '/pages/condition_generale/condition_generale',
+              });
             }
           },
           fail: (err) => {
-              console.error("Erreur requête API :", err);
-            }
-        })*/
-
-    },
+            console.error("Erreur requête API (login) :", err);
+          }
+        });
+      },
 
     /**
      * Lifecycle function--Called when page is initially rendered

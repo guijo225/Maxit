@@ -1,7 +1,6 @@
 <!--pages/accueil/accueil.wxml-->
 <nav></nav>
 
-    
 <view class="container">
   <view class="header">
     <text class="title">Conditions d'utilisation</text>
@@ -19,7 +18,7 @@
 
     <text class="subtitle">2. Inscription</text>
     <text class="paragraph">
-      Pour participer à une tontine, l'utilisateur doit créer un compte avec des informations valides.
+      Pour participer à une tontine, l'utilisateur doit créer un compte maxit avec des informations valides.
     </text>
 
     <text class="subtitle">3. Engagements des membres</text>
@@ -46,8 +45,8 @@
     <text class="paragraph">
       Pour toute question, contactez-nous à support@tontineapp.com.
     </text>
-    <!--<button class="valider" bind:tap="onValider">Valider</button>-->
-    <button class="valider" bind:tap="next">Valider</button>
+   <button class="valider" bind:tap="onValider">Valider</button>
+    <!-- <button class="valider" bind:tap="next">Valider</button>-->
   </scroll-view>
 </view>
 

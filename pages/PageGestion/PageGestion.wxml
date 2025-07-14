@@ -3,23 +3,27 @@
     <nav style="width: 750rpx; height: 184rpx; display: block; box-sizing: border-box"></nav>
 
     <!-- En-tête -->
-    <view class="header">
+    <title_bar source_icon="/images/active.png" label="Gestion tontine"></title_bar>
+    <!--<view class="header">
         <image src="../../images/retour.png" class="back-icon" bindtap="goBack" />
         <text>Gestion tontine</text>
         <image src="../../images/active.png" class="back-icon" bindtap="goToNotification" />
-    </view>
+    </view>-->
 
     <!-- Contenu principal scrollable -->
     <scroll-view class="content" scroll-y="true" enhanced="true" show-scrollbar="false">
 
         <!-- Carte récapitulative du tour de tontine -->
         <view class="tour-card" bindtap="goToTour">
+        <block data-tontine = "{{item}}">       
             <image src="../../images/envoyer.png" class="tour-image" />
-            <view class="tour-info">
-                <text class="tour-title">Tour N°2</text>
-                <text class="tour-text">Ayant cotisé: 5</text>
-                <text class="tour-text">Argent collecté: 500 000</text>
+            <view class="tour-info" wx:if="{{info.tour.length >  0}}">
+                <text class="tour-title">Tour N°{{info.tour[0].numero_tour}}</text>
+                <text class="tour-text">Ayant cotisé: {{info.tour[0].cotisation.length}}</text>
+                <text class="tour-text">Argent collecté: {{info.tour[0].montant_distribue}}</text>
             </view>
+            <view wx:if="{{loaded && info.tour.length === 0}}" style="margin-top: 10%;"> La tontine n'a pas encore débuté</view>
+        </block>
         </view>
 
         <!-- Bandeau informatif -->
@@ -29,11 +33,14 @@
         </view>
 
         <!-- Grille des actions (cards clicables) -->
-        <view class="card-grid">
-            <view class="action-card" bindtap="openModal" style="width: 330rpx; height: 324rpx; display: flex; box-sizing: border-box">
+       <view class="card-grid">
+            <!--<view class="action-card" bindtap="openModal" style="width: 330rpx; height: 324rpx; display: flex; box-sizing: border-box">-->
+            <view class="action-card" bindtap="goToInvite" style="width: 330rpx; height: 324rpx; display: flex; box-sizing: border-box" wx:if="{{isAdmin}}">
+                <block data-tontine = "{{item}}"> 
                 <text class="card-title">Inviter des membres</text>
                 <text class="card-text">Ajouter des proches à rejoindre votre tontine</text>
                 <image src="../../images/add-membre.png" class="card-image" />
+                </block>
             </view>
 
             <view class="action-card" bindtap="openModalConsultation" style="width: 330rpx; height: 324rpx; display: flex; box-sizing: border-box">
@@ -52,13 +59,15 @@
                 <image src="../../images/contribution.png" class="card-image" />
             </view>
 
-            <view class="action-card" bindtap="goToHistorique" style="width: 330rpx; height: 324rpx; display: flex; box-sizing: border-box">
-                <text class="card-title">Ordre de
-                    recupération</text>
-                <text class="card-text">Informations
-                    sur les gains, ordre
-                    de recupération </text>
-                <image src="../../images/cagnotte.png" class="card-image" />
+            <view class="action-card" bindtap="goToInfoTontine" style="width: 330rpx; height: 324rpx; display: flex; box-sizing: border-box">
+                <block data-tontine = "{{item}}">       
+                    <text class="card-title">Ordre de
+                        recupération</text>
+                    <text class="card-text">Informations
+                        sur les gains, ordre
+                        de recupération </text>
+                    <image src="../../images/cagnotte.png" class="card-image" />
+                </block>
             </view>
 
             <view class="action-card" bindtap="openModalHistorique" style="width: 330rpx; height: 324rpx; display: flex; box-sizing: border-box">
@@ -87,10 +96,12 @@
                 <view class="modal-body1">
                     <view style="display: flex; justify-content: space-between;">
                         <view class="input-group1">
-                            <input class="input-field1" placeholder="Inviter des proches" value="{{formData.nom}}" bindinput="onInputChange" data-field="nom" maxlength="50" />
+                            <!--<input class="input-field1" placeholder="Inviter des proches" value="{{numeroTelephone}}" bindinput="onInputChange" data-field="nom" maxlength="50" />-->
+                            <input class="input-field1" placeholder="Inviter des proches" value="{{numeroTelephone}}" bindinput="onPhoneNumberInput" maxlength="50" />
                         </view>
                         <view class="modal-footer">
-                            <view class="confirm-button" bindtap="confirmModal">
+                            <!--<view class="confirm-button" bindtap="confirmModal sendOtp">-->
+                            <view class="confirm-button" bindtap="sendOtp">
                                 Envoyer
                             </view>
                         </view>
@@ -120,13 +131,14 @@
                 <view class="modal-body1">
                     <text style="font-size: 28rpx;">Voici les règles et modalités de la tontine :</text>
                     <view style="margin-top: 20rpx;">
-                        <text class="modaliteText">- Chaque membre cotise avant le 5 du mois
-                            -L’ordre de récupération est défini par tirage au sort
-                            - En cas de retard, une pénalité de 5% est appliquée</text>
+                        <view class="modaliteText"> - {{donnee.tontine.description_tontine}}</view>
+                        <view class="modaliteText"> - {{donnee.tontine.regles}}</view>
+                        <view class="modaliteText"> - {{donnee.tontine.frequence}}</view>
+                        <view class="modaliteText"> - {{donnee.tontine.date_echeance}} la date de fin du tour</view>
                     </view>
                 </view>
                 <view class="modal-footer1">
-                    <view class="confirm-button1" bindtap="Modif">
+                    <view class="confirm-button1" bindtap="Modif" wx:if="{{isAdmin}}">
                         Modifier
                     </view>
                 </view>
@@ -193,27 +205,23 @@
     <view style="text-align: center; font-weight: bold; font-size: 20px; margin-bottom: 20px;">Paiement Cotisation</view>
     
     <view style="padding-left: 10px; padding-right: 10px;">
-        <block wx:for="{{result}}" wx:key="id">
-        <view style="text-align: center;" wx:for="{{item.participant}}" wx:for-item="participant" wx:key="id_participant">Paiement Cotisation</view>
-        <input type="text" value="{{ montant }}" disabled style="text-align: center; border: solid 2rpx; border-radius: 15px; margin-top: 15px; padding: 10px;" />
-       </block>
+        <view style="text-align: center;" >Paiement Cotisation</view>
+        <input type="number" value="{{ result.montant_a_cotise }}" disabled style="text-align: center; border: solid 2rpx; border-radius: 15px; margin-top: 15px; padding: 10px;" />
     </view>
 
     <view style="padding-left: 10px; padding-right: 10px;">
       <view style="text-align: center;">Compte à débiter</view>
-      <input type="text" value="{{contact}}" style="text-align: center; border: solid 2rpx; border-radius: 15px; margin-top: 15px; padding: 10px;" />
+      <input type="text" value="{{result.contact}}" style="text-align: center; border: solid 2rpx; border-radius: 15px; margin-top: 15px; padding: 10px;" />
     </view>
 
-<!--
-    <view style="background-color: rgb(65, 63, 63); height: 0.25px; margin: 30px"></view>
+
+    <!--<view style="background-color: rgb(65, 63, 63); height: 0.25px; margin: 30px"></view>
 
      <view style="text-align: center; color: gray;">Entrer un autre numéro à débiter</view>
     <view style="padding-left: 10px; padding-right: 10px;">
       <input type="text" value="" style="text-align: center; border: solid 2rpx; border-radius: 15px; margin-top: 15px; padding: 10px;" />
     </view> 
-
-    form-type="submit" 
-    -->
+    form-type="submit" -->
 
     <button style="margin-top: 30px; color: white; background-color: rgb(255, 135, 23); font-weight: 400; border-radius: 10px;" bind:tap="paiement">
       Valider
