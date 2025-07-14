@@ -11,7 +11,6 @@ class Tontine extends Model
 
     protected $table = 'tontine';
     protected $primaryKey = 'id_tontine';
-
     public $timestamps = false;
     public $incrementing = false;
 
@@ -27,10 +26,5 @@ class Tontine extends Model
         'date_debut',
         'date_echeance'
     ];
-
-    public function participants()
-    {
-        return $this->belongsToMany(Utilisateur::class, 'participant', 'id_tontine', 'id_utilisateur');
-    }
 
 }

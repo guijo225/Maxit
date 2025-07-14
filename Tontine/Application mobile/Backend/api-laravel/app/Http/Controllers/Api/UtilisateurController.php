@@ -6,13 +6,11 @@ use App\Models\Utilisateur;
 use App\Http\Controllers\Controller;
 use Hash;
 use Illuminate\Http\Request;
-//use Illuminate\Support\Facades\Hash;
-use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UtilisateurController extends Controller
 {
     //
-    public function inscription(Request $request)
+    /*public function inscription(Request $request)
     {
         $request->validate([
             'nom' => 'required|string',
@@ -58,49 +56,56 @@ class UtilisateurController extends Controller
                 ]);
                 //$utilisateur = new Utilisateur();
 
-                return response()->json(['message' => 'Compte créé avec succès', 'utilisateur' => $utilisateur], 201);
+                return response()->json(['message' => 'Compte créé avec succès'], 201);
 
             }
         }
-    }
-    public function login(Request $request)
+    }*/
+
+ public function inscription(Request $request)
     {
         $request->validate([
-            'identifiant' => 'required',
-            'mot_de_passe' => 'required|string',
+            'nom' => 'required|string',
+            'prenom' => 'required|string', 
+            'telephone' => 'required|regex:/^\+?[0-9]+$/',
+            'date_de_naissance' => 'nullable|date',
+            'id' => 'nullable|integer',
         ]);
 
-        // Rechercher l'utilisateur par pseudo OU par contact
-        $utilisateur = Utilisateur::where('pseudo', $request->identifiant)
-            ->orWhere('contact', $request->identifiant)
-            ->first();
-
-        if (!$utilisateur || !Hash::check($request->mot_de_passe, $utilisateur->mot_de_passe)) {
-            return response()->json(['message' => 'Identifiant ou mot de passe incorrect'], 401);
-        }
-
-        // Générer un token JWT
-        $token = JWTAuth::fromUser($utilisateur);
-
-        return response()->json([
-            'message' => 'Connexion réussie',
-            'utilisateur' => $utilisateur,
-            'token' => $token,
-            'type' => 'bearer',
-            'expires_in' => auth('api')->factory()->getTTL() * 60
+        Utilisateur::create([
+            'nom' => $request->nom,
+            'pseudo' => $request->nom,
+            'prenoms' => $request->prenom,
+            'telephone' => $request->telephone,
+            'contact' => $request->telephone,
+            'date_inscription' => now(),
+            'actif' => true,
+            'date_de_naissance' => $request->date_de_naissance,
+            'maxitId' => $request->id,
         ]);
+        return response()->json(['message' => 'Inscription réussie'], 200);
     }
 
-    //liste des tontines pour un utilisateur
-    public function TontinesParUtilisateur($id_utilisateur)
+    public function login(string $id)
     {
-        $utilisateur = Utilisateur::with('tontines')->find($id_utilisateur);
+        // Rechercher l'utilisateur par pseudo OU par contact
+        $utilisateur = Utilisateur::where('maxitId', $id)->first();
 
-        if (!$utilisateur) {
-            return response()->json(['message' => 'Utilisateur non trouvé'], 404);
+        /*if (!$utilisateur || !Hash::check($request->mot_de_passe, $utilisateur->mot_de_passe)) {
+            return response()->json(['message' => 'Identifiant ou mot de passe incorrect'], 401);
+        }*/
+
+        if($utilisateur){
+        return response()->json([
+            'message' => 'compte existant',
+            'utilisateur' => $utilisateur,
+            'success' => true
+        ]);}else{
+            return response()->json([
+            'message' => 'compte inexistant',
+            'success' => false]);
         }
 
-        return response()->json($utilisateur->tontines);
     }
 
 }
