@@ -1,0 +1,138 @@
+<!--index.wxml-->
+<view class="page-container">
+    <navigation-bar background="#FFF"></navigation-bar>
+
+    <scroll-view class="content-scroll" scroll-y="true" enhanced="true" show-scrollbar="false">
+
+        <!-- Carousel Section -->
+        <view class="carousel-section">
+            <swiper class="swiper-container" indicator-dots="true" autoplay="true" interval="3000" duration="500" circular="true" indicator-color="rgba(255,255,255,0.3)" indicator-active-color="#FF7900">
+                <swiper-item>
+                    <image src="/assets/slide1.jpg" class="slide-image" mode="aspectFill" />
+                </swiper-item>
+                <swiper-item>
+                    <image src="/assets/slide2.jpg" class="slide-image" mode="aspectFill" />
+                </swiper-item>
+                <swiper-item>
+                    <image src="/assets/slide3.jpeg" class="slide-image" mode="aspectFill" />
+                </swiper-item>
+            </swiper>
+        </view>
+
+        <!-- Conditions Section -->
+        <view class="condition-section">
+            <view class="condition-card">
+                <view class="condition-text {{expanded ? 'expanded' : 'collapsed'}}">
+                    <text class="condition-paragraph">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus mollitia culpa laboriosam delectus eum labore libero sequi impedit ducimus deleniti, harum iure blanditiis exercitationem magni omnis porro nihil! Eveniet, deleniti!
+                    </text>
+                    <text class="condition-paragraph">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam, aperiam aut maiores, dolor suscipit ratione rerum autem obcaecati nam tempora molestias, nisi debitis provident veniam pariatur ad ab quod! Officiis.
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam magnam veritatis</text>
+                    <text class="condition-paragraph">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid laborum totam minima officiis maxime. Nostrum, laborum quasi quos assumenda doloribus inventore ullam, nesciunt dolores distinctio, provident ipsa facere sunt nulla.
+                    </text>
+                    <text class="condition-paragraph">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime temporibus praesentium ab corporis ratione dolore, explicabo illo nobis veniam placeat voluptate itaque error facilis cupiditate exercitationem perferendis. Incidunt, commodi animi.
+                    </text>
+                </view>
+
+                <view class="expand-button" bindtap="toggleExpanded">
+                    <view class="toggle-icon {{expanded ? 'rotated' : ''}}">
+                        <text>▼</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+        <!-- Spacer pour éviter que le contenu soit caché par le footer -->
+        <view class="footer-spacer"></view>
+
+    </scroll-view>
+
+    <!-- Footer Section - Maintenant fixé en bas -->
+    <view class="footer-fixed">
+        <view class="checkbox-container">
+            <view class="checkbox {{isApproved ? 'checked' : ''}}" bindtap="toggleApproval">
+                <text class="checkmark" wx:if="{{isApproved}}">✓</text>
+            </view>
+            <text class="checkbox-label">J'ai lu et j'accepte les conditions d'utilisation</text>
+        </view>
+
+        <view class="create-button {{isApproved ? 'active' : 'inactive'}}" type="primary" disabled="{{!isApproved}}" bindtap="openModal">
+            Créer une tontine
+        </view>
+    </view>
+
+</view>
+
+<!-- Modal -->
+<view wx:if="{{showModal}}" class="modal-overlay" bindtap="closeModal">
+    <view class="modal-container" catchtap="preventClose">
+
+        <view class="modal-header">
+            <view class="modal-title-container">
+                <text class="modal-title">Créer une tontine</text>
+            </view>
+            <view class="close-button" bindtap="closeModal">
+                <text class="close-icon">×</text>
+            </view>
+        </view>
+
+        <scroll-view scroll-y="true" class="modal-scroll" enhanced="true">
+            <view class="modal-body">
+
+                <view class="input-group">
+                    <text class="input-label">Nom *</text>
+                    <input class="input-field" placeholder="Ex: Tontine des amis" value="{{formData.nom}}" bindinput="onInputChange" data-field="nom" maxlength="50" />
+                </view>
+                <!-- Champ Description (textarea plus grand) -->
+                <view class="input-group">
+                    <text class="input-label">Description *</text>
+                    <textarea class="textarea-field" placeholder="Ex: Tontine mensuelle entre collègues" value="{{formData.description}}" bindinput="onInputChange" data-field="description" maxlength="200" />
+                </view>
+                <!-- Champ Description  de modalité (textarea plus grand) -->
+                <view class="input-group">
+                    <text class="input-label">Règles*</text>
+                    <textarea class="textarea-field" placeholder="Ex: Règles" value="{{formData.regles}}" bindinput="onInputChange" data-field="description" maxlength="200" />
+                </view>
+                <view class="input-group">
+                    <text class="input-label">Montant à cotiser *</text>
+                    <input class="input-field" placeholder="Ex: 50 000" value="{{formData.montant}}" bindinput="onInputChange" data-field="montant" type="number" />
+                </view>
+
+                <view class="input-group">
+                    <text class="input-label">Fréquence *</text>
+                    <view class="select-field" bindtap="openFrequenceOptions">
+                        <text class="select-value {{formData.frequence ? '' : 'placeholder'}}">
+                            {{formData.frequence || 'Choisir une fréquence'}}
+                        </text>
+                        <text class="select-arrow">▼</text>
+                    </view>
+                </view>
+
+                <!--Vue rapelle-->
+                <view class="input-group">
+                    <text class="input-label">Rappel *</text>
+                    <view class="select-field" bindtap="openRapelleOptions">
+                        <text class="select-value {{formData.rapelle ? '' : 'placeholder'}}">
+                            {{formData.rapelle || 'Choisir un jours pour le rapelle'}}
+                        </text>
+                        <text class="select-arrow">▼</text>
+                    </view>
+                </view>
+
+                <view class="input-group">
+                    <text class="input-label">Nombre de participants *</text>
+                    <input class="input-field" placeholder="Ex: 10" value="{{formData.participants}}" bindinput="onInputChange" data-field="participants" type="number" />
+                </view>
+
+            </view>
+            <view class="modal-footer">
+                <button class="confirm-button" bindtap="confirmModal">
+                    Suivant
+                </button>
+            </view>
+        </scroll-view>
+    </view>
+</view>

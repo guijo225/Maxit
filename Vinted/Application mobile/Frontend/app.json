@@ -1,12 +1,8 @@
 {
   "pages": [
-      "pages/integration_utilisateur/integration_utilisateur",
-    "pages/index/index",
-    "pages/PageContact/PageContact",
+    "pages/integration_utilisateur/integration_utilisateur",
     "pages/Accueil/Accueil",
-    "pages/Tour/Tour",
-    "pages/SelectContact/SelectContact",
-    "pages/Notification/Notification"
+    "pages/index/index"
 
   ],
   "window": {
