@@ -121,6 +121,8 @@
     border: 1rpx solid lightgray;
     border-radius: 20rpx;
     overflow: hidden;
+    padding: 0 20rpx;
+
 }
 
 input {
@@ -164,18 +166,20 @@ input {
 }
 
 .color-circle.selected {
-    border: 3rpx solid #000;
+    border: 5rpx solid #000;
 }
 
 .add-button {
-    width: 513rpx;
+    width: 300rpx;
     height: 77rpx;
     margin: 40rpx auto;
-    background: #007AFF;
+    background: #FF7900;
     color: #fff;
     font-size: 32rpx;
     border-radius: 20rpx;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-right: 20rpx;
+    margin-bottom: 20rpx;
 }

@@ -20,6 +20,7 @@ Page({
             { name: 'Bleu', value: '#0000FF' },
             { name: 'Vert', value: '#00FF00' },
             { name: 'Noir', value: '#000000' },
+            
         ], // Liste des couleurs disponibles
         selectedColor: '', // Couleur sélectionnée
         sizes: ['S', 'M', 'L', 'XL', 'XXL'], // Liste des tailles

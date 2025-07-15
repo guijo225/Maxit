@@ -52,7 +52,7 @@
             <!-- Section de la description de l'article -->
             <text class="section-title">Description</text>
             <view class="input-container">
-                <input placeholder="ex: ..." bindinput="onDescriptionInput" value="{{articleDescription}}" />
+                <input style="width: 575rpx; height: 77rpx; display: block; box-sizing: border-box" placeholder="ex: ..." bindinput="onDescriptionInput" value="{{articleDescription}}" />
             </view>
 
             <!-- Section Etat de l’article -->
@@ -64,13 +64,13 @@
 
             <!-- Section du stock -->
             <text class="section-title">Stock</text>
-            <view class="input-container">
+            <view class="input-container" >
                 <input type="number" placeholder="ex: 10" bindinput="onStockInput" value="{{articleStock}}" />
             </view>
 
             <!-- Section du prix -->
             <text class="section-title">Prix</text>
-            <view class="input-container">
+            <view class="input-container" >
                 <input type="number" placeholder="ex: 10000" bindinput="onPrixInput" value="{{articlePrix}}" />
             </view>
 
@@ -93,8 +93,9 @@
                 <image class="arrow-icon" src="/assets/arrow.png" />
             </view>
 
-            <!-- Bouton Ajouter -->
-            <button class="add-button" bindtap="submitForm">Ajouter</button>
+            
         </view>
+        <!-- Bouton Ajouter -->
+        <view class="add-button" bindtap="submitForm">Ajouter</view>
     </scroll-view>
 </view>
