@@ -3,27 +3,24 @@ Page({
      * Données initiales de la page
      */
     data: {
-        images: [], // Liste des images sélectionnées
-        articleName: '', // Nom de l'article saisi
-        articleStock: '', // Stock de l'article saisi
-        articlePrix: '', // Prix de l'article saisi
-        articleDescription: '', // Description de l'article saisi
-        articleMarque: '', // Marque de l'article saisi
+        nom_article: '', // Nom de l'article saisi
+        prix: '', // Prix de l'article saisi
+        marque: '', // Marque de l'article saisi
         selectedCategory: '', // Catégorie sélectionnée
         categories: ['Vêtements', 'Électronique', 'Meubles', 'Livres', 'Autres'], // Liste des catégories
         selectedSousCategory: '', // Sous-catégorie sélectionnée
-        sous_categories: ['Chossure', 'Portable', 'Ordinateur', 'Autres'],
-        etat_article: ['Bon état', 'Neuf', 'Occasion', 'Autres'],
+        sous_categorie: ['Chossure', 'Portable', 'Ordinateur', 'Autres'],
+        etat: ['Bon état', 'Neuf', 'Occasion', 'Autres'],
         selectedEtat_article: '', // État de l'article sélectionné
-        colors: [
+        couleur: [
             { name: 'Rouge', value: '#FF0000' },
             { name: 'Bleu', value: '#0000FF' },
             { name: 'Vert', value: '#00FF00' },
             { name: 'Noir', value: '#000000' },
-            
+
         ], // Liste des couleurs disponibles
         selectedColor: '', // Couleur sélectionnée
-        sizes: ['S', 'M', 'L', 'XL', 'XXL'], // Liste des tailles
+        taille: ['S', 'M', 'L', 'XL', 'XXL'], // Liste des tailles
         selectedSize: '', // Taille sélectionnée
     },
 
@@ -33,12 +30,12 @@ Page({
     chooseImage() {
         const that = this;
         wx.chooseImage({
-            count: 3 - this.data.images.length, // Nombre d'images restantes autorisées
+            count: 3 - this.data.image_links.length, // Nombre d'images restantes autorisées
             sizeType: ['original', 'compressed'], // Types de taille d'image
             sourceType: ['album', 'camera'], // Sources possibles (galerie ou caméra)
             success(res) {
                 const tempFiles = res.tempFiles;
-                if (tempFiles.length + that.data.images.length > 3) {
+                if (tempFiles.length + that.data.image_links.length > 3) {
                     wx.showToast({
                         title: 'Maximum 3 images !',
                         icon: 'none',
@@ -52,7 +49,7 @@ Page({
                     });
                     return;
                 }
-                const images = tempFiles.map(file => ({
+                const image_links = tempFiles.map(file => ({
                     path: file.path,
                     name: file.path.split('/').pop(),
                     displayName: file.path.split('/').pop().length > 15
@@ -61,7 +58,7 @@ Page({
                     size: (file.size / 1024).toFixed(2), // Taille en KB
                 }));
                 that.setData({
-                    images: [...that.data.images, ...images],
+                    image_links: [...that.data.image_links, ...image_links],
                 });
             },
             fail() {
@@ -78,10 +75,10 @@ Page({
      */
     deleteImage(e) {
         const index = e.currentTarget.dataset.index;
-        const images = this.data.images;
-        images.splice(index, 1);
-        this.setData({ images });
-        if (images.length === 0) {
+        const image_links = this.data.image_links;
+        image_links.splice(index, 1);
+        this.setData({ image_links });
+        if (image_links.length === 0) {
             wx.showToast({
                 title: 'Veuillez sélectionner au moins une image !',
                 icon: 'none',
@@ -94,9 +91,10 @@ Page({
      */
     onNameInput(e) {
         this.setData({
-            articleName: e.detail.value,
+            nom_article: e.detail.value,
         });
     },
+
 
     /**
      * Gérer la saisie du stock de l'article
@@ -130,7 +128,7 @@ Page({
         }
 
         this.setData({
-            articlePrix: value
+            prix: value
         });
     },
 
@@ -148,7 +146,7 @@ Page({
      */
     onMarqueInput(e) {
         this.setData({
-            articleMarque: e.detail.value,
+            marque: e.detail.value,
         });
     },
 
@@ -168,10 +166,10 @@ Page({
     showSizeModal() {
         const that = this;
         wx.showActionSheet({
-            itemList: this.data.sizes,
+            itemList: this.data.taille,
             success(res) {
                 that.setData({
-                    selectedSize: that.data.sizes[res.tapIndex],
+                    selectedSize: that.data.taille[res.tapIndex],
                 });
             },
             fail() {
@@ -210,10 +208,10 @@ Page({
     showSousCategoryModal() {
         const that = this;
         wx.showActionSheet({
-            itemList: this.data.sous_categories,
+            itemList: this.data.sous_categorie,
             success(res) {
                 that.setData({
-                    selectedSousCategory: that.data.sous_categories[res.tapIndex],
+                    selectedSousCategory: that.data.sous_categorie[res.tapIndex],
                 });
             },
             fail() {
@@ -231,10 +229,10 @@ Page({
     showEtatArticleModal() {
         const that = this;
         wx.showActionSheet({
-            itemList: this.data.etat_article,
+            itemList: this.data.etat,
             success(res) {
                 that.setData({
-                    selectedEtat_article: that.data.etat_article[res.tapIndex],
+                    selectedEtat_article: that.data.etat[res.tapIndex],
                 });
             },
             fail() {
@@ -249,30 +247,20 @@ Page({
     /**
      * Valider et soumettre le formulaire
      */
-    submitForm() {
+    submitForm: function () {
         const {
-            images,
-            articleName,
+            nom_article,
             selectedCategory,
             selectedSousCategory,
-            articleDescription,
             selectedEtat_article,
-            articleStock,
-            articlePrix,
-            articleMarque,
+            prix,
+            marque,
             selectedColor,
-            selectedSize
+            selectedSize,
         } = this.data;
 
-        // Vérification des champs obligatoires
-        if (!images.length) {
-            wx.showToast({
-                title: 'Veuillez ajouter au moins une image',
-                icon: 'none',
-            });
-            return;
-        }
-        if (!articleName) {
+        // Validation des champs obligatoires
+        if (!nom_article) {
             wx.showToast({
                 title: 'Veuillez entrer le nom de l\'article',
                 icon: 'none',
@@ -293,13 +281,6 @@ Page({
             });
             return;
         }
-        if (!articleDescription) {
-            wx.showToast({
-                title: 'Veuillez entrer une description',
-                icon: 'none',
-            });
-            return;
-        }
         if (!selectedEtat_article) {
             wx.showToast({
                 title: 'Veuillez sélectionner l\'état de l\'article',
@@ -307,21 +288,14 @@ Page({
             });
             return;
         }
-        if (!articleStock) {
-            wx.showToast({
-                title: 'Veuillez entrer le stock',
-                icon: 'none',
-            });
-            return;
-        }
-        if (!articlePrix) {
+        if (!prix) {
             wx.showToast({
                 title: 'Veuillez entrer le prix',
                 icon: 'none',
             });
             return;
         }
-        if (!articleMarque) {
+        if (!marque) {
             wx.showToast({
                 title: 'Veuillez entrer la marque',
                 icon: 'none',
@@ -329,24 +303,91 @@ Page({
             return;
         }
 
-        // Log des données
-        console.log({
-            images,
-            articleName,
-            selectedCategory,
-            selectedSousCategory,
-            articleDescription,
-            selectedEtat_article,
-            articleStock,
-            articlePrix,
-            articleMarque,
-            selectedColor: selectedColor || 'Non spécifié',
-            selectedSize: selectedSize || 'Non spécifié',
-        });
+        // Appeler Ajout_Article
+        this.Ajout_Article();
+    },
 
-        wx.showToast({
-            title: 'Article ajouté avec succès !',
-            icon: 'success',
+    /**
+     * Fonction pour validation formulaire
+     */
+    Ajout_Article: function (e) {
+        const articleData = {
+            nom_article: this.data.nom_article,
+            couleur: this.data.selectedColor || '', // Utiliser selectedColor, pas couleur
+            prix: parseFloat(this.data.prix) || 0, // Convertir en nombre
+            marque: this.data.marque,
+            categorie: this.data.selectedCategory, // Utiliser selectedCategory, pas categories
+            sous_categorie: this.data.selectedSousCategory, // Utiliser selectedSousCategory
+            etat: this.data.selectedEtat_article, // Utiliser selectedEtat_article, pas etat
+            taille: this.data.selectedSize || '', // Utiliser selectedSize, facultatif
+        };
+
+        // Validation des champs obligatoires
+        const requiredFields = ['nom_article', 'couleur', 'prix', 'marque', 'categorie', 'sous_categorie', 'etat'];
+        const missingFields = requiredFields.filter(field => !articleData[field]);
+
+        if (missingFields.length > 0) {
+            wx.showToast({
+                title: `Champs manquants : ${missingFields.join(', ')}`,
+                icon: 'none',
+            });
+            return;
+        }
+
+        // Vérifier que le prix est un nombre valide
+        if (isNaN(articleData.prix) || articleData.prix <= 0) {
+            wx.showToast({
+                title: 'Le prix doit être un nombre positif',
+                icon: 'none',
+            });
+            return;
+        }
+
+        console.log('Données envoyées:', articleData);
+
+        wx.request({
+            url: 'http://192.168.252.65:3000/articles',
+            method: 'POST',
+            header: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+            data: articleData,
+            success: (res) => {
+                console.log('Réponse du serveur:', res);
+                if (res.statusCode === 201) {
+                    wx.showToast({
+                        title: 'Article enregistré avec succès',
+                        icon: 'success',
+                        duration: 1500,
+                    });
+                    // Réinitialiser le formulaire après succès
+                    this.setData({
+                        nom_article: '',
+                        prix: '',
+                        marque: '',
+                        selectedCategory: '',
+                        selectedSousCategory: '',
+                        selectedEtat_article: '',
+                        selectedColor: '',
+                        selectedSize: '',
+                    });
+                } else {
+                    wx.showToast({
+                        title: res.data.error || 'Erreur lors de l\'enregistrement',
+                        icon: 'none',
+                        duration: 1500,
+                    });
+                }
+            },
+            fail: (err) => {
+                console.error('Erreur de requête:', err);
+                wx.showToast({
+                    title: 'Erreur de connexion au serveur',
+                    icon: 'error',
+                    duration: 1500,
+                });
+            },
         });
     },
 

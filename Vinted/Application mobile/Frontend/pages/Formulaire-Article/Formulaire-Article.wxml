@@ -10,92 +10,96 @@
 
     <!-- Contenu défilant -->
     <scroll-view class="scroll-view" scroll-y="true" enhanced="true" show-scrollbar="false">
-        <view class="form-container">
-            <!-- Section Ajout d'images -->
-            <text class="section-title">Ajouter images</text>
-            <view class="image-upload-container" bindtap="chooseImage">
-                <image class="upload-icon" src="/assets/image.png" />
-                <view class="upload-text">
-                    <image class="download-icon" src="/assets/downloads.png" />
-                    <text>Ajouter une image</text>
+
+        <form bindsubmit="Ajout_Article">
+
+            <view class="form-container">
+                <!-- Section Ajout d'images -->
+                <!-- <text class="section-title">Ajouter images</text>
+                 <view class="image-upload-container" bindtap="chooseImage">
+                    <image class="upload-icon" src="/assets/image.png" />
+                    <view class="upload-text">
+                        <image class="download-icon" src="/assets/downloads.png" />
+                        <text>Ajouter une image</text>
+                    </view>
+                </view>  -->
+
+                <!-- Affichage des images sélectionnées -->
+                <!--   <view wx:for="{{image_links}}" wx:key="index" class="image-preview">
+                    <image class="preview-image" src="{{item.path}}" />
+                    <text class="image-name">{{item.displayName}}</text>
+                    <text class="image-size">{{item.size}} KB</text>
+                    <image class="delete-icon" src="/assets/delete.png" data-index="{{index}}" bindtap="deleteImage" />
+                </view>  -->
+
+                <!-- Section Nom de l'article -->
+                <text class="section-title">Nom de l’article</text>
+                <view class="input-container">
+                    <input placeholder="ex: vélo" bindinput="onNameInput" value="{{nom_article}}" />
                 </view>
-            </view>
 
-            <!-- Affichage des images sélectionnées -->
-            <view wx:for="{{images}}" wx:key="index" class="image-preview">
-                <image class="preview-image" src="{{item.path}}" />
-                <text class="image-name">{{item.displayName}}</text>
-                <text class="image-size">{{item.size}} KB</text>
-                <image class="delete-icon" src="/assets/delete.png" data-index="{{index}}" bindtap="deleteImage" />
-            </view>
+                <!-- Section Catégorie -->
+                <text class="section-title">Catégorie</text>
+                <view class="category-container" bindtap="showCategoryModal">
+                    <text>{{selectedCategory || 'Sélectionner une catégorie'}}</text>
+                    <image class="arrow-icon" src="/assets/arrow.png" />
+                </view>
 
-            <!-- Section Nom de l'article -->
-            <text class="section-title">Nom de l’article</text>
-            <view class="input-container">
-                <input placeholder="ex: vélo" bindinput="onNameInput" value="{{articleName}}" />
-            </view>
+                <!-- Section Sous-Catégorie -->
+                <text class="section-title">Sous-Catégorie</text>
+                <view class="category-container" bindtap="showSousCategoryModal">
+                    <text>{{selectedSousCategory || 'Sélectionner une sous-catégorie'}}</text>
+                    <image class="arrow-icon" src="/assets/arrow.png" />
+                </view>
 
-            <!-- Section Catégorie -->
-            <text class="section-title">Catégorie</text>
-            <view class="category-container" bindtap="showCategoryModal">
-                <text>{{selectedCategory || 'Sélectionner une catégorie'}}</text>
-                <image class="arrow-icon" src="/assets/arrow.png" />
-            </view>
+                <!-- Section de la description de l'article -->
+               <!-- <text class="section-title">Description</text>
+                <view class="input-container">
+                    <input style="width: 575rpx; height: 77rpx; display: block; box-sizing: border-box" placeholder="ex: ..." bindinput="onDescriptionInput" value="{{articleDescription}}" />
+                </view>  -->
 
-            <!-- Section Sous-Catégorie -->
-            <text class="section-title">Sous-Catégorie</text>
-            <view class="category-container" bindtap="showSousCategoryModal">
-                <text>{{selectedSousCategory || 'Sélectionner une sous-catégorie'}}</text>
-                <image class="arrow-icon" src="/assets/arrow.png" />
-            </view>
+                <!-- Section Etat de l’article -->
+                <text class="section-title">Etat de l’article</text>
+                <view class="category-container" bindtap="showEtatArticleModal">
+                    <text>{{selectedEtat_article || 'Sélectionner l etat de l article'}}</text>
+                    <image class="arrow-icon" src="/assets/arrow.png" />
+                </view>
 
-            <!-- Section de la description de l'article -->
-            <text class="section-title">Description</text>
-            <view class="input-container">
-                <input style="width: 575rpx; height: 77rpx; display: block; box-sizing: border-box" placeholder="ex: ..." bindinput="onDescriptionInput" value="{{articleDescription}}" />
-            </view>
+                <!-- Section du stock -->
+                <!--  <text class="section-title">Stock</text>
+                <view class="input-container">
+                    <input type="number" placeholder="ex: 10" bindinput="onStockInput" value="{{articleStock}}" />
+                </view> -->
 
-            <!-- Section Etat de l’article -->
-            <text class="section-title">Etat de l’article</text>
-            <view class="category-container" bindtap="showEtatArticleModal">
-                <text>{{selectedEtat_article || 'Sélectionner l etat de l article'}}</text>
-                <image class="arrow-icon" src="/assets/arrow.png" />
-            </view>
+                <!-- Section du prix -->
+                <text class="section-title">Prix</text>
+                <view class="input-container">
+                    <input type="number" placeholder="ex: 10000" bindinput="onPrixInput" value="{{prix}}" />
+                </view>
 
-            <!-- Section du stock -->
-            <text class="section-title">Stock</text>
-            <view class="input-container" >
-                <input type="number" placeholder="ex: 10" bindinput="onStockInput" value="{{articleStock}}" />
-            </view>
+                <!-- Section de la marque de l'article -->
+                <text class="section-title">Marque</text>
+                <view class="input-container">
+                    <input placeholder="ex: zara" bindinput="onMarqueInput" value="{{marque}}" />
+                </view>
 
-            <!-- Section du prix -->
-            <text class="section-title">Prix</text>
-            <view class="input-container" >
-                <input type="number" placeholder="ex: 10000" bindinput="onPrixInput" value="{{articlePrix}}" />
-            </view>
+                <!-- Section Couleur -->
+                <text class="section-title">Couleur (facultatif)</text>
+                <view class="color-container">
+                    <view wx:for="{{couleur}}" wx:key="value" class="color-circle {{selectedColor === item.value ? 'selected' : ''}}" style="background-color: {{item.value}}" bindtap="selectColor" data-color="{{item.value}}"></view>
+                </view>
 
-            <!-- Section de la marque de l'article -->
-            <text class="section-title">Marque</text>
-            <view class="input-container">
-                <input placeholder="ex: zara" bindinput="onMarqueInput" value="{{articleMarque}}" />
-            </view>
+                <!-- Section Taille -->
+                <text class="section-title">Taille (facultatif)</text>
+                <view class="category-container" bindtap="showSizeModal">
+                    <text>{{selectedSize || 'Sélectionner une taille'}}</text>
+                    <image class="arrow-icon" src="/assets/arrow.png" />
+                </view>
 
-            <!-- Section Couleur -->
-            <text class="section-title">Couleur (facultatif)</text>
-            <view class="color-container">
-                <view wx:for="{{colors}}" wx:key="value" class="color-circle {{selectedColor === item.value ? 'selected' : ''}}" style="background-color: {{item.value}}" bindtap="selectColor" data-color="{{item.value}}"></view>
-            </view>
 
-            <!-- Section Taille -->
-            <text class="section-title">Taille (facultatif)</text>
-            <view class="category-container" bindtap="showSizeModal">
-                <text>{{selectedSize || 'Sélectionner une taille'}}</text>
-                <image class="arrow-icon" src="/assets/arrow.png" />
             </view>
-
-            
-        </view>
-        <!-- Bouton Ajouter -->
-        <view class="add-button" bindtap="submitForm">Ajouter</view>
+            <!-- Bouton Ajouter -->
+            <button class="add-button" form-type="submit">Ajouter</button>
+        </form>
     </scroll-view>
 </view>
