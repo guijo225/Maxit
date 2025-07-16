@@ -44,3 +44,5 @@ Route::get('/AfficherCotisationParParticipant/{id_participant}', [CotisationCont
 Route::get('/afficherReglementTontine/{id}', [TontineController::class, 'afficherReglementTontine']);
 Route::post('/update-ordre', [ParticipantController::class, 'updateOrdre']);
 
+Route::get('/recupererParticipant', [ParticipantController::class, 'recupererParticipant']);
+

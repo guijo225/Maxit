@@ -1,23 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
 use App\Models\Tour;
+
 
 class TourController extends Controller
 {
-    //
-    public function afficheTour(string $id)
-    {
-        // Logique pour afficher les détails du tour
-        $tour = Tour::where('id_tontine', $id)->orderBy('numero_tour', 'asc')->get();
-        if (!$tour) {
-            return response()->json(['message' => 'Tour non trouvé'], 404);
-        }
-
-        return response()->json($tour, 200);
-    }
 
     public function changerDeTour(Request $request, string $id)
     {
