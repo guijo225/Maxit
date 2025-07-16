@@ -1,6 +1,6 @@
 {
     "projectname": "ProjetMaxit",
     "setting": {
-        "compileHotReLoad": true
+        "compileHotReLoad": false
     }
 }

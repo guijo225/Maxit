@@ -1,0 +1,25 @@
+<!--pages/Page_Brouillon/Page_Brouillon.wxml-->
+<navigation-bar background="#FFF"></navigation-bar>
+<view class="header">
+    <image class="back-icon" src="/assets/back.png" bindtap="goBack" />
+    <text style="margin-right: 35%;">Mon brouillon</text>
+</view>
+
+<!-- Contenu défilant -->
+
+<scroll-view class="scroll-view" scroll-y="true" enhanced="true" show-scrollbar="false">
+    <view style="width: 691rpx; height: 162rpx; display: block; box-sizing: border-box;">
+
+        <image style="position: relative; width: 118rpx; height: 115rpx; display: inline-block; box-sizing: border-box; left: 0rpx; top: 34rpx" src="/assets/article1.png" />
+
+        <text style="position: relative; left: 18rpx; top: -32rpx; font-size: 25rpx; font-weight: normal">Nom du produit</text>
+
+        <text style="position: relative; left: -156rpx; top: 2rpx; font-size: 25rpx; font-weight: normal">20 000fr</text>
+
+        <view style="position: relative; width: 191rpx; background: #D9D9D9; height: 55rpx; display: block; box-sizing: border-box; left: 399rpx; top: -69rpx; border-radius: 30rpx">
+            <text style="position: relative; left: 39rpx; top: 6rpx; font-size: 25rpx; font-weight: normal">En attente</text>
+        </view>
+
+        <image style="position: relative; width: 44rpx; height: 55rpx; display: inline-block; box-sizing: border-box; left: 647rpx; top: -124rpx" src="/assets/sup.png" />
+    </view>
+</scroll-view>

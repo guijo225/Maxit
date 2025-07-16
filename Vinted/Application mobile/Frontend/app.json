@@ -1,9 +1,14 @@
 {
   "pages": [
-      "pages/Formulaire-Article/Formulaire-Article",
+    
+    "pages/Formulaire-Article/Formulaire-Article",
     "pages/integration_utilisateur/integration_utilisateur",
     "pages/Accueil/Accueil",
-    "pages/index/index"
+    "pages/index/index",
+    "pages/testM/testM",
+    "pages/Page_Brouillon/Page_Brouillon"
+    
+    
     
     
 

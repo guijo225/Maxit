@@ -1,0 +1,6 @@
+<!--pages/testM/testM.wxml-->
+<text>pages/testM/testM.wxml</text>
+<button bindtap="chargerArticles">Mes articles</button>
+<view wx:for="{{articles}}" wx:key="id_article">
+  <text>{{item.nom_article}}  {{item.prix}} fr</text>
+</view>
