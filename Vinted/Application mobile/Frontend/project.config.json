@@ -7,6 +7,9 @@
         "include": []
     },
     "setting": {
+        "uploadFileDomain": [
+            "http://192.168.225.65:3000"
+        ],
         "coverView": true,
         "es6": true,
         "postcss": true,
