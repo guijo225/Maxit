@@ -24,7 +24,7 @@ class Om_transactions_simulesController extends Controller
                 'phone' => $request->input('telephone'),
                 'montant' => $request->input('montant'),
                 'statut' => $request->input('statut'),
-                'transaction_id' => $transaction_id,
+                'transaction_id' => 'om_'.$transaction_id,
             ]);
 
             return response()->json([

@@ -45,6 +45,7 @@ class TontineService
         $cotisation->numero_paiement = $data['data']['transaction_id'];
         $cotisation->statut_paiement_cotisation = $data['status'];
         $cotisation->mode_paiement = 'mobile money';
+        //$cotisation->id_utilisateur = 'mobile money';
         $cotisation->date_cotisation = now();
         $cotisation->save();
 
@@ -82,6 +83,8 @@ class TontineService
                     'numero' => $participant['utilisateur']['telephone'],
                     'tontine_id' => $tour->id_tontine,
                     'tour_id' => $tour->id_tour,
+                    'montant_distribue' => $tour->montant_distribue,
+                    'montant_total' => $tontine->montant_total
                 ]);
 
                 // Vérifie si le transfert a échoué
@@ -93,6 +96,7 @@ class TontineService
                     ];
                 }
 
+
                 $donnees_tour =new Request([
                     'id_tontine' => $tour->id_tontine,
                     'montant_distribue' => $tour->montant_distribue,
@@ -101,6 +105,14 @@ class TontineService
                     'date_fin_tour' => $tour->date_fin_tour,
                 ]);
 
+
+                // Marque la tontine comme terminé
+                if ($tour->numero_tour == $tontine->nombre_participants) {
+
+                    $tontine->statut_tontine = 'terminé';
+                    $tontine->save(); 
+                    
+                }else {
                 // Passe au tour suivant en appelant le contrôleur approprié
                 $controller = new TourController();
                 $results = $controller->changerDeTour($donnees_tour, $tour->id_tontine);
@@ -113,6 +125,7 @@ class TontineService
                     ];
                 }
 
+                }
                 // Marque le tour comme terminé
                 $tour->statut_tour = 'terminé';
             }
