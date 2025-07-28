@@ -1,0 +1,35 @@
+.bar-chart-container {
+    display: flex;
+    align-items: flex-end; /* Alignement des barres */
+    height: 200px; /* Hauteur du diagramme */
+    width: 400px; /* Largeur du diagramme */
+    border-bottom: 1px solid #ccc; /* Axe horizontal */
+    position: relative; /* Pour le positionnement absolu des barres */
+  }
+  
+  .bar-container {
+    display: flex;
+    flex-direction: column; /* Pour aligner la barre et son label */
+    align-items: center; /* Centrer le label */
+    margin-right: 10px; /* Espace entre les barres */
+  }
+  
+  .bar {
+    width: 30px; /* Largeur de la barre */
+    /* height: 150px;  Hauteur sera définie par la valeur */
+    background-color: blue;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  
+  .bar span {
+    color: white;
+    font-size: 12px;
+    padding: 2px;
+  }
+  
+  .label {
+    margin-top: 5px;
+    font-size: 12px;
+    text-align: center;
+  }

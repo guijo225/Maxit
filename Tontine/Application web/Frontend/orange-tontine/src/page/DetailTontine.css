@@ -1,0 +1,48 @@
+.content{
+    background: #fff;
+    border: 1px solid #ff6b00;
+    margin: 20px;
+    border-radius: 20px;
+}
+
+.header{
+    margin: 0px 80px 50px 90px;
+    color: #ff6b00;
+    text-align: center;
+}
+.tableau{
+    background-color: #ffffff;
+    border-radius: 20px;
+
+}
+.main-content{
+    color: #fff;
+    
+}
+.case{
+    color:#fff;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.droite{
+    
+    text-align: right;
+    padding-right: 24px;
+}
+.but{
+   background-color: green ;
+}
+.bout{
+    background-color: red;
+
+}
+.bouton{
+    background-color: #ff6b00;
+    border-radius: 27px;
+    
+}
+
+.bouton, .bout, .but h2{
+    color: #ffffff;
+}

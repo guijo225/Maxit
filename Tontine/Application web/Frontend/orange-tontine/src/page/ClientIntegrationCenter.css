@@ -1,0 +1,27 @@
+.client-integration-center{
+    background-color: white;
+    width: auto;
+    margin: 0% 0% 5% 2%;
+    padding: 5%;
+    /* position : fixed pour fixer la page*/
+    /*position: fixed;*/
+    
+}
+.theme {
+    display: flex;
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement (optionnel) */
+    color: #ff6b00;
+    margin-bottom: 7%;
+    gap: 15px;
+}
+.photo{
+    width: 8%;
+    height: 8%;
+    padding-left: 2%;
+}
+h2{
+    margin-bottom: 4%;
+    text-align: center;
+}
+

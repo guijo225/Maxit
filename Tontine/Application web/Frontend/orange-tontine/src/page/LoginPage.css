@@ -1,0 +1,108 @@
+/* Conteneur principal de la page de connexion */
+.login-container {
+  display: flex; /* Utilise flexbox pour diviser la page en deux parties */
+  height: 100vh; /* Prend toute la hauteur de la fenêtre */
+  font-family: 'Arial', sans-serif; /* Définit la police par défaut */
+}
+
+/* Section gauche (côté orange) */
+.login-left {
+  background: #FF7900; /* Couleur de fond orange */
+  color: white; /* Texte en blanc */
+  flex: 1; /* Prend la moitié de l'espace disponible */
+  display: flex; /* Active flexbox pour l'alignement vertical */
+  flex-direction: column; /* Organise les éléments en colonne */
+  justify-content: center; /* Centre verticalement le contenu */
+  padding: 40px; /* Espacement intérieur */
+}
+
+/* Titre "Bienvenue sur" */
+.login-left h2 {
+  font-size: 2rem; /* Taille de police */
+  margin-bottom: 0.5rem; /* Espacement en bas */
+}
+
+/* Titre principal "Orange Max It TONTINE" */
+.login-left h1 {
+  font-size: 2rem; /* Taille de police */
+  font-weight: bold; /* Texte en gras */
+  color: black; /* Couleur du texte */
+  margin-bottom: 1rem; /* Espacement en bas */
+}
+
+/* Paragraphe descriptif */
+.login-left p {
+  font-size: 1rem; /* Taille de police */
+  color: #fff; /* Texte en blanc */
+}
+
+/* Section droite (côté blanc) */
+.login-right {
+  flex: 1; /* Prend la moitié de l'espace disponible */
+  background: #fff; /* Fond blanc */
+  display: flex; /* Active flexbox */
+  flex-direction: column; /* Organise les éléments en colonne */
+  justify-content: center; /* Centre verticalement */
+  align-items: center; /* Centre horizontalement */
+}
+
+/* Titre "Identifiez-vous" */
+.login-right h2 {
+  font-size: 1.5rem; /* Taille de police */
+  font-weight: bold; /* Texte en gras */
+  text-align: center; /* Centre le texte */
+  margin-bottom: 2rem; /* Espacement en bas */
+}
+
+/* Formulaire de connexion */
+.login-form {
+  width: 100%; /* Largeur complète */
+  max-width: 350px; /* Largeur maximale */
+  display: flex; /* Active flexbox */
+  flex-direction: column; /* Organise les éléments en colonne */
+  gap: 1.5rem; /* Espacement entre les éléments */
+}
+
+/* Groupe de champs de saisie */
+.input-group {
+  display: flex; /* Active flexbox */
+  align-items: center; /* Centre verticalement les éléments */
+  border-bottom: 1px solid #aaa; /* Ligne de séparation en bas */
+  padding-bottom: 0.5rem; /* Espacement en bas */
+}
+
+/* Icônes dans les champs de saisie */
+.input-group .icon {
+  margin-right: 0.5rem; /* Espacement à droite */
+  width: 24px; /* Largeur fixe */
+  height: 24px; /* Hauteur fixe */
+  object-fit: contain; /* Garde les proportions de l'image */
+}
+
+/* Champs de saisie */
+.input-group input {
+  border: none; /* Supprime la bordure */
+  outline: none; /* Supprime le contour au focus */
+  width: 100%; /* Largeur complète */
+  font-size: 1rem; /* Taille de police */
+  background: transparent; /* Fond transparent */
+}
+
+/* Bouton de connexion */
+button[type="submit"] {
+  background: #FF7900; /* Couleur de fond orange */
+  color: #fff; /* Texte en blanc */
+  border: none; /* Supprime la bordure */
+  padding: 0.8rem; /* Espacement intérieur */
+  border-radius: 4px; /* Coins arrondis */
+  font-size: 1rem; /* Taille de police */
+  font-weight: bold; /* Texte en gras */
+  cursor: pointer; /* Curseur en forme de main */
+  margin-top: 1rem; /* Espacement en haut */
+  transition: background 0.2s; /* Animation de transition */
+}
+
+/* Effet au survol du bouton */
+button[type="submit"]:hover {
+  background: #FF7900; /* Maintient la couleur orange au survol */
+}
