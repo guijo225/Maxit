@@ -1,0 +1,184 @@
+page {
+  background-color: white;
+  height: 100%;
+}
+
+.scrollerea {
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30rpx;
+  padding-bottom: 60rpx;
+}
+
+.accessoire {
+  width: 90%;
+  border-radius: 10rpx;
+  background-color: #ffffff;
+  border: solid 0.5rpx #FF7900;
+  padding: 20rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30rpx;
+  justify-content: space-between; /* répartit bien les éléments */
+}
+
+.acc-image {
+  width: 150rpx;
+  height: 150rpx;
+}
+
+.acc-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10rpx;
+}
+
+.faire-offre {
+  background-color: #ffffff;
+  border-radius: 10rpx;
+  padding: 10rpx 20rpx;
+  border: 1rpx solid #FF7900;
+  font-size: 20rpx;
+  color: #FF7900;
+  white-space: nowrap; /* pour éviter retour à la ligne */
+}
+.partage-vie {
+  font-size: 20rpx;
+  color: #FF7900;
+  text-align: center;
+}
+
+.acc-image {
+  width: 150rpx;
+  height: 150rpx;
+}
+
+.ligne1 {
+  display: flex;
+  justify-content: flex-start;
+  gap: 40rpx;
+  padding: 10rpx 20rpx;
+  margin-top: 20rpx;
+}
+
+.partage-btn {
+  background-color: #FF7900;
+  border-radius: 10rpx;
+  padding: 10rpx;
+  border: 1rpx solid #FF7900;
+  font-size: 20rpx;
+  width: 200rpx;
+  margin: 20rpx auto 10rpx;
+}
+
+.partage-view {
+  color: #ffffff;
+  font-size: 20rpx;
+  text-align: center;
+}
+
+.nom {
+  color: black;
+  font-weight: 600;
+  font-size: 26rpx;
+}
+
+.prix {
+  font-size: 16rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bouton{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.message-container {
+  display: flex;
+  gap: 20rpx;
+  margin-bottom: 70%;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.toutbouton{
+  gap: 45rpx;
+}
+
+.avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50rpx;
+  margin-top: 150rpx;
+}
+
+.user-card {
+  background-color: #fff;
+  padding: 20rpx;
+  box-shadow: 0 4rpx 10rpx rgba(0, 0, 0, 0.2);
+  width: 70%;
+  border-radius: 20rpx;
+  margin-bottom: 25rpx;
+}
+
+.user-name {
+  font-weight: bold;
+  font-size: 25rpx;
+  margin-bottom: 10rpx;
+  margin-top: 12rpx;
+}
+
+.temps {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.location,
+.last-connection {
+  font-size: 22rpx;
+  color: #999;
+  margin-bottom: 5rpx;
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+}
+
+.offre {
+  margin-top: 20rpx;
+  text-align: center;
+}
+
+.prix1 {
+  font-weight: bold;
+  text-decoration: line-through;
+  color: #888;
+  font-size: 24rpx;
+}
+
+.prix1 + view {
+  font-size: 26rpx;
+  color: #FF7900;
+  font-weight: bold;
+  margin-top: 5rpx;
+}
+.offre{
+  background-color: #fff;
+  padding: 20rpx;
+  box-shadow: 0 4rpx 10rpx rgba(0, 0, 0, 0.2);
+  width: 70%;
+  border-radius: 20rpx;
+  display: flex;
+  flex-direction: column;
+}

@@ -1,0 +1,60 @@
+<scroll-view class="scrollerea" scroll-y="true">
+  <view class="container">
+
+    <!-- Carte accessoire -->
+    <view class="accessoire">
+  <image src="/images/imagesimple.png" mode="aspectFit" class="acc-image" />
+
+  <view class="acc-item">
+    <view class="nom">Amulette dozzo</view>
+    <view class="prix">20 000 francs</view>
+  </view>
+
+  <button class="faire-offre" bindtap="shareProfile">
+    <text class="partage-vie">Faire une offre</text>
+  </button>
+</view>
+
+
+    <!-- Carte utilisateur -->
+    <view class="message-container">
+      <image class="avatar" src="/images/dame.png" mode="aspectFill" />
+      <view class="user-card">
+        <view class="user-name">Bonjour ! Moi c’est User223321</view>
+
+        <view class="location">
+          <image src="/images/localistaion.png" mode="aspectFit" class="temps" />
+          <view>Abidjan, Côte d'Ivoire</view>
+        </view>
+
+        <view class="last-connection">
+          <image src="/images/point.png" mode="aspectFit" class="temps" />
+          <view>Dernière connexion il y a 3 heures</view>
+        </view>
+      </view>
+
+      <!-- Offre prix -->
+      <image class="avatar" src="/images/dame.png" mode="aspectFill" />
+      <view class="offre">
+        
+        <view class="prix">
+          <view class="prix1">20 000 fr</view>
+          <view class="">17 000 fr</view>
+        </view>
+        <view class="toutbouton">
+          <button class="partage-btn" bindtap="shareProfile">
+          <text class="partage-view">Accepter l'offre</text>
+        </button>
+        <view class="bouton">
+          <button class="faire-offre" bindtap="shareProfile">
+            <text class="partage-vie">Refuser l'offre</text>
+          </button>
+          <button class="faire-offre" bindtap="shareProfile">
+            <text class="partage-vie">Faire une offre</text>
+          </button>
+        </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

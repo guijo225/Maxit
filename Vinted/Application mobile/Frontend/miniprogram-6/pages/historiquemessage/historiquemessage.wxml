@@ -1,0 +1,64 @@
+<!--barre de recherche-->
+<scroll-view class="scrollarea" scroll-y type="liste">
+  <view class="search">
+  <image src="/images/Retour.png" mode="aspectFit" class="icon-search" />
+  
+  <view class="search-text">
+    <image src="/images/search.png" mode="aspectFit" class="icon-inside" />
+    <input 
+      type="text" 
+      class="search-item"
+      bindinput="onSearchInput"
+      placeholder="{{isFocused ? '' : 'Rechercher un message...'}}"
+      value="{{searchQuery}}"
+      bindfocus="onFocus"
+      bindblur="onBlur"
+    />
+  </view>
+</view>
+
+<!--les sections de message-->
+
+<view class="messagerie" >
+  <view class="section1" bindtap="Overpage">
+  <image src="/images/dame.png" mode="aspectFit" class="photo" />
+
+  <view class="infos">
+    <view class="item1">Sebastien</view>
+    <view class="item1-nom">Bonjour madame</view>
+  </view>
+
+  <view class="item1-heure">
+    <view class="time-display">{{currentTime}}</view>
+  </view>
+</view>
+
+<view class="section2" bindtap="Overpage">
+  <image src="/images/dame.png" mode="aspectFit" class="photo" />
+
+  <view class="infos">
+    <view class="item2">Laura</view>
+    <view class="item2-nom">La robe est toujours dispo</view>
+  </view>
+
+  <view class="item2-heure">
+    <view class="time-display">{{currentTime}}</view>
+  </view>
+</view>
+
+<view class="section3" bindtap="Overpage">
+  <image src="/images/dame.png" mode="aspectFit" class="photo" />
+
+  <view class="infos">
+    <view class="item3">David</view>
+    <view class="item3-nom">Merci madame</view>
+  </view>
+
+  <view class="item3-heure">
+    <view class="time-display">{{currentTime}}</view>
+  </view>
+</view>
+
+</view>
+
+</scroll-view>

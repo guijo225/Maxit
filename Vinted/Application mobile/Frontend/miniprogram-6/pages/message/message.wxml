@@ -1,0 +1,67 @@
+<scroll-view class="scrollerea" scroll-y type="liste">
+  <view class="container">
+    <view class="accessoire">
+      <view class="ligne1">
+        <image src="/images/imagesimple.png" mode="aspectFit" class="acc-image"/>
+        <view class="acc-item">
+          <view class="nom">Amulette dozzo</view>
+          <view class="prix">20 000 francs</view>
+        </view>
+      </view>
+      <view class="boutons">
+        <button class="negocier" bindtap="shareProfile" >
+         <view class="partage-tex">Négocier</view>
+        </button>
+        <button class="partage-btn" bindtap="shareProfile" >
+         <view class="partage-view">Acheter</view>
+        </button>
+      </view>
+    </view>
+
+    <view class="message-container">
+  <!-- Avatar à gauche -->
+  <image class="avatar" src="/images/dame.png" mode="aspectFill" />
+
+  <!-- Carte utilisateur à gauche -->
+  <view class="user-card">
+    <view class="user-name">Bonjour ! Moi c’est User223321</view>
+
+    <view class="stars">
+        <!-- Étoiles de notation -->
+  <view class="note">
+    <text 
+      class="star" 
+      wx:for="{{4}}" 
+      wx:key="index" 
+      data-index="{{index}}" 
+      bindtap="onRate"
+    >
+      {{ index < rating ? '★' : '☆' }}
+    </text>
+  </view>
+      <view class="reviews">99 évaluations</view>
+    </view>
+
+    <view class="location">
+      <image src="/images/localistaion.png" mode="aspectFit" class="temps"/>
+      <view>Bonjour ! Moi c’est User223321</view>
+    </view>
+
+    <view class="last-connection">
+      <image src="/images/point.png" mode="aspectFit" class="temps"/>
+      <view>Dernière connexion il y a 3 heures</view>
+    </view>
+  </view>
+
+  <!-- Boîte de prix refusé à droite -->
+  <view class="price-box">
+   <view class="price">
+    <view class="price-bold">17 000 fr</view>
+    <view class="price-old">20 000 fr</view>
+   </view>
+    <view class="status">Refusé</view>
+  </view>
+</view>
+
+</view>
+</scroll-view>

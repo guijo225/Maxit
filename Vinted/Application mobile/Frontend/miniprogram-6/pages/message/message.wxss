@@ -1,0 +1,187 @@
+page{
+  background-color: white;
+  height: 100%;
+}
+
+.accessoire {
+  width: 90%;
+  height: auto;
+  border-radius: 10rpx;
+  background-color: #ffffff;
+  border: solid 0.5rpx #FF7900;
+  padding: 20rpx; 
+}
+
+.acc-image{
+  width: 150rpx;
+  height: 150rpx;
+}
+.acc-item{
+  margin-top: 30rpx;
+}
+.ligne1{
+  display: flex;
+  justify-content: left;
+  gap: 40rpx;
+  padding: 10rpx 20rpx;
+}
+.boutons{
+   display: flex ;
+   justify-content: center;
+   gap: 10%;
+   padding: 10rpx 20rpx;
+   width: 60%;
+   margin-left: 15%;
+}
+.partage-btn{
+  background-color: #FF7900;
+  height: 20%;
+  border-radius: 50rpx; 
+  padding: 10rpx; 
+  border: 1rpx solid #FF7900;
+  font-size: 20rpx;
+}
+.negocier {
+  background-color: #ffffff;
+  border: 1rpx solid #FF7900; 
+  border-radius: 50rpx;      
+  padding: 10rpx; 
+  height: 20%;
+  
+}
+.partage-view{
+  color: #ffffff;
+  font-size: 20rpx;
+  text-align: center;
+}
+.partage-tex{
+  color: #FF7900;
+  font-size: 20rpx;
+  align-items: center;
+ 
+}
+.nom{
+  color: black;
+  font-weight: 600;
+  font-size: 26rpx;
+}
+.prix{
+  font-size: 16rpx;
+}
+.message-container {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  padding: 20rpx;
+  position: relative;
+  
+}
+
+.avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50rpx;
+  margin-top: 150rpx;
+}
+
+.user-card {
+  background-color: #fff;
+  padding: 20rpx;
+  box-shadow: 0 4rpx 10rpx rgba(0, 0, 0, 0.5);
+  /*flex: 1;*/
+  margin-bottom: 100rpx;
+  width: 70%;
+  height: 30%;
+  border-top-right-radius: 15%;
+  border-bottom-right-radius: 15%;
+  border-top-left-radius: 15%;
+  border-bottom-left-radius: 2%;
+}
+
+.user-name {
+  font-weight: bold;
+  font-size: 25rpx;
+  margin-bottom: 10rpx;
+}
+
+.note {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+}
+
+.rating-stars {
+  display: flex;
+  gap: 4rpx;
+}
+
+.star {
+  font-size: 20rpx;
+  color: #FFD700; /* Étoile dorée */
+  padding-bottom: 23%;
+}
+
+.rating-text {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.stars {
+  display: flex;
+  align-items: center;
+  font-size: 24rpx;
+  margin-bottom: 10rpx;
+}
+
+.reviews {
+  color: #999;
+  margin-left: 10rpx;
+}
+
+.temps{
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.location,
+.last-connection {
+  font-size: 22rpx;
+  color: #999;
+  margin-bottom: 5rpx;
+  display: flex;
+  justify-content: center;
+  gap: 10rpx;
+}
+
+/* boîte à droite */
+.price-box {
+  background-color: #fceee7;
+  border-radius: 12rpx;
+  padding: 16rpx 20rpx;
+  min-width: 170rpx;
+  margin-top: 300rpx;
+  box-shadow: 0 4rpx 10rpx rgba(0, 0, 0, 0.5);
+}
+
+.price{
+  display: flex;
+  justify-content: center;
+  gap: 15rpx;
+}
+
+.price-bold {
+  font-weight: bold;
+  color: #000;
+  font-size: 24rpx;
+}
+
+.price-old {
+  text-decoration: line-through;
+  color: #999;
+  font-size: 20rpx;
+}
+
+.status {
+  color: #444;
+  font-size: 22rpx;
+}

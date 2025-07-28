@@ -1,0 +1,100 @@
+.search {
+  display: flex; /* permet l’alignement horizontal */
+  align-items: center; /* aligne verticalement les éléments au centre */
+  padding: 30rpx;
+  background-color: #ffffff;
+  gap : 15%;
+  margin-top: 10%;
+  margin-bottom: 10%;
+  border-bottom: solid 0.5rpx #ff7900;
+}
+
+.icon-search {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+}
+
+.search-text {
+  display: flex;
+  flex: 1; /* prend tout l’espace restant */
+  align-items: center;
+  background-color: #f0f0f0;
+  padding: 10rpx 7rpx;
+  border-radius: 10rpx;
+  gap: 10%;
+}
+
+.icon-inside {
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 10rpx;
+}
+
+.search-item {
+  flex: 1;
+  border: none;
+  font-size: 28rpx;
+}
+
+.messagerie {
+  padding: 20rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 50rpx;
+}
+
+/* Photo de profil */
+.photo {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+
+/* Affichage de l'heure sélectionnée */
+.time-display {
+  color: #888;
+  font-size: 24rpx;
+}
+.section1, .section2, .section3 {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+  padding: 20rpx;
+  border-bottom: 1px solid #ff7900;
+  width: 85%;
+  margin-left: 35rpx;
+  border-radius: 15rpx;
+}
+
+.photo {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+
+.infos {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 6rpx;
+}
+
+.item1, .item2, .item3 {
+  font-weight: bold;
+  font-size: 28rpx;
+}
+
+.item1-nom, .item2-nom, .item3-nom {
+  font-size: 24rpx;
+  color: #666;
+}
+
+.item1-heure, .item2-heure, .item3-heure {
+  font-size: 24rpx;
+  color: #999;
+  align-self: flex-start;
+  margin-left: auto;
+}
+
