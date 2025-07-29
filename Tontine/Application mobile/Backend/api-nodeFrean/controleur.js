@@ -69,7 +69,7 @@ export const creerTontine = async (req, res) => {
         frequence,
         type_tontine
       ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12, $13)
-      RETURNING id_tontine;
+      RETURNING *;
     `;
 
     const valuesTontine = [
@@ -90,7 +90,7 @@ export const creerTontine = async (req, res) => {
 
     const tontineResult = await client.query(insertTontineQuery, valuesTontine);
     const id_tontine = tontineResult.rows[0].id_tontine;
-    const tontine = tontineResult.rows[0].tontine;
+    const tontine = tontineResult.rows[0];
 
     // Étape 2 : Ajouter le gerant dans participants
     const insertParticipantQuery = `

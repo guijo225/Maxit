@@ -20,8 +20,8 @@ class TourController extends Controller
         }
 
 
-        $tour->statut_tour = 'terminé';
-        $tour->save();
+        //$tour->statut_tour = 'terminé';
+        //$tour->save();
 
 
         $newTour = new Tour();

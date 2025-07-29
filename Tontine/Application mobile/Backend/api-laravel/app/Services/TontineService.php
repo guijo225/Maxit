@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Cotisation;
+use App\Models\Penalite;
 use App\Models\Tour;
 use App\Models\Tontine;
 use Illuminate\Support\Facades\Http;
@@ -18,7 +19,7 @@ class TontineService
     public function insererCotisation($validatedData)
     {
         // Appel à l'API OM pour simuler une transaction de dépôt
-        $response = Http::post('http://192.168.252.213:8001/api/om_transactions_simules',[
+        $response = Http::post('http://192.168.252.213:8001/api/om_transactions_simules', [
             'telephone' => $validatedData['telephone'],
             'montant' => $validatedData['montant_cotise'],
             'statut' => 'depot',
@@ -35,7 +36,14 @@ class TontineService
 
         $data = $response->json();
 
-        $motant_cotise = $validatedData['montant_cotise']/1.025;
+        $penalite = Penalite::where('id_participant', $validatedData['id_participant'])->where('statut_penalite', 'Inpaye')->first();
+        if ($penalite) {
+            $motant_cotise = ($validatedData['montant_cotise'] - $penalite['montant_penalite']) / 1.025;
+            $penalite->statut_penalite = 'Paye';
+            $penalite->save();
+        } else {
+            $motant_cotise = $validatedData['montant_cotise'] / 1.025;
+        }
 
         // Enregistre la cotisation dans la base de données
         $cotisation = new Cotisation();
@@ -79,7 +87,7 @@ class TontineService
                 }
 
                 // Effectue le transfert de la cagnotte au bénéficiaire via une API externe
-                $responseTransfert = Http::post('http://192.168.252.43:8000/paiement',[
+                $responseTransfert = Http::post('http://192.168.252.43:8000/paiement', [
                     'numero' => $participant['utilisateur']['telephone'],
                     'tontine_id' => $tour->id_tontine,
                     'tour_id' => $tour->id_tour,
@@ -97,7 +105,7 @@ class TontineService
                 }
 
 
-                $donnees_tour =new Request([
+                $donnees_tour = new Request([
                     'id_tontine' => $tour->id_tontine,
                     'montant_distribue' => $tour->montant_distribue,
                     'numero_tour' => $tour->numero_tour,
@@ -108,27 +116,58 @@ class TontineService
 
                 // Marque la tontine comme terminé
                 if ($tour->numero_tour == $tontine->nombre_participants) {
+                    //recuperer les participants de la tontine
+                    $participants = \App\Models\Participant::where('id_tontine', $tour->id_tontine)->get();
+                    foreach ($participants as $participant) {
+                        // Logique pour envoyer notification
+                        Notification::create([
+                            'id_utilisateur' => $participant->id_utilisateur,
+                            'titre' => "Rappel Tontine",
+                            'description_notification' => "La tontine " . $tontine->nom_tontine . " est terminer .",
+                            'id_tontine' => $tontine->id_tontine,
+                            'date_creation' => now(),
+                            'lu' => false,
+                            'type_notification' => 'rappel_tontine',
+                        ]);
+                    }
+
 
                     $tontine->statut_tontine = 'terminé';
-                    $tontine->save(); 
-                    
-                }else {
-                // Passe au tour suivant en appelant le contrôleur approprié
-                $controller = new TourController();
-                $results = $controller->changerDeTour($donnees_tour, $tour->id_tontine);
+                    $tontine->save();
 
-                // Vérifie si le changement de tour a échoué
-                if ($results->getStatusCode() !== 200) {
-                    return [
-                        'success' => false,
-                        'message' => 'Erreur lors du changement de tour'
-                    ];
-                }
+                } else {
+                    //recuperer les participants de la tontine
+                    $participants = \App\Models\Participant::where('id_tontine', $tour->id_tontine)->get();
+                    foreach ($participants as $participant) {
+                        // Logique pour envoyer notification
+                        Notification::create([
+                            'id_utilisateur' => $participant->id_utilisateur,
+                            'titre' => "Rappel Tontine",
+                            'description_notification' => "Le N°" . $tour->numero_tour . " de la tontine " . $tontine->nom_tontine . " est terminer .",
+                            'id_tontine' => $tontine->id_tontine,
+                            'date_creation' => now(),
+                            'lu' => false,
+                            'type_notification' => 'rappel_tontine',
+                        ]);
+                    }
+                    // Passe au tour suivant en appelant le contrôleur approprié
+                    $controller = new TourController();
+                    $results = $controller->changerDeTour($donnees_tour, $tour->id_tontine);
+
+                    // Vérifie si le changement de tour a échoué
+                    if ($results->getStatusCode() !== 200) {
+                        return [
+                            'success' => false,
+                            'message' => 'Erreur lors du changement de tour'
+                        ];
+                    }
 
                 }
                 // Marque le tour comme terminé
                 $tour->statut_tour = 'terminé';
             }
+
+
 
             // Sauvegarde les modifications du tour
             $tour->save();

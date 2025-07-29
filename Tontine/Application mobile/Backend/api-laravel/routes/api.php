@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\ParticipantController;
 use App\Http\Controllers\Api\TourController;
 use App\Http\Controllers\Api\TransactionController;
 use App\Http\Controllers\Api\CotisationController;
+use App\Http\Controllers\Api\NotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,3 +47,8 @@ Route::post('/update-ordre', [ParticipantController::class, 'updateOrdre']);
 
 Route::get('/recupererParticipant', [ParticipantController::class, 'recupererParticipant']);
 
+Route::get('/getNotification/{id}/{tontineId}', [ParticipantController::class, 'getNotification']);
+
+Route::post('/getNotificationsTontine', [NotificationController::class, 'getNotificationsTontine']);
+
+Route::post('/countNotifications', [NotificationController::class, 'countNotifications']);
