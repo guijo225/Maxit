@@ -1,0 +1,68 @@
+<scroll-view scroll-x="true" class="scroll-container" id="scrollZone" scroll-with-animation scroll-left="{{scrollLeft}}">
+  <view class="container">
+  <!-- Header -->
+  <view class="header">
+    <image src="/images/Retour.png" mode="aspectFit" class="img" bindtap="hideModal" />
+    <view class="details">Détail de l'article</view>
+  </view>
+
+  <!-- Produit -->
+  <view class="pub">
+    <image src="/images/fc-barcelone.png" mode="aspectFit" class="pub-photo" />
+    <view class="bulles">
+      <view class="bulle"></view>
+      <view class="bulle"></view>
+      <view class="bulle"></view>
+    </view>
+    <!-- Bouton Acheter -->
+  <view class="button-container">
+    <view class="button" bindtap="showModal">Acheter</view>
+  </view>
+  </view>
+
+  <!-- Modal -->
+  <view wx:if="{{showModal}}" class="modal-overlay">
+    <view class="modal-content">
+    
+      <view class="coller">
+        <view class="paye">Moyen de paiement</view>
+        <image src="/images/croix.png" mode="aspectFit" class="image-modal" bindtap="hideModal"/>
+      </view>
+      
+      <view class="bloc">
+        <view class="bloc1">
+          <view class="bloc_item">
+            <image src="/images/orangeMoney.png" mode="aspectFit" class="image-bloc"/>
+            <view class="name">Orange Visa</view>
+          </view>
+          <view class="numero">****3435</view>
+        </view>
+        <view class="bloc1">
+          <view class="bloc-item">
+            <image src="/images/orangeMoney.png" mode="aspectFit" class="image-bloc"/>
+            <view class="name">Orange Money</view>
+          </view>
+          <view class="numero">****3435</view>
+        </view>
+      </view>
+      <view class="mesimages">
+  <image src="/images/scroll2.png" mode="aspectFit" class="scroll2" bindtap="scrollLeft" />
+  <image src="/images/scroll1.png" mode="aspectFit" class="scroll1" bindtap="scrollRight" />
+</view>
+
+      
+      <scroll-view scroll-x="true" class="scroll-container">
+        <view wx:for="{{articles}}" wx:key="id" class="imag">
+          <view class="mon">
+            <image src="{{item.image}}" mode="aspectFit" class="mag"/>
+            <image src="/images/croix.png" mode="aspectFit" class="magi" bindtap="deleteArticle" data-index="{{index}}"/>
+          </view>
+          <view class="imag-item">{{item.name}}</view>
+        </view>
+      </scroll-view>
+      
+      <view class="confirm-button" bindtap="confirmAchat">Confirmer</view>
+    </view>
+  </view>
+</view>
+</scroll-view>

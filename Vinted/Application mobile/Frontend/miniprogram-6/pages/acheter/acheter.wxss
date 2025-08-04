@@ -1,0 +1,236 @@
+page {
+  height: 100%;
+  background-color: #ffffff;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 20rpx;
+}
+
+.header {
+  height: 80rpx;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.img {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.details {
+  flex: 1;
+  text-align: center;
+  font-size: 32rpx;
+}
+
+/* Section image produit */
+.pub {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20rpx 0;
+  width: 100%;
+  height: 100%;
+}
+
+.pub-photo {
+  background-color: #dcdcdc;
+  width: 90%;
+  height: 300rpx;
+  border-radius: 10rpx;
+}
+
+.bulles {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16rpx;
+  padding: 20rpx 0;
+}
+
+.bulle {
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 50%;
+  background-color: #dcdcdc;
+}
+
+/* Bouton acheter */
+.button {
+  width: 100%;
+  height: 80rpx;
+  background-color: #FF7900;
+  margin: 20% 10% 0% 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1rpx solid black;
+  border-radius: 16rpx;
+  font-size: 28rpx;
+  color: white;
+}
+
+/* Modal */
+.modal-overlay {
+  height: 40%;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding: 30rpx;
+  z-index: 999;
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+  box-shadow: 0 -5rpx 10rpx rgba(0,0,0,0.1);
+  gap: 120rpx;
+}
+
+.coller {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+
+.paye {
+  font-size: 39rpx;
+  font-weight: bold;
+}
+
+.image-modal {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.bloc {
+  display: flex;
+  flex-direction: row;
+  gap: 20rpx;
+  width: 100%;
+}
+
+.bloc1 {
+  width: 60%;
+  height: 45%;
+  padding: 15rpx;
+  border-radius: 10rpx;
+  border: 1rpx solid #ff7900;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 15rpx;
+}
+
+.bloc-item, .bloc_item {
+  display: flex;
+  align-items: center;
+  gap: 15rpx;
+}
+
+.image-bloc {
+  width: 30rpx;
+  height: 40rpx;
+}
+
+.numero {
+  font-size: 28rpx;
+  color: #888;
+}
+.name{
+  font-size: 25rpx;
+}
+
+.scroll-container {
+  white-space: nowrap; /* Empêche le retour à la ligne */
+  width: 100%;
+  padding: 10rpx 0;
+}
+
+.imag {
+  display: inline-flex; /* Affiche les éléments en ligne */
+  flex-direction: column;
+  align-items: center;
+  width: 150rpx; /* Largeur fixe pour chaque article */
+  margin-right: 25rpx;
+  vertical-align: top;
+}
+
+.mag {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.imag-item {
+  margin-top: 15rpx;
+  font-size: 20rpx;
+  text-align: center;
+  white-space: normal; /* Permet le retour à la ligne pour le texte */
+}
+
+.magi {
+  width: 20rpx;
+  height: 20rpx;
+  position: absolute;
+  right: 5rpx;
+  top: 5rpx;
+  display: inline-flex;
+  transition: all 0.3s ease;
+  background-color: red;
+  border-radius: 15rpx;
+}
+
+/* Animation quand l'article disparaît */
+.imag.hide {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.mon {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.confirm-button{
+  width: 70%;
+  height: 80rpx;
+  background-color: #FF7900;
+  margin: 0% 10% 0% 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1rpx solid black;
+  border-radius: 16rpx;
+  font-size: 28rpx;
+  color: white;
+}
+.modal-content{
+ display: flex;
+ flex-direction: column; /* Pour disposer les enfants verticalement */
+ gap: 20rpx;
+}
+.mesimages{
+  display: flex;
+  flex-direction: row;
+  margin-left: 600rpx;
+}
+.scroll1{
+  width: 30rpx;
+  height: 30rpx;
+}
+.scroll2{
+  width: 30rpx;
+  height: 30rpx;
+}
