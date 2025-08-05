@@ -1,0 +1,42 @@
+<view class="container">
+    <image src="/images/croix.png" mode="aspectFit" class="imag"/>
+    <view class="section1">
+      <image src="/images/fc-barcelone.png" mode="aspectFit" class="img"/>
+      <view class="item">
+         <view class="tem1">Maillot de Barça</view>
+         <view class="tem2">Prix de l'article : 20 000 FCFA</view>
+      </view>
+    </view>
+    <view class="section2">
+  <view
+    wx:for="{{donne}}"
+    wx:key="id"
+    class="card {{selectedId === item.id ? 'active' : ''}}"
+    data-id="{{item.id}}"
+    bindtap="selectCard"
+  >
+    <view class="price">{{item.price}}</view>
+    <view class="value">{{item.value}}</view>
+  </view>
+</view>
+
+<!-- Section cachée (input + bouton) visible uniquement si "Autre" est sélectionné -->
+<view wx:if="{{selectedId === '3'}}" class="section3">
+  <view class="section">
+    <input type="text"
+      class="chiffre"
+      placeholder="{{isFocused ? '' : '20 000'}}"
+      value="{{searchQuery}}"
+      bindfocus="onFocus"
+      bindblur="onBlur"
+    />
+  </view>
+
+  <!-- Ligne de séparation -->
+  <view class="trait"></view>
+
+  <!-- Bouton pour proposer -->
+  <view class="bouton">Proposer FCFA</view>
+</view>
+
+</view>

@@ -1,0 +1,121 @@
+page{
+
+  background-color: #ffffff;
+}
+.container {
+  display: flex;
+  flex-direction: column;  /* aligne les enfants verticalement */
+  gap: 20rpx;               /* contrôle l’espacement entre les sections */
+  padding: 20rpx;
+}
+
+.imag{
+  width: 40rpx;
+  height: 40rpx;
+  margin-left: 500rpx;
+}
+.section1{
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  gap: 80rpx;
+  margin-bottom: 20rpx;
+  height: auto;
+}
+.img{
+  width: 250rpx;
+  height: 200rpx;
+}
+.item{
+  width: 300rpx;
+  height: 100rpx;
+  margin-top: 70rpx;
+}
+.tem1{
+  font-size: 30rpx;
+  font-weight: 900;
+}
+.tem2{
+  font-size: 22rpx;
+}
+
+.section2 {
+  display: flex;
+  flex-direction: row;
+  gap: 10rpx;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+  column-gap: 20rpx;
+}
+
+.card {
+  width: 30%;
+  padding: 20rpx;
+  border: 2rpx solid #ccc;
+  border-radius: 20rpx;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.card.active {
+  border: 2rpx solid orange;
+  color: orange;
+}
+
+.price {
+  font-weight: bold;
+  font-size: 30rpx;
+}
+
+.value {
+  color: gray;
+  font-size: 24rpx;
+}
+
+.input-container {
+  margin-top: 20rpx;
+  padding: 0 20rpx;
+}
+
+.custom-input {
+  width: 100%;
+  border: 2rpx solid orange;
+  border-radius: 12rpx;
+  padding: 20rpx;
+}
+
+
+.section3 {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-bottom: 300rpx;
+  width: 90%;
+  gap: 10rpx;
+}
+
+.section{
+  margin-left: 70rpx;
+  width: 80%;
+  height: 30rpx;
+  gap: 10rpx;
+}
+
+.trait{
+  height: 1rpx;
+  background-color: gray;
+  margin: 20rpx 0;
+}
+.chiffre{
+  font-size: 30rpx;
+  margin-right: 450rpx;
+}
+.bouton{
+ border-radius: 20rpx;
+ background-color: #ff7900;
+ width: 300rpx;
+ height: 60rpx;
+ padding-top: 10rpx;
+ margin-left: 200rpx;
+ color: #ffffff;
+}
