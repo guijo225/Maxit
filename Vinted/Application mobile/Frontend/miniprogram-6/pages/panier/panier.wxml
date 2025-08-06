@@ -1,0 +1,43 @@
+<view class="container">
+  <view class="section">
+    <!-- En-tête du panier -->
+    <view class="header">
+      <image src="/images/Retour.png" mode="aspectFit" class="img" bindtap="allerVersPage" />
+      <view class="panier">Mon panier</view>
+    </view>
+
+    <!-- Trait séparateur -->
+    <view class="trait"></view>
+
+    <!-- Si le panier est vide -->
+    <block wx:if="{{cart.length === 0}}">
+      <view class="section2">
+        <view class="images">
+          <image src="/images/etoile.png" mode="aspectFit" class="etoil1"/>
+          <image src="/images/panier.png" mode="aspectFit" class="panie"/>
+          <image src="/images/etoile.png" mode="aspectFit" class="etoil2"/>
+        </view>
+        <view class="texte-vide">Votre panier est vide pour l'instant</view>
+        <view class="bouton" bind:tap="allerVersPage">Faire des courses</view>
+      </view>
+    </block>
+
+    <!-- Si le panier contient des articles -->
+    <block wx:elif="{{cart.length > 0}}">
+      <view class="section2">
+        <!-- Liste des articles -->
+        <view class="liste-articles">
+          <block wx:for="{{cart}}" wx:key="index">
+            <view class="article">
+              <view class="nom">{{item.nom}}</view>
+              <view class="prix">{{item.prix}} FCFA</view>
+            </view>
+          </block>
+        </view>
+
+        <!-- Affichage du total -->
+        <view class="total">Total : {{total}} FCFA</view>
+      </view>
+    </block>
+  </view>
+</view>
