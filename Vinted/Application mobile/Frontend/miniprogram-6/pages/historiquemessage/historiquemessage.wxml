@@ -16,7 +16,11 @@
     />
   </view>
 </view>
-
+<!--appeler composante-->
+<filters
+filters="{{filter}}" 
+selected="{{selectedFilter}}" 
+/>
 <!--les sections de message-->
 
 <view class="messagerie" >

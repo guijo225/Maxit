@@ -1,0 +1,64 @@
+<view class="container">
+
+  <view class="section">
+    <!-- En-tête du panier -->
+    <view class="header">
+      <image src="/images/Retour.png" mode="aspectFit" class="img" bindtap="allerVersPage" />
+      <view class="panier">Mon panier</view>
+    </view>
+
+    <!-- Trait séparateur -->
+    <view class="trait"></view>
+    </view>
+
+    <view class="section1">
+    <view class="item1">
+     <image src="/images/croix.png" mode="aspectFit" class="item1-photo" bindtap="autre"/>
+     <view class="item1-mot">Maillot de Barça</view>
+    </view>
+    <view class="item2">
+    <image src="/images/fc-barcelone.png" mode="aspectFit" class="image2"/>
+    <view class="tem">
+       <view class="moins"  bind:tap="diminuer">-</view>
+       <view class="texte">{{quantite}}</view>
+      <view class="plus" bind:tap="augmenter">+</view>
+    </view>
+    <view class="prix">15000</view>
+    </view>
+    </view>
+    <view class="TOUT">
+      <view class="text">MOYEN PAYEMENT</view>
+      <view class="bloc">
+        <view class="bloc1">
+          <view class="bloc_item">
+            <image src="/images/orangeMoney.png" mode="aspectFit" class="image-bloc"/>
+            <view class="name">Orange Visa</view>
+          </view>
+          <view class="numero">****3435</view>
+        </view>
+        <view class="bloc1">
+          <view class="bloc-item">
+            <image src="/images/orangeMoney.png" mode="aspectFit" class="image-bloc"/>
+            <view class="name">Orange Money</view>
+          </view>
+          <view class="numero">****3435</view>
+        </view>
+      </view>
+      <view class="mesimages">
+</view>
+    </view>
+    <view class="section3">
+    <view class="factu">Facture</view>
+    <view class="div1">
+     <view class="total">Total Panier :</view>
+     <view class="cout">190.000 FCFA</view>
+    </view>
+    <view class="meme"></view>
+    <view class="div2">
+    <view class="totaux">Total :</view>
+    <view class="encore">190.000 FCFA</view>
+    </view>
+    </view>
+    <view class="bouton" bind:tap="confirmAchat">Confirmer la commande</view>
+
+</view>

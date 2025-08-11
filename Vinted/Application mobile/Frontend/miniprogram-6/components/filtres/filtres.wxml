@@ -1,0 +1,6 @@
+<view class="filtres">
+  <view 
+  class=""
+  bind:tap=""
+  ></view>
+</view>

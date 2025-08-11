@@ -98,7 +98,7 @@
           </view>
         </view>
         <view class="product-item">
-          <image src="/images/fc-barcelone-home-2016-2017-removebg-preview 1.png" mode="aspectFill" class="product-image"/>
+          <image src="/images/fc-barcelone.png" mode="aspectFill" class="product-image"/>
           <view class="product-actions">
             <button class="modify-btn">Modifier</button>
             <button class="delete-btn">Supprimer</button>
@@ -113,7 +113,7 @@
         </view>
         
         <view class="product-item">
-          <image src="/images/fc-barcelone-home-2016-2017-removebg-preview 1.png" mode="aspectFill" class="product-image"/>
+          <image src="/images/fc-barcelone.png" mode="aspectFill" class="product-image"/>
           <view class="product-actions">
             <button class="modify-btn">Modifier</button>
             <button class="delete-btn">Supprimer</button>
@@ -121,7 +121,7 @@
         </view>
         
         <view class="product-item">
-          <image src="/images/fc-barcelone-home-2016-2017-removebg-preview 1.png" mode="aspectFill" class="product-image"/>
+          <image src="/images/fc-barcelone.png" mode="aspectFill" class="product-image"/>
           <view class="product-actions">
             <button class="modify-btn">Modifier</button>
             <button class="delete-btn">Supprimer</button>
@@ -129,7 +129,7 @@
         </view>
         
         <view class="product-item">
-          <image src="/images/fc-barcelone-home-2016-2017-removebg-preview 1.png" mode="aspectFill" class="product-image"/>
+          <image src="/images/fc-barcelone.png" mode="aspectFill" class="product-image"/>
           <view class="product-actions">
             <button class="modify-btn">Modifier</button>
             <button class="delete-btn">Supprimer</button>
@@ -137,7 +137,5 @@
         </view>
       </view>
     </view>
-
-
 
 </scroll-view>

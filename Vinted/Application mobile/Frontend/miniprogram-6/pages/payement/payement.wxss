@@ -1,0 +1,191 @@
+page {
+  background-color: #e2e1e1;
+  width: 100%;
+  min-height: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 100%;
+  padding: 0;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.header {
+  height: 200rpx;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #ffffff;
+  padding: 0 20rpx;
+}
+
+.img {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.panier {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-left: 220rpx;
+}
+
+.trait {
+  height: 5rpx;
+  background-color: black;
+}
+
+.section1 {
+  width: 70%;
+  background-color: #dcdcdc;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.5);
+  margin: 60rpx auto 10rpx;
+  border-radius: 30rpx;
+  padding: 20rpx;
+}
+
+.item1 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.item1-photo {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.item1-mot {
+  margin: 10rpx 0 35rpx 0;
+  text-align: left;
+  width: 100%;
+}
+
+.item2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.image2 {
+  width: 120rpx;
+  height: 120rpx;
+}
+
+.moins, .plus {
+  width: 60rpx;
+  height: 60rpx;
+  background-color: #ff7900;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 60rpx;
+  color: #fff;
+}
+
+.tem {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.prix {
+  font-size: 30rpx;
+}
+
+.TOUT {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 20rpx;
+  width: 90%;
+  margin: 50rpx;
+}
+
+.text {
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.bloc {
+  display: flex;
+  flex-direction: row;
+  gap: 20rpx;
+  width: 100%;
+  margin-top: 20rpx;
+  margin-right: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.bloc1 {
+  flex: 1 1 45%;
+  min-width: 40%;
+  padding: 15rpx;
+  border-radius: 10rpx;
+  border: 1rpx solid #ff7900;
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+  align-items: center;
+  background-color: #fff;
+}
+
+.bloc-item, .bloc_item {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+}
+
+.image-bloc {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.numero {
+  font-size: 28rpx;
+  color: #888;
+}
+
+.section3 {
+  width: 80%;
+  margin: 20rpx auto;
+  background-color: #dcdcdc;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.5);
+  border-radius: 30rpx;
+  padding: 20rpx;
+  gap: 20rpx;
+}
+
+.div1, .div2 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.total, .cout, .totaux, .encore {
+  font-size: 30rpx;
+}
+
+.meme {
+  height: 5rpx;
+  background-color: black;
+}
+
+.bouton {
+  border-radius: 20rpx;
+  background-color: #ff7900;
+  width: 80%;
+  height: 80rpx;
+  margin: 100rpx auto 15rpx;
+  line-height: 80rpx;
+  text-align: center;
+  color: #ffffff;
+  font-size: 30rpx;
+}

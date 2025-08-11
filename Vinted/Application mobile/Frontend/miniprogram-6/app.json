@@ -1,11 +1,15 @@
 {
   "pages": [
+    "pages/payement/payement",
+    "pages/panier/panier",
+    "pages/negociation/negociation",
+    "pages/acheter/acheter",
     "pages/historiquemessage/historiquemessage",
     "pages/messagevendeur/messagevendeur",
     "pages/message/message",
     "pages/index/index",
-    "pages/formulaire/formulaire"
-    
+    "pages/formulaire/formulaire",
+    "components/filtres/filtres"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -24,4 +28,4 @@
   "componentFramework": "glass-easel",
   "sitemapLocation": "sitemap.json",
   "lazyCodeLoading": "requiredComponents"
-}  
+}

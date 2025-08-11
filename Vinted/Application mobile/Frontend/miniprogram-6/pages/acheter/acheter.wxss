@@ -178,44 +178,6 @@ page {
   text-align: center;
   white-space: normal; /* Permet le retour à la ligne pour le texte */
 }
-
-.magi {
-  width: 20rpx;
-  height: 20rpx;
-  position: absolute;
-  right: 5rpx;
-  top: 5rpx;
-  display: inline-flex;
-  transition: all 0.3s ease;
-  background-color: red;
-  border-radius: 15rpx;
-}
-
-/* Animation quand l'article disparaît */
-.imag.hide {
-  opacity: 0;
-  transform: scale(0.8);
-}
-
-.mon {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.confirm-button{
-  width: 70%;
-  height: 80rpx;
-  background-color: #FF7900;
-  margin: 0% 10% 0% 15%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1rpx solid black;
-  border-radius: 16rpx;
-  font-size: 28rpx;
-  color: white;
-}
 .modal-content{
  display: flex;
  flex-direction: column; /* Pour disposer les enfants verticalement */
