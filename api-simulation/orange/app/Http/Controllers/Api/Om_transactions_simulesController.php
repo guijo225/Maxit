@@ -18,13 +18,13 @@ class Om_transactions_simulesController extends Controller
         ]);
 
         try {
-            $transaction_id = Str::random(20);
+            $transaction_id = 'om_' . Str::random(20);
 
             $transaction = Om_transactions_simules::create([
                 'phone' => $request->input('telephone'),
                 'montant' => $request->input('montant'),
                 'statut' => $request->input('statut'),
-                'transaction_id' => 'om_'.$transaction_id,
+                'transaction_id' => $transaction_id,
             ]);
 
             return response()->json([

@@ -35,6 +35,11 @@ class NotificationController extends Controller
                 ->where('id_tontine', $validatedData['id_tontine'])
                 ->orderBy('date_creation', 'desc')
                 ->get();
+            foreach ($notifications as $notification) {
+                $notification->lu = true;
+                $notification->date_lecture = now();
+                $notification->save();
+            }
 
             //return response()->json(['notifications' => $notifications], 200);
             return response()->json(['data' => $notifications], 200);
@@ -62,6 +67,19 @@ class NotificationController extends Controller
                 ->count();
 
             return response()->json(['count' => $count], 200);
+            /*return response()->json(Notification::where('id_utilisateur', $request->id_utilisateur)->count());*/
+        } catch (\Exception $e) {
+
+            return response()->json([
+                'message' => 'Erreur serveur',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    public function lireNotification(Request $request)
+    {
+        try {
         } catch (\Exception $e) {
 
             return response()->json([

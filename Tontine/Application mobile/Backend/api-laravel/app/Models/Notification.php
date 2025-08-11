@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Utilisateur;
+use App\Models\Tontine;
 
 class Notification extends Model
 {
@@ -22,4 +24,17 @@ class Notification extends Model
         'date_lecture',
         'lu',
     ];
+
+
+    public function utilisateur()
+    {
+        return $this->belongsTo(Utilisateur::class, 'id_utilisateur');
+    }
+
+
+    public function tontine()
+    {
+        return $this->belongsTo(Tontine::class, 'id_tontine');
+    }
 }
+

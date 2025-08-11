@@ -188,3 +188,88 @@ export const integrerTontine = async (req, res) => {
     client.release();
   }
 };
+
+/*export const updateTontine = async (req, res)=>{
+  
+  const {
+    nom,
+    description,
+    regles,
+    montant,
+    participants,
+    frequence,
+    id_tontine,
+  } = req.body;
+  
+  if (!nom || !montant || !frequence || !participants || !id_tontine) {
+    return res.status(400).json({ error: 'Champs requis manquants' });
+  }
+  const montant_a_cotise = parseFloat(montant);
+  const nombre_participants = parseInt(participants);
+
+  if (isNaN(montant_a_cotise) || isNaN(nombre_participants)) {
+    return res.status(400).json({ error: 'Montant ou nombre de participants invalide' });
+  }
+
+  const montant_total = nombre_participants * montant_a_cotise;
+  const client = await pool.connect();
+  
+
+  try {
+    await client.query('BEGIN');
+
+    // Étape 1 : Créer la tontine
+    const insertTontineQuery = `
+    update tontine set`;
+
+    const valuesTontine = [
+      nom,
+      description || null,
+      regles || null,
+      montant_a_cotise,
+      montant_total,
+      nombre_participants,
+      statut_tontine,
+      id_utilisateur,
+      frequence,
+      type_tontine
+    ];
+
+    const tontineResult = await client.query(insertTontineQuery, valuesTontine);
+    const id_tontine = tontineResult.rows[0].id_tontine;
+    const tontine = tontineResult.rows[0];
+
+    // Étape 2 : Ajouter le gerant dans participants
+    const insertParticipantQuery = `
+      INSERT INTO participant (id_utilisateur, id_tontine, date_adhesion, role_utilisateur, numero_ordre, a_recu_paiement)
+      VALUES ($1, $2, $3, $4, $5, $6);
+    `;
+    const numOrdre = 1;
+
+    await client.query(insertParticipantQuery, [
+      id_utilisateur,
+      id_tontine,
+      new Date().toISOString(),
+      'admin',
+      numOrdre,
+      false
+    ]);
+
+    await client.query('COMMIT');
+
+    return res.status(201).json({
+      message: 'Tontine créée et créateur ajouté comme participant',
+      tontine: tontine
+    });
+
+  } catch (err) {
+    await client.query('ROLLBACK');
+    console.error('Erreur lors de la création de la tontine :', err);
+    return res.status(500).json({ error: 'Erreur serveur.' });
+  } finally {
+    client.release();
+  }
+
+
+};*/
+
