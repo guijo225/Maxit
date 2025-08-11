@@ -23,7 +23,7 @@
        <view class="texte">{{quantite}}</view>
       <view class="plus" bind:tap="augmenter">+</view>
     </view>
-    <view class="prix">15000</view>
+    <view class="prix">{{prixTotal}} FCFA</view>
     </view>
     </view>
     <view class="TOUT">

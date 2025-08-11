@@ -1,20 +1,26 @@
 Page({
   data: {
-    quantite: 1 // quantité par défaut
+    quantite: 1,      // quantité  d'un maillot  par défaut
+    prixUnitaire: 15000, // prix pour d'un maillot unité
+    prixTotal: 15000  // prix affiché
   },
 
   // Augmenter la quantité
   augmenter() {
+    let qte = this.data.quantite + 1;
     this.setData({
-      quantite: this.data.quantite + 1
+      quantite: qte,
+      prixTotal: qte * this.data.prixUnitaire
     });
   },
 
   // Diminuer la quantité
   diminuer() {
-    if (this.data.quantite > 1) { // éviter de descendre en dessous de 1
+    if (this.data.quantite > 1) {
+      let qte = this.data.quantite - 1;
       this.setData({
-        quantite: this.data.quantite - 1
+        quantite: qte,
+        prixTotal: qte * this.data.prixUnitaire
       });
     }
   },
