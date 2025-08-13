@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/chargement/chargement",
     "pages/payement/payement",
     "pages/panier/panier",
     "pages/negociation/negociation",

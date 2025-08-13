@@ -1,0 +1,58 @@
+page{
+  height: 100%;
+}
+.container{
+  display: flex;
+  flex-direction: column;
+
+}
+.div1{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 90%;
+  height: 40%;
+  margin-top: 80rpx;
+  gap: 60rpx;
+}
+.image1{
+  width: 50rpx;
+  height: 50rpx;
+  margin-left: 100%;
+  margin-bottom: 20rpx;
+}
+.div2{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 80%;
+  height: 40%;
+  margin-top: 180rpx;
+  gap: 80rpx;
+  
+}
+.texte{
+  margin-left: 50rpx;
+}
+.text{
+  width: 80%;
+}
+.image2 {
+  margin-left: 190rpx;
+  width: 350rpx;
+  height: 350rpx;
+  animation: rotate 2s linear infinite; /* 2s = vitesse de rotation */
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.text{
+  margin-left: 140rpx;
+}

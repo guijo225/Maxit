@@ -1,0 +1,13 @@
+<view class="contraint">
+
+ <view class="div1">
+ <image src="/images/croix.png" mode="aspectFit" class="image1"/>
+  <view class="texte">Produit ajouté au brouillon</view>
+ </view>
+
+ <view class="div2">
+ <image src="/images/charge.svg" mode="aspectFit" class="image2"/>
+  <view class="text">Veuillez patienter le temps que la vérification du poste se fasse.</view>
+ </view>
+
+</view>
