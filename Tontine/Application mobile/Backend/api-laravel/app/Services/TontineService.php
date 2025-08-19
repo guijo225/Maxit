@@ -8,7 +8,7 @@ use App\Models\Tour;
 use App\Models\Tontine;
 use App\Models\Notification;
 use App\Models\Transaction;
-use GrahamCampbell\ResultType\Success;
+use App\Models\Participant;
 use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\Api\ParticipantController;
 use App\Http\Controllers\Api\TourController;
@@ -16,222 +16,186 @@ use Illuminate\Http\Request;
 
 class TontineService
 {
-    /**
-     * Insérer une cotisation et gérer la distribution si la cagnotte est complète.
-     */
     public function insererCotisation($validatedData)
     {
-        // Appel à l'API OM pour simuler une transaction de dépôt
-        $response = Http::post('http://192.168.252.228:8001/api/om_transactions_simules', [
-            'telephone' => $validatedData['telephone'],
-            'montant' => $validatedData['montant_cotise'],
-            'statut' => 'depot',
-        ]);
-
-        // Vérifie si la transaction a échoué
-        if (!$response->successful()) {
-            return [
-                'success' => false,
-                'message' => 'Échec du paiement OM',
-                'details' => $response->body()
-            ];
+        $paiementService = new \App\Services\PaiementService();
+        // 1. Valider la transaction OM
+        switch (strtolower($validatedData['mode_paiement'])) {
+            case 'assurance':
+                $transactionData = $paiementService->validerTransactionAssur($validatedData);
+                break;
+            case 'mobile money':
+                $transactionData = $paiementService->validerTransactionOM($validatedData);
+                break;
+            default:
+                return ['success' => false, 'message' => 'Mode de paiement invalide'];
         }
-        $data = $response->json();
-
-        // Récupère la tontine associée au tour
-        $tour = Tour::find($validatedData['id_tour']);
-
-        // Récupère la tontine associée au tour;;;;
-        $tontine = Tontine::find($tour->id_tontine);
-
-
-        if ($tontine->type_tontine == 'Tontine avec assurance') {
-            $montantGarentie = $validatedData['montant_cotise'] / $tontine->nombre_participants;
-            $motant_cotise = ($validatedData['montant_cotise'] - $montantGarentie) / 1.025;
-            Transaction::create([
-                'numero_transaction' => $data['data']['transaction_id'],
-                'type_transaction' => 'garantie',
-                'montant_transaction' => $montantGarentie,
-                'date_transaction' => now(),
-                'statut_transaction' => 'succès',
-                'id_participant' => $validatedData['id_participant'],
-                'id_tour' => $validatedData['id_tour']
-            ]);
-
-
-        } else {
-
-            $penalite = Penalite::where('id_participant', $validatedData['id_participant'])->where('statut_penalite', 'Impayé')->first();
-            if ($penalite) {
-                $motant_cotise = ($validatedData['montant_cotise'] - $penalite['montant_penalite']) / 1.025;
-                $penalite->statut_penalite = 'Payé';
-                $penalite->save();
-            } else {
-                $motant_cotise = $validatedData['montant_cotise'] / 1.025;
-            }
-
+        if (!$transactionData['success']) {
+            return $transactionData;
         }
 
-        // Enregistre la cotisation dans la base de données
-        $cotisation = new Cotisation();
-        $cotisation->montant_cotise = $motant_cotise;
-        $cotisation->id_tour = $validatedData['id_tour'];
-        $cotisation->id_participant = $validatedData['id_participant'];
-        $cotisation->numero_paiement = $data['data']['transaction_id'];
-        $cotisation->statut_paiement_cotisation = $data['status'];
-        $cotisation->mode_paiement = 'mobile money';
-        //$cotisation->id_utilisateur = 'mobile money';
-        $cotisation->date_cotisation = now();
-        $cotisation->save();
 
-        // Met à jour le montant distribué du tour associé
-        $tour = $cotisation->tour;
-        if ($tour) {
-            $tour->montant_distribue += $cotisation->montant_cotise;
+        // 2. Récupérer le tour et la tontine
+        [$tour, $tontine] = $this->recupererTourEtTontine($validatedData['id_tour']);
 
-            // Vérifie si la cagnotte est pleine (montant distribué atteint le montant total)
-            if ($tour->montant_distribue >= $tontine->montant_total) {
+        // 3. Calculer le montant net
+        //[$montantNet, $montantGarantie] = $this->calculerMontantNet($validatedData['montant_cotiser'], $tontine);
+        $penaliteService = new \App\Services\PenaliteService();
+        [$montantNet, $montantGarantie] = $penaliteService->calculerMontantNet($validatedData, $tontine, $validatedData['mode_paiement']);
+        //$montantNet = ($tontine->montant_a_cotiser);
+        // 4. Enregistrer la cotisation et la garantie
+        //$cotisation = $this->enregistrerCotisation($validatedData, $montantNet, $transactionData['transaction_id'], $transactionData['status']);
+        $cotisation = $this->enregistrerCotisation($validatedData, $montantNet, $transactionData['transaction_id'], $transactionData['status']);
+        // $transaction = $this->insererGarantie($validatedData, $cotisation, $montantGarantie);
+        // 5. Mettre à jour le tour et gérer la distribution
+        $this->mettreAJourTourEtDistribution($cotisation, $tour, $tontine, $montantNet, $montantGarantie, $validatedData['mode_paiement']);
 
-                // Prépare les données pour récupérer le participant bénéficiaire
-                $donneesPart = [
-                    'numero_ordre' => $tour->numero_tour,
-                    'id_tontine' => $tour->id_tontine
-                ];
-
-                $request = new Request($donneesPart);
-
-                // Récupère le participant bénéficiaire via le contrôleur
-                $participantController = new ParticipantController();
-                $participant = $participantController->recupererParticipant($request)->getData(true);
-
-                // Vérifie si 'utilisateur' existe
-                if (!isset($participant['utilisateur']) || !$participant['utilisateur']) {
-                    // Gère le cas d'erreur ici, exemple :
-                    throw new \Exception('Participant ou utilisateur non trouvé');
-                }
-
-                if ($tontine->type_tontine == 'Tontine différée') {
-                    $tontine->montant_cumule += $motant_cotise;
-                    if ($tour->numero_tour >= round($tontine->nombre_participants / 2)) {
-
-                        // Effectue le transfert de la cagnotte au bénéficiaire via une API externe
-                        $responseTransfert = Http::post('http://192.168.252.43:8000/paiement', [
-                            'numero' => $participant['utilisateur']['telephone'],
-                            'tontine_id' => $tour->id_tontine,
-                            'tour_id' => $tour->id_tour,
-                            'montant_distribue' => $tour->montant_distribue,
-                            'montant_total' => $tontine->montant_total
-                        ]);
-
-                        // Vérifie si le transfert a échoué
-                        if (!$responseTransfert->successful()) {
-                            return [
-                                'success' => false,
-                                'message' => 'Erreur lors du transfert',
-                                'details' => $responseTransfert->body()
-                            ];
-
-                        }
-
-                    }
-
-                } else {
-
-                    // Effectue le transfert de la cagnotte au bénéficiaire via une API externe
-                    $responseTransfert = Http::post('http://192.168.252.43:8000/paiement', [
-                        'numero' => $participant['utilisateur']['telephone'],
-                        'tontine_id' => $tour->id_tontine,
-                        'tour_id' => $tour->id_tour,
-                        'montant_distribue' => $tour->montant_distribue,
-                        'montant_total' => $tontine->montant_total
-                    ]);
-
-                    // Vérifie si le transfert a échoué
-                    if (!$responseTransfert->successful()) {
-                        return [
-                            'success' => false,
-                            'message' => 'Erreur lors du transfertt',
-                            'details' => $responseTransfert->body()
-                        ];
-
-                    }
-                }
-
-
-                $donnees_tour = new Request([
-                    'id_tontine' => $tour->id_tontine,
-                    'montant_distribue' => $tour->montant_distribue,
-                    'numero_tour' => $tour->numero_tour,
-                    'date_debut_tour' => $tour->date_debut_tour,
-                    'date_fin_tour' => $tour->date_fin_tour,
-                ]);
-
-
-                // Marque la tontine comme terminé
-                if ($tour->numero_tour == $tontine->nombre_participants) {
-                    //recuperer les participants de la tontine
-                    $participants = \App\Models\Participant::where('id_tontine', $tour->id_tontine)->get();
-                    foreach ($participants as $participant) {
-                        // Logique pour envoyer notification
-                        Notification::create([
-                            'id_utilisateur' => $participant->id_utilisateur,
-                            'titre' => "Rappel Tontine",
-                            'description_notification' => "La tontine " . $tontine->nom_tontine . " est terminer .",
-                            'id_tontine' => $tontine->id_tontine,
-                            'date_creation' => now(),
-                            'lu' => false,
-                            'type_notification' => 'rappel_tontine',
-                        ]);
-                    }
-
-
-                    $tontine->statut_tontine = 'terminé';
-
-                } else {
-                    //recuperer les participants de la tontine
-                    $participants = \App\Models\Participant::where('id_tontine', $tour->id_tontine)->get();
-                    foreach ($participants as $participant) {
-                        // Logique pour envoyer notification
-                        Notification::create([
-                            'id_utilisateur' => $participant->id_utilisateur,
-                            'titre' => "Rappel Tontine",
-                            'description_notification' => "Le tour N°" . $tour->numero_tour . " de la tontine " . $tontine->nom_tontine . " est terminée .",
-                            'id_tontine' => $tontine->id_tontine,
-                            'date_creation' => now(),
-                            'lu' => false,
-                            'type_notification' => 'rappel_tontine',
-                        ]);
-                    }
-                    // Passe au tour suivant en appelant le contrôleur approprié
-                    $controller = new TourController();
-                    $results = $controller->changerDeTour($donnees_tour, $tour->id_tontine);
-
-                    // Vérifie si le changement de tour a échoué
-                    if ($results->getStatusCode() !== 200) {
-                        return [
-                            'success' => false,
-                            'message' => 'Erreur lors du changement de tour'
-                        ];
-                    }
-
-                }
-                // Marque le tour comme terminé
-                $tour->statut_tour = 'terminé';
-            }
-
-
-
-            // Sauvegarde les modifications du tour
-            $tour->save();
-            $tontine->save();
-        }
-
-        // Retourne le succès de l'opération avec les données de la cotisation
         return [
             'success' => true,
             'message' => 'Cotisation insérée avec succès',
-            'data' => $cotisation
+            'data' => $cotisation,
+            // 'transaction' => $transaction
         ];
     }
+
+
+    private function recupererTourEtTontine(int $id_tour): array
+    {
+        $tour = Tour::findOrFail($id_tour);
+        $tontine = Tontine::findOrFail($tour->id_tontine);
+        return [$tour, $tontine];
+    }
+
+    function montant_net_inverse(float $mnt_arrondi, int $nb_participant): array
+    {
+        // Tester tous les montants possibles avant arrondi
+        for ($mnt_possible = $mnt_arrondi - 10; $mnt_possible <= $mnt_arrondi; $mnt_possible += 0.01) {
+            // Supposons que c'est le montant juste avant l'arrondi
+            // On va essayer de retrouver le net
+            for ($net = 0.01; $net < $mnt_possible; $net += 0.01) {
+                $garantie = round($net / $nb_participant);
+                $mnt_calcule = $net + $garantie + $net * 0.025;
+                if (ceil($mnt_calcule / 10) * 10 == $mnt_arrondi) {
+                    return [$net, $garantie];
+                }
+            }
+        }
+        return [0, 0];
+    }
+
+    private function enregistrerCotisation(array $data, float $montantNet, string $transactionId, string $status): Cotisation
+    {
+        $cotisation = new Cotisation();
+        $cotisation->montant_cotise = $montantNet;
+        $cotisation->id_tour = $data['id_tour'];
+        $cotisation->id_participant = $data['id_participant'];
+        $cotisation->numero_paiement = $transactionId;
+        $cotisation->statut_paiement_cotisation = $status;
+        $cotisation->mode_paiement = $data['mode_paiement'];
+        $cotisation->date_cotisation = now();
+        $cotisation->save();
+
+        return $cotisation;
+    }
+    private function mettreAJourTourEtDistribution(Cotisation $cotisation, Tour $tour, Tontine $tontine, float $montantNet, float $montantGarantie, string $modePaiement)
+    {
+        $tour->montant_distribue += $cotisation->montant_cotise;
+        if ($modePaiement === 'assurance') {
+            $tontine->montant_cumule += $montantGarantie;
+        }
+
+        if ($tour->montant_distribue >= $tontine->montant_total) {
+            $participant = $this->recupererBeneficiaire($tour);
+
+            if (!$participant || !isset($participant['utilisateur'])) {
+                throw new \Exception('Participant ou utilisateur non trouvé');
+            }
+
+            if ($tontine->type_tontine == 'Tontine différée') {
+                $this->gererTontineDifferee($tontine, $tour, $montantNet, $participant);
+            } else {
+                $this->effectuerTransfert($tour, $tontine, $participant);
+            }
+
+            $this->envoyerNotifications($tour, $tontine);
+            $this->gererFinOuChangementDeTour($tour, $tontine);
+            $tour->statut_tour = 'terminé';
+        }
+
+        $tour->save();
+        $tontine->save();
+    }
+    private function recupererBeneficiaire(Tour $tour): array
+    {
+        $request = new Request([
+            'numero_ordre' => $tour->numero_tour,
+            'id_tontine' => $tour->id_tontine
+        ]);
+        return (new ParticipantController())->recupererParticipant($request)->getData(true);
+    }
+
+    private function gererTontineDifferee(Tontine $tontine, Tour $tour, float $montantNet, array $participant)
+    {
+        $tontine->montant_cumule += $montantNet;
+        if ($tour->numero_tour >= round($tontine->nombre_participants / 2)) {
+            $this->effectuerTransfert($tour, $tontine, $participant);
+        }
+    }
+
+    private function effectuerTransfert(Tour $tour, Tontine $tontine, array $participant)
+    {
+        $response = Http::post('http://192.168.252.43:8000/paiement', [
+            'numero' => $participant['utilisateur']['telephone'],
+            'tontine_id' => $tour->id_tontine,
+            'tour_id' => $tour->id_tour,
+            'montant_distribue' => $tour->montant_distribue,
+            'montant_total' => $tontine->montant_total
+        ]);
+
+        if (!$response->successful()) {
+            throw new \Exception('Erreur lors du transfert : ' . $response->body());
+        }
+    }
+
+    private function envoyerNotifications(Tour $tour, Tontine $tontine)
+    {
+        $participants = Participant::where('id_tontine', $tour->id_tontine)->get();
+        foreach ($participants as $participant) {
+            Notification::create([
+                'id_utilisateur' => $participant->id_utilisateur,
+                'titre' => "Rappel Tontine",
+                'description_notification' => $tour->numero_tour == $tontine->nombre_participants
+                    ? "La tontine {$tontine->nom_tontine} est terminée."
+                    : "Le tour N°{$tour->numero_tour} de la tontine {$tontine->nom_tontine} est terminé.",
+                'id_tontine' => $tontine->id_tontine,
+                'date_creation' => now(),
+                'lu' => false,
+                'type_notification' => 'rappel_tontine',
+            ]);
+        }
+    }
+
+    private function gererFinOuChangementDeTour(Tour $tour, Tontine $tontine)
+    {
+        if ($tour->numero_tour == $tontine->nombre_participants) {
+            $tontine->statut_tontine = 'terminé';
+        } else {
+            $controller = new TourController();
+            $donnees_tour = new Request([
+                'id_tontine' => $tour->id_tontine,
+                'montant_distribue' => $tour->montant_distribue,
+                'numero_tour' => $tour->numero_tour,
+                'date_debut_tour' => $tour->date_debut_tour,
+                'date_fin_tour' => $tour->date_fin_tour,
+            ]);
+
+            $result = $controller->changerDeTour($donnees_tour, $tour->id_tontine);
+            if ($result->getStatusCode() !== 200) {
+                throw new \Exception('Erreur lors du changement de tour');
+            }
+        }
+    }
+
+
 }
 

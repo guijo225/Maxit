@@ -10,21 +10,36 @@ class CotisationController extends Controller
     //
     public function insererCotisation(Request $request)
     {
-        $validatedData = $request->validate([
-            'montant_cotise' => 'required|numeric',
-            'id_tour' => 'required|exists:tour,id_tour',
-            'id_participant' => 'required|exists:participant,id_participant',
-            'telephone' => 'required|string',
-        ]);
+        try {
+            $validatedData = $request->validate([
+                'montant_cotise' => 'required|numeric',
+                'id_tour' => 'required|integer',
+                'id_participant' => 'integer',
+                'telephone' => 'required|string',
+                'mode_paiement' => 'required|string',
+            ]);
 
-        $tontineService = new \App\Services\TontineService();
-        $result = $tontineService->insererCotisation($validatedData);
 
-        if (!$result['success']) {
-            return response()->json(['error' => $result['message'], 'details' => $result['details'] ?? null], 500);
+            $tontineService = new \App\Services\TontineService();
+            $result = $tontineService->insererCotisation($validatedData);
+
+            if (!$result['success']) {
+                return response()->json(['error' => $result['message'], 'details' => $result['details'] ?? null], 500);
+            }
+            return response()->json(['data' => $validatedData], 201);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'erreur' => $e->getMessage(),
+                'fichier' => $e->getFile(),
+                'ligne' => $e->getLine()
+            ], 500);
         }
 
-        return response()->json(['message' => $result['message'], 'data' => $result['data']], 201);
+
+
+
+        // return response()->json(['message' => $result['message'], 'data' => $result['data']], 201);
     }
 
 }

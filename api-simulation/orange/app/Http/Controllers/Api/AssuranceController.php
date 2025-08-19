@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Assurance_transaction;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 
 class AssuranceController extends Controller
@@ -16,9 +17,9 @@ class AssuranceController extends Controller
             $request->validate([
                 'telephone' => 'required',
                 'montant' => 'required|numeric',
-                'statut' => 'required|string',
-                'tontine_id' => 'required|integer',
-                'user_id' => 'required|integer',
+                'id_tour' => 'required|integer',
+                'id_participant' => 'required|integer',
+                // 'tontine_id' => 'required|integer',
             ]);
 
             $transaction_id = 'assur_' . Str::random(20);
@@ -27,12 +28,34 @@ class AssuranceController extends Controller
             $assurance_transaction = Assurance_transaction::create([
                 'phone' => $request->input('telephone'),
                 'montant' => $request->input('montant'),
-                'statut' => $request->input('statut'),
-                'tontine_id' => $request->input('tontine_id'),
-                'user_id' => $request->input('user_id'),
+                'statut' => 'rembourssement',
+                'id_tour' => $request->input('id_tour'),
+                'id_participant' => $request->input('id_participant'),
+                // 'tontine_id' => $request->input('tontine_id'),
                 'transaction_id' => $transaction_id,
             ]);
 
+            if ($assurance_transaction->exists()) {
+
+                // $donneCotisation = new Request([
+                //     'montant_cotise' => $request->input('montant'),
+                //     'id_tour' => $request->input('id_tour'),
+                //     'id_participant' => $request->input('id_participant'),
+                //     'telephone' => $request->input('telephone'),
+                //     'mode_paiement' => 'Assurance',
+                // ]);
+
+                //$response = Http::post('http://192.168.252.228:8000/api/insererCotisation', $donneCotisation);
+
+                // Appel à l'API OM pour simuler une transaction de dépôt
+
+                /*$response = Http::post('http://192.168.252.228:8001/api/om_transactions_simules', [
+                    'telephone' => $request->input('telephone'),
+                    'montant' => $request->input('montant'),
+                    'statut' => 'depot',
+                ]);*/
+
+            }
             return response()->json([
                 'success' => true,
                 'data' => $transaction_id,

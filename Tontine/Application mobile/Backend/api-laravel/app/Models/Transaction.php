@@ -10,7 +10,7 @@ use App\Models\Paticipant;
 class Transaction extends Model
 {
     use HasFactory;
-    protected $table = 'transaction';
+    protected $table = 'transactions';
     protected $primaryKey = 'id_transaction';
     public $timestamps = false;
     public $incrementing = false;

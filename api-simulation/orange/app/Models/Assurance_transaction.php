@@ -12,11 +12,12 @@ class Assurance_transaction extends Model
     public $incrementing = false;
 
     protected $fillable = [
-        'id',
-        'user_id',
-        'transaction_id',
+        'id_participant',
+        'id_tour',
         'montant',
         'statut',
+        'transaction_id',
+        'phone',
     ];
     public $timestamps = false;
 }
