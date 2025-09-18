@@ -1,10 +1,11 @@
 {
   "pages": [
-    "pages/chargement/chargement",
+    "pages/confirm/confirm",
     "pages/payement/payement",
+    "pages/acheter/acheter",
+    "pages/chargement/chargement",
     "pages/panier/panier",
     "pages/negociation/negociation",
-    "pages/acheter/acheter",
     "pages/historiquemessage/historiquemessage",
     "pages/messagevendeur/messagevendeur",
     "pages/message/message",

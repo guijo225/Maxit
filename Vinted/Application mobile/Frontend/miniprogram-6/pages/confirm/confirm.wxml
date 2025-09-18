@@ -1,0 +1,32 @@
+<view class="container">
+<view class="section1">
+  <image src="/images/croix.png" mode="aspectFill" class="croix"/>
+  <image src="/images/Group.svg" mode="aspectFill" class="succes"/>
+  <view class="texte">Merci pour votre achat!</view>
+</view>
+<view class="section2">
+  <view class="tex">Detail du payement</view>
+  <view class="content">
+  <image src="/images/fc-barcelone.png" mode="aspectFill" class="habit"/>
+  <view class="detail">
+  <view class="row">
+    <view class="label">Date</view>
+    <view class="value">12/12/2025</view>
+  </view>
+
+  <view class="row">
+    <view class="label">Moyen de paiement</view>
+    <view class="value">Orange Money ****67</view>
+  </view>
+
+  <view class="row">
+    <view class="label">Prix total</view>
+    <view class="value">12,000 FCFA</view>
+  </view>
+</view>
+  </view>
+</view>
+
+<view class="bouton" bindtap="contiAchat">Continuez vos achats</view>
+
+</view>
