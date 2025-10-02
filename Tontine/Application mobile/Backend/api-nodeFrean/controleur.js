@@ -45,7 +45,7 @@ export const creerTontine = async (req, res) => {
   const montant_total = nombre_participants * montant_a_cotise;
   const date_creation = new Date().toISOString();
   const date_debut = new Date().toISOString();
-  const statut_tontine = "en_attente";
+  const statut_tontine = "En attente";
 
   const client = await pool.connect();
 
@@ -119,7 +119,7 @@ export const creerTontine = async (req, res) => {
     console.error("Erreur lors de la création de la tontine :", err);
     return res.status(500).json({ error: "Erreur serveur." });
   } finally {
-    client.release();
+    if (client) client.release();
   }
 };
 
@@ -216,6 +216,6 @@ export const updateTontine = async (req, res) => {
     console.error("Erreur lors de la modification de la tontine :", err);
     return res.status(500).json({ error: "Erreur serveur." });
   } finally {
-    client.release();
+    if (client) client.release();
   }
 };

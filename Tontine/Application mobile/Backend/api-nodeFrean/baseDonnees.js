@@ -1,7 +1,7 @@
-import dotenv from 'dotenv';
-import pg from 'pg';
+import dotenv from "dotenv";
+import pg from "pg";
 
-dotenv.config();// permet de charger les variables d'environnement
+dotenv.config(); // permet de charger les variables d'environnement
 const { Pool } = pg;
 
 const pool = new Pool({
@@ -10,9 +10,8 @@ const pool = new Pool({
   database: process.env.PG_DATABASE,
   password: process.env.PG_PASSWORD,
   port: process.env.PG_PORT,
-  // ssl: {
-  //   rejectUnauthorized: false
-  // }
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
 export default pool;
-

@@ -36,9 +36,6 @@ class CotisationController extends Controller
             ], 500);
         }
 
-
-
-
         // return response()->json(['message' => $result['message'], 'data' => $result['data']], 201);
     }
 

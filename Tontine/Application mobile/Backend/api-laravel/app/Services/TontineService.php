@@ -146,8 +146,8 @@ class TontineService
     {
         $response = Http::post('http://192.168.252.43:8000/paiement', [
             'numero' => $participant['utilisateur']['telephone'],
-            'tontine_id' => $tour->id_tontine,
-            'tour_id' => $tour->id_tour,
+            'tontine_id' => intval($tour->id_tontine),
+            'tour_id' => intval($tour->id_tour),
             'montant_distribue' => $tour->montant_distribue,
             'montant_total' => $tontine->montant_total
         ]);

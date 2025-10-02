@@ -26,3 +26,6 @@ Route::get('/users/{id}', [UsersController::class, 'show']);
 Route::post('/om_transactions_simules', [Om_transactions_simulesController::class, 'simulePayment']);
 //Route::get('/om_transactions_simules/{id}', [Om_transactions_simulesController::class, 'getTransaction']);
 Route::post('/paiementAssurances', [AssuranceController::class, 'paiementAssurances']);
+
+Route::post('/debitCompte', [Om_transactions_simulesController::class, 'debitCompte']);
+Route::post('/creditCompte', [Om_transactions_simulesController::class, 'creditCompte']);
