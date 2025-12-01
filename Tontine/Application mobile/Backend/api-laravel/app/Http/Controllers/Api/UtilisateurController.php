@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Utilisateur;
 use App\Http\Controllers\Controller;
-use Hash;
 use Illuminate\Http\Request;
 
 class UtilisateurController extends Controller
@@ -38,10 +37,6 @@ class UtilisateurController extends Controller
     {
         // Rechercher l'utilisateur par pseudo OU par contact
         $utilisateur = Utilisateur::where('maxitId', $id)->first();
-
-        /*if (!$utilisateur || !Hash::check($request->mot_de_passe, $utilisateur->mot_de_passe)) {
-            return response()->json(['message' => 'Identifiant ou mot de passe incorrect'], 401);
-        }*/
 
         if ($utilisateur) {
             return response()->json([

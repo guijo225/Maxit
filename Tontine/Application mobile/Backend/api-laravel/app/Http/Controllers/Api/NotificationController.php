@@ -8,6 +8,22 @@ use App\Models\Notification;
 
 class NotificationController extends Controller
 {
+    public function createNotification($id_utilisateur, $description, $id_tontine)
+    {
+        $notification = Notification::create([
+            'id_utilisateur' => $id_utilisateur,
+            'titre' => "Information Tontine",
+            'description_notification' => $description,
+            'id_tontine' => $id_tontine,
+            'date_creation' => now(),
+            'lu' => false,
+            'type_notification' => 'info_tontine',
+        ]);
+        return response()->json([
+            'notification' => $notification
+        ]);
+    }
+
     //
     public function getNotifications(Request $request)
     {

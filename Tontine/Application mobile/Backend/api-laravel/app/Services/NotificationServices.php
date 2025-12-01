@@ -8,7 +8,7 @@ use App\Models\Tontine;
 use App\Models\Tour;
 
 
-class NotificationService
+class NotificationServices
 {
     public function envoyerNotifications(Tour $tour, Tontine $tontine)
     {
@@ -26,5 +26,22 @@ class NotificationService
                 'type_notification' => 'rappel_tontine',
             ]);
         }
+
     }
+    public function createNotification($id_utilisateur, $description, $id_tontine)
+    {
+        $notification = Notification::create([
+            'id_utilisateur' => $id_utilisateur,
+            'titre' => "Information Tontine",
+            'description_notification' => $description,
+            'id_tontine' => $id_tontine,
+            'date_creation' => now(),
+            'lu' => false,
+            'type_notification' => 'info_tontine',
+        ]);
+        return response()->json([
+            'notification' => $notification
+        ]);
+    }
+
 }

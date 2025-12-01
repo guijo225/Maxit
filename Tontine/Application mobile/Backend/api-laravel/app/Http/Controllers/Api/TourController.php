@@ -18,12 +18,6 @@ class TourController extends Controller
         if (!$tour) {
             return response()->json(['message' => 'Tour non trouvé'], 404);
         }
-
-
-        //$tour->statut_tour = 'terminé';
-        //$tour->save();
-
-
         $newTour = new Tour();
         $newTour->id_tontine = $id;
         $newTour->numero_tour = $tour->numero_tour + 1;
@@ -34,6 +28,24 @@ class TourController extends Controller
         $newTour->save();
 
         return response()->json(['message' => 'Tour changé avec succès', 'nouveau_tour' => $newTour], 200);
+    }
+    public function ajouter($id_tontine)
+    {
+        $services = new TourServices;
+        $result = $services->addFirstTour($id_tontine);
+        echo $result;
+    }
+
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(int $id_tontine)
+    {
+        $tour = Tour::with('cotisation')->where('id_tontine', $id_tontine)->orderBy('numero_tour', 'desc')->get();
+        return response()->json([
+            'tour' => $tour,
+        ], 200);
     }
 
 

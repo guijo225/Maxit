@@ -48,13 +48,14 @@ class ParticipantController extends Controller
         return response()->json($participants, 200);
     }
 
-    Public function updateOrdre(request $request){
-        foreach ($request->all() as $user){
+    public function updateOrdre(request $request)
+    {
+        foreach ($request->all() as $user) {
             Participant::where('id_participant', $user['id'])->update(['numero_ordre' => $user['ordre']]);
         }
     }
 
-    Public function recupererParticipant(request $request)
+    public function recupererParticipant(request $request)
     {
         // Logique pour récupérer un participant spécifique
         $participant = Participant::Where('numero_ordre', $request->numero_ordre)->Where('id_tontine', $request->id_tontine)->first();
@@ -68,4 +69,31 @@ class ParticipantController extends Controller
         $participantArray['utilisateur'] = $utilisateur ? $utilisateur->toArray() : null;
         return response()->json($participantArray);
     }
+
+    public function index()
+    {
+        $participant = Participant::with('tontine', 'utilisateur', 'penalite')->get();
+        return response()->json([
+            'participant' => $participant
+        ]);
+    }
+
+
+    public function show(int $id_tontine)
+    {
+        $participant = Participant::where(
+            'id_tontine',
+            $id_tontine
+        )->with(
+                [
+                    'cotisation' => function ($query) {
+                        $query->orderBy('date_cotisation', 'desc');
+                    },
+                ]
+            )->get();
+        return response()->json([
+            'participant' => $participant
+        ]);
+    }
+
 }
