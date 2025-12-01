@@ -1,0 +1,135 @@
+/* Conteneur principal */
+.container {
+    padding: 20px;
+    background-color: #FFFFFF;
+    padding-bottom: 100px; /* Augmenté pour éviter que les boutons flottants soient cachés */
+  }
+  
+  /* Header de la page */
+  .header {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+  /* Icône de retour */
+  .back-icon {
+    width: 24px;
+    height: 24px;
+  }
+  
+  /* Barre de recherche */
+  .search-bar input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  /* Section des contacts */
+  .contacts-section {
+    margin-top: 10px;
+    width: 100%;
+  }
+  
+  .contact-text-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20rpx 30rpx;
+    border-bottom: 1rpx solid #ddd;
+  }
+  
+  .contacts-text {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .contact-text {
+    font-size: 30rpx;
+    font-weight: bold;
+  }
+  
+  .select-text {
+    background: none;
+    border: none;
+    font-size: 30rpx;
+    color: #000000;
+  }
+  
+  .contacts-list {
+    margin-top: 10px;
+    height: 400px;
+  }
+  
+  .contact-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .contact-circle {
+    width: 40px;
+    height: 40px;
+    background-color: #ff6200;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+  }
+  
+  .contact-details {
+    flex: 1;
+  }
+  
+  .contact-name {
+    display: block;
+  }
+  
+  .contact-phone {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .checkbox {
+    margin-left: 0;
+    margin-right: 10px;
+  }
+  
+  /* Bouton flottant "Ignorer" */
+  .floating-ignore {
+    position: fixed;
+    bottom: 20px;
+    left: 20px; /* Aligné à gauche */
+    width: 175rpx;
+    text-align: center;
+    font-size: 32rpx;
+    color: #FF7900;
+    padding: 20rpx 0;
+
+    z-index: 999;
+  }
+  
+  /* Bouton flottant "Ajouter" */
+  .floating-add {
+    position: fixed;
+    bottom: 20px;
+    right: 20px; /* Aligné à droite */
+    width: 175rpx;
+    text-align: center;
+    font-size: 32rpx;
+    color: #FFFFFF;
+    padding: 20rpx 0;
+    background: #FF6200; /* Couleur de fond pour le bouton Ajouter */
+    box-shadow: 0 -4rpx 8rpx rgba(0, 0, 0, 0.05);
+    z-index: 999;
+    border-radius: 10rpx; /* Coins arrondis */
+  }

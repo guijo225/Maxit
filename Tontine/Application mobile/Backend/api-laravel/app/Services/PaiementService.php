@@ -12,7 +12,7 @@ class PaiementService
     {
         try {
             // Appel à l'API de l'assurance pour simuler une transaction de dépôt
-            $response = Http::post('http://192.168.252.228:8001/api/paiementAssurances', [
+            $response = Http::post('http://192.168.252.211:8001/api/paiementAssurances', [
                 'telephone' => $data['telephone'],
                 'montant' => $data['montant_cotise'],
                 'statut' => 'depot',
@@ -47,7 +47,7 @@ class PaiementService
     {
         try {
             // Appel à l'API OM pour simuler une transaction de dépôt
-            $response = Http::post('http://192.168.252.228:8001/api/om_transactions_simules', [
+            $response = Http::post('http://192.168.252.211:8001/api/om_transactions_simules', [
                 'telephone' => $data['telephone'],
                 'montant' => $data['montant_cotise'],
                 'statut' => 'depot',
@@ -77,7 +77,7 @@ class PaiementService
 
     public function effectuerTransfert(Tour $tour, Tontine $tontine, array $participant)
     {
-        $response = Http::post('http://192.168.252.43:8000/paiement', [
+        $response = Http::post('http://192.168.252.202:8000/paiement', [
             'numero' => $participant['utilisateur']['telephone'],
             'tontine_id' => $tour->id_tontine,
             'tour_id' => $tour->id_tour,

@@ -1,0 +1,41 @@
+<!--pages/connexion/connexion.wxml-->
+<navigation-bar back="{{true}}" color="black" background="#FFF" ></navigation-bar>
+<view style="background-color: rgb(65, 63, 63); height: 0.25px; margin-bottom: 40px ;"></view>
+
+<view style="text-align : center ; font-weight:900; font-size: larger; margin-bottom: 50px;">Connexion</view>
+
+<!-- Les champs du fomulaire  -->
+<form bindsubmit="connexion">
+    
+    <input type="text" placeholder="Pseudo ou Numéro de Téléphone" style="border: solid 3rpx; padding: 15px; margin: 20px; border-radius: 10px;" bindinput="onPseudoChange" value="{{pseudo}}"/>
+    <input type="password" placeholder="code secret" style="border: solid 3rpx; padding: 15px; margin: 20px; border-radius: 10px;" bindinput="onPasswordChange" value="{{mot_de_passe}}"/>
+
+    <view style="display: flex; justify-content: center;">
+    <label class="checkbox">
+        <checkbox value="" checked=""/> Se souvenir de moi
+    </label>
+    <text style="color: rgb(255, 135, 23); margin-left: 40px;">Mot de pass oublié? </text>
+    </view>
+
+    <button style="margin-top: 50px ;color: white; background-color: rgb(255, 135, 23); font-weight: 400;" form-type="submit">Valider
+    </button>
+</form>
+
+<!-- Le trait de séparation-->
+<view style="background-color: rgb(65, 63, 63); height: 0.25px; margin: 50px"> 
+</view>
+
+<!-- box google et facebook -->
+<view style="display: flex; justify-content: space-between; margin : 30px">
+<view style="align-items: center; display: flex; padding: 15px; border: solid 3rpx; border-radius: 10px;"> 
+<image src="../../images/google.png" style="height: 20px; width: 20px; ">
+</image> <text style="margin-left: 5px;">Avec Google</text> </view>
+
+<view style="align-items: center; display: flex; padding: 15px; border: solid 3rpx; border-radius: 10px;"> 
+<image src="../../images/facebook.png" style="height: 30px; width: 30px; ">
+</image> <text>Avec Facebook</text> </view>
+</view>
+
+<!-- Texte création de compte et s'inscire -->
+<view style="text-align: center; margin-top: 50px;">Créer un compte ? <text style="color: rgb(255, 135, 23);" bind:tap="pageInscription">S'inscrire</text> </view>
+

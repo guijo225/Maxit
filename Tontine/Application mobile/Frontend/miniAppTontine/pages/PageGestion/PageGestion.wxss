@@ -1,0 +1,572 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.bottom-modal {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 20px;
+    transition: transform 0.3s ease-out;
+    transform: translateY(100%);
+    z-index: 1000;
+}
+
+.bottom-modal.show {
+    transform: translateY(0);
+}
+
+.bottom-modal.hide {
+    transform: translateY(100%);
+}
+
+/* En-tête */
+.page-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    font-size: 32rpx;
+    font-weight: bold;
+    margin: 5% 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 32rpx;
+}
+
+/* Icône de retour et active */
+.back-icon {
+    width: 48rpx;
+    height: 48rpx;
+}
+
+/* Conteneur scrollable */
+.content {
+    padding: 20rpx;
+    box-sizing: border-box;
+    flex: 1;
+    overflow-y: auto;
+}
+
+/* Carte Tour */
+.tour-card {
+    display: flex;
+    background: #fff;
+    border-radius: 20rpx;
+    padding: 30rpx;
+    margin-bottom: 40rpx;
+    position: relative;
+    border: 2rpx solid #F16E00;
+
+    /* Ombre douce sur tous les côtés */
+    box-shadow: 0rpx 8rpx 20rpx rgba(0, 0, 0, 0.15);
+
+    /* Petit effet d’élévation */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tour-card:hover {
+    transform: translateY(-6rpx);
+    box-shadow: 0rpx 12rpx 28rpx rgba(0, 0, 0, 0.25);
+}
+
+.tour-card text:active {
+    opacity: 0.7;
+}
+
+.tour-image {
+    width: 200rpx;
+    height: 200rpx;
+    border-radius: 20rpx;
+}
+
+.tour-info {
+    margin-left: 20rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.tour-title {
+    font-size: 36rpx;
+    font-weight: bold;
+}
+
+.tour-text {
+    font-size: 28rpx;
+    color: #333;
+}
+
+/* Bandeau info */
+.info-banner {
+    background-color: #F16E00;
+    border-radius: 20rpx;
+    padding: 30rpx;
+    margin-bottom: 40rpx;
+    position: relative;
+    overflow: hidden;
+    /* background-image: url('https://cef-microfinance.org/IMG/logo/tontine.png?1701903138'); */
+}
+
+
+.swiper-container {
+    width: 100%;
+    height: 100rpx;
+    border-radius: 20rpx;
+    overflow: hidden;
+    box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.1);
+}
+
+.banner-text {
+    color: #fff;
+    font-size: 32rpx;
+    width: 65%;
+}
+
+.banner-image {
+    width: 120rpx;
+    height: 110rpx;
+    position: absolute;
+    right: 20rpx;
+    top: 10rpx;
+}
+
+/* Grille de cards */
+.card-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 10rpx;
+}
+
+/* Card individuelle */
+.action-card {
+    width: 48%;
+    background: #fff;
+    border-radius: 20rpx;
+    padding: 20rpx;
+    margin-bottom: 30rpx;
+    box-shadow: 0 4rpx 8rpx rgba(0.1, 0.1, 0.1, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-title {
+    font-size: 28rpx;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10rpx;
+}
+
+.card-text {
+    font-size: 24rpx;
+    text-align: center;
+    margin-bottom: 20rpx;
+}
+
+.card-image {
+    width: 150rpx;
+    height: 150rpx;
+}
+
+.image-lien {
+    width: 40rpx;
+    height: 40rpx;
+    margin-left: 10rpx;
+}
+
+.modal-title-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-button {
+    position: absolute;
+    right: 20rpx;
+    top: 20rpx;
+    width: 60rpx;
+    height: 60rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-icon {
+    font-size: 48rpx;
+    color: #6b7280;
+    line-height: 1;
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-container {
+    width: 95%;
+    max-height: 80vh;
+    min-height: 250rpx;
+    background: #fff;
+    border-radius: 24rpx;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.modal-overlay2 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.modal-container2 {
+    width: 100%;
+    max-height: 85vh;
+    background: #fff;
+    border-radius: 24rpx 24rpx 24rpx 24rpx;
+    display: flex;
+    flex-direction: column;
+    animation: slideUp 0.3s ease-out;
+    overflow: hidden;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+.modal-header1 {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+    padding: 30rpx;
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 20rpx;
+    border-bottom: 1rpx solid #ff77006c;
+}
+
+.modal-title1 {
+    font-size: 30rpx;
+    font-weight: 600;
+    color: #111827;
+    text-align: center;
+}
+
+.modal-title {
+    font-size: 36rpx;
+    font-weight: 600;
+    color: #111827;
+    text-align: center;
+}
+
+.modal-scroll {
+    flex: 1;
+    min-height: 200rpx;
+    max-height: 85vh;
+    overflow-y: auto;
+}
+
+.modal-scrollModif {
+    flex: 1;
+    height: 85vh;
+    overflow-y: auto;
+}
+
+
+.input-group {
+    margin-bottom: 30rpx;
+}
+
+.modal-scroll2 {
+    flex: 1;
+    max-height: calc(85vh - 200rpx);
+    overflow-y: auto;
+}
+
+.modal-scrollModaliter {
+    flex: 1;
+    height: 40vh;
+    overflow-y: auto;
+}
+
+.modal-body2 {
+    padding: 32rpx;
+}
+
+.input-group2 {
+    margin-bottom: 30rpx;
+}
+
+.input-label {
+    font-size: 28rpx;
+    font-weight: 500;
+    color: black;
+    margin-bottom: 12rpx;
+    display: block;
+}
+
+.input-field {
+    width: 18vh;
+    padding: 15rpx;
+    border: 1rpx solid #ff77006c;
+    border-radius: 15rpx;
+    font-size: 28rpx;
+    color: black;
+    background: #fff;
+    transition: border-color 0.2s ease;
+}
+
+.input-field.invitation {
+    min-width: 400rpx;
+}
+
+.textarea-field {
+    width: 90%;
+    padding: 26rpx 24rpx;
+    border: 2rpx solid #ff77006c;
+    border-radius: 16rpx;
+    font-size: 28rpx;
+    color: black;
+    background: #fff;
+    transition: border-color 0.2s ease;
+}
+
+.input-field:focus,
+.textarea-field:focus {
+    border-color: #F16E00;
+    outline: none;
+}
+
+.select-field {
+    width: 90%;
+    padding: 26rpx 24rpx;
+    border: 2rpx solid #ff77006c;
+    border-radius: 16rpx;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.select-arrow {
+    font-size: 24rpx;
+    color: #6b7280;
+    margin-left: 12rpx;
+}
+
+.textarea-field {
+    min-height: 140rpx;
+}
+
+.select-value.placeholder {
+    color: #9ca3af;
+}
+
+.modal-footer {
+    background: #fff;
+    padding: 1rpx;
+}
+
+.modal-footer1 {
+    background: #fff;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-left: 28%;
+    margin-bottom: 5%;
+}
+
+.modal-footer2 {
+    background: #fff;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-left: 28%;
+    margin-bottom: 5%;
+}
+
+.modaliteText {
+    font-size: 28rpx;
+    margin-bottom: 2rpx;
+    font-weight: normal;
+}
+
+.confirm-button {
+    width: 95%;
+    height: auto;
+    background-color: #F16E00;
+    color: #ffffff;
+    border-radius: 20rpx;
+    font-size: 32rpx;
+    font-weight: 600;
+    border: none;
+    box-shadow: 0 6rpx 20rpx rgba(255, 121, 0, 0.4);
+    transition: transform 0.2s ease;
+    padding: 18rpx;
+    text-align: center;
+}
+
+.content-box {
+    background-color: #fff;
+    padding: 24rpx;
+    /* border-radius: 16rpx; */
+    margin-bottom: 20rpx;
+    border: 1rpx solid #e9ecef;
+}
+
+.confirm-button1 {
+    width: 50%;
+    height: auto;
+    background-color: #F16E00;
+    color: #ffffff;
+    border-radius: 20rpx;
+    font-size: 32rpx;
+    font-weight: 600;
+    border: none;
+    box-shadow: 0 6rpx 20rpx rgba(255, 121, 0, 0.4);
+    transition: transform 0.2s ease;
+    padding: 20rpx;
+    justify-content: center;
+    align-items: center;
+}
+
+.confirm-button1:active {
+    transform: scale(0.98);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 375px) {
+    .carousel-section {
+        padding: 15rpx;
+    }
+
+    .swiper-container {
+        height: 250rpx;
+    }
+
+    .condition-card {
+        padding: 24rpx;
+    }
+
+    .condition-text {
+        font-size: 26rpx;
+    }
+
+    .footer-fixed {
+        padding: 24rpx 15rpx;
+        padding-bottom: calc(24rpx + env(safe-area-inset-bottom));
+    }
+
+    .modal-container {
+        width: 95%;
+        max-height: 85vh;
+        min-height: 300rpx;
+    }
+
+   
+
+    .input-field.invitation {
+        min-width: 300rpx;
+    }
+}
+
+.modal-body {
+    padding: 40rpx;
+    border-radius: 20rpx;
+    margin: 20rpx;
+}
+
+.section-title {
+    margin-bottom: 20rpx;
+}
+
+.section-title text {
+    font-size: 32rpx;
+    font-weight: bold;
+    color: #333;
+    padding-bottom: 10rpx;
+    display: inline-block;
+}
+
+.modalite-text {
+    font-size: 28rpx;
+    color: #555;
+    line-height: 48rpx;
+    margin-bottom: 12rpx;
+    font-weight: normal;
+}
+
+@media screen and (min-width: 414px) {
+    .carousel-section {
+        padding: 30rpx;
+    }
+
+    .swiper-container {
+        height: 350rpx;
+    }
+
+    .condition-card {
+        padding: 40rpx;
+    }
+
+    .modal-container {
+        width: 90%;
+        max-height: 70vh;
+        min-height: 250rpx;
+    }
+
+}
+.input-disabled {
+    background-color: #f0f0f0;
+    color: #999;
+    border: 1px solid #ccc;
+  }
+  
+  .input-disabled {
+    background-color: #f0f0f0;
+    color: #999;
+    border: 1px solid #ccc;
+  }

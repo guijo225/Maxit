@@ -1,0 +1,343 @@
+<view class="page-container">
+    <!-- Barre de navigation personnalisée -->
+    <nav style="width: 750rpx; height: 184rpx; display: block; box-sizing: border-box"></nav>
+
+    <!-- En-tête -->
+    <title_bar source_icon="/images/cloche.jpg" label="{{donnee.tontine.nom_tontine}}" donnee="{{donnee}}"></title_bar>
+    <!--<view class="header">
+        <image src="../../images/retour.svg" class="back-icon" bindtap="goBack" />
+        <text>Gestion tontine</text>
+        <image src="../../images/active.svg" class="back-icon" bindtap="goToNotification" />
+    </view>-->
+    <error wx:if="{{showError}}" errorMessage="{{errorMessage}}"></error>
+    <!-- Contenu principal scrollable -->
+    <scroll-view class="content" scroll-y="true" enhanced="true" show-scrollbar="false">
+
+        <!-- Carte récapitulative du tour de tontine -->
+        <view class="tour-card" bindtap="goToTour">
+            <block wx:if="{{!statut_tontine}}" data-tontine="{{item}}">
+                <image src="../../images/envoyer.svg" class="tour-image" />
+                <view class="tour-info" wx:if="{{info.tour.length >  0}}">
+                    <text class="tour-title">Tour N°{{info.tour[0].numero_tour}}</text>
+                    <text class="tour-text">Ayant cotisé: {{info.tour[0].cotisation.length}}</text>
+                    <text class="tour-text">Argent collecté: {{info.tour[0].montant_distribue}}</text>
+                </view>
+                <view wx:if="{{loaded && info.tour.length === 0}}" style="margin-top: 10%;"> La tontine n'a pas encore débuté</view>
+            </block>
+            <block wx:if="{{statut_tontine}}" data-tontine="{{item}}">
+                <image src="../../images/envoyer.svg" class="tour-image" />
+                <view class="tour-info" wx:if="{{info.tour.length >  0}}">
+                    <text class="tour-title">Tontine terminée</text>
+                </view>
+            </block>
+            <view style="position: absolute; right: 20rpx; bottom: 20rpx; display: flex; align-items: center;">
+                <text bindtap="goToTour" style="color: #FF7900; font-size: 28rpx; font-weight: 500;">voir détails...</text>
+                <!--   <image src="../../images/right-arrow.svg" style="width: 24rpx; height: 24rpx; margin-left: 10rpx; margin-top: 10rpx;" />-->
+            </view>
+        </view>
+
+        <!-- Bandeau informatif -->
+        <view>  
+            <view class="info-banner">
+                <view class="banner-text">Gérer facilement et efficacement vos tontines</view>
+                <image src="../../images/lampe.svg" class="banner-image" />
+            </view>
+        </view>
+
+        <!-- Grille des actions (cards clicables) -->
+        <view class="card-grid">
+            <view class="action-card" bindtap="openModal" style="width: 330rpx; height: 324rpx; display: flex; box-sizing: border-box; align-items: center;" wx:if="{{isAdmin}}">
+                <block data-tontine="{{item}}">
+                    <text class="card-title">Inviter des membres</text>
+                    <!-- <text class="card-text">Ajouter des proches à rejoindre votre tontine</text> -->
+                    <!-- <image src="../../images/add-membre.svg" class="card-image" style="" /> -->
+                    <image src="../../images/contact-add.svg" class="card-image" style="" />
+                </block>
+            </view>
+
+            <view class="action-card" bindtap="openModalConsultation" style="width: 330rpx; height: 324rpx; display: flex; box-sizing: border-box">
+                <text class="card-title">Règles et modalités</text>
+             <!--   <text class="card-text">Voir nos règles et
+                    modalités de gestion</text>  -->
+                <!-- <image src="../../images/modlite.svg" style="height: 150rpx; width: 190rpx;"/> -->
+                <image src="../../images/book.svg" style="height: 150rpx; width: 190rpx;"/>
+            </view>
+
+            <view class="action-card" bindtap="lancerPaiement" style="width: 330rpx; height: 324rpx; display: flex; box-sizing: border-box">
+                <text class="card-title">Payer sa cotisation</text>
+               <!--  <text class="card-text">Regler vos cotisations ,
+                    payer facilement </text> -->
+                <!-- <image src="../../images/contribution.svg" style="height: 200rpx; width: 200rpx;" /> -->
+                <!-- <image src="../../images/wallet.svg" style="height: 150rpx; width: 150rpx;" /> -->
+                <!-- <image src="../../images/donation-coins.svg" style="height: 150rpx; width: 150rpx;" /> -->
+                <image src="../../images/transfers-left-right-arrow.svg" style="height: 150rpx; width: 150rpx;" />
+            </view>
+
+            <view class="action-card" bindtap="goToInfoTontine" style="width: 330rpx; height: 324rpx; display: flex; box-sizing: border-box">
+                <block data-tontine="{{item}}">
+                    <text class="card-title">Infos sur la tontine</text>
+                    <!-- <text class="card-text">Informations
+                        sur les gains, ordre
+                        de recupération </text> -->
+                    <!-- <image src="../../images/cagnotte.svg" class="card-image" /> -->
+                    <image src="../../images/information-data.svg" class="card-image" />
+                </block>
+            </view>
+
+            <view class="action-card" bindtap="goToHistorique" style="width: 330rpx; height: 324rpx; display: flex; box-sizing: border-box">
+                <text class="card-title">Historique</text>
+                <!-- <text class="card-text">Ajouter des proches a
+                    rejoindre votre tontine</text> -->
+                <!-- <image src="../../images/Historique.svg" style="height: 190rpx; width: 190rpx;" /> -->
+                <image src="../../images/history-clock.svg" style="height: 150rpx; width: 150rpx;" />
+            </view>
+        </view>
+    </scroll-view>
+
+
+    <!-- Modal invitation -->
+    <view wx:if="{{showModal}}" class="modal-overlay" bindtap="closeModal">
+        <view class="modal-container" catchtap="preventClose">
+            <view class="modal-header">
+                <view class="modal-title-container">
+                    <text class="modal-title">Invitation</text>
+                    <!-- <image src="../../images/material-symbols_link.svg" class="image-lien" /> -->
+                </view>
+                <view class="close-button" bindtap="closeModal">
+                    <text class="close-icon">×</text>
+                </view>
+            </view>
+            <scroll-view scroll-y="true" class="modal-scroll" enhanced="true">
+           <view style="align-items: center; text-align: center;">  
+            <text>Saisissez le numéro de la personne à inviter</text>
+           </view>
+                <view class="modal-body">
+                    <view style="display: flex; justify-content: space-between;">
+                        <view class="input-group">
+                            <input class="input-field" placeholder="Numéro de téléphone" value="{{numeroTelephone}}" bindinput="onPhoneNumberInput" data-field="nom" maxlength="15" />
+                        </view>
+                        <view class="modal-footer">
+                            <view class="confirm-button" bindtap="sendOtp" style="{{isValidNumber ? '' : 'opacity: 0.5; pointer-events: none;'}}">
+                                Envoyer
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+    </view>
+
+
+    <!-- Modal règle et modalités-->
+    <view wx:if="{{showModalConsultation}}" class="overlay" bindtap="closeModalConsultation">
+        <!-- Modal fixe en bas avec animation -->
+        <view class="bottom-modal {{modalVisibleConsultation ? 'show' : 'hide'}}" catchtap="true">
+
+            <view class="modal-header">
+                <view class="modal-title-container">
+                    <text class="modal-title">Règles et modalités</text>
+                </view>
+                <view class="close-button" bindtap="closeModalConsultation">
+                    <text class="close-icon">×</text>
+                </view>
+            </view>
+
+            <scroll-view scroll-y="true" class="modal-scrollModaliter" enhanced="true">
+                <view class="modal-body">
+                    <view class="section-title">
+                        <text>Règles de la tontine</text>
+                    </view>
+                    <view class="content-box">
+                        <text class="modalite-text">{{donnee.tontine.regles}}</text>
+                    </view>
+                    <view class="section-title">
+                        <text>Modalités</text>
+                    </view>
+                    <view class="content-box">
+                        <view class="modalite-text">- Fréquence : {{donnee.tontine.frequence}}</view>
+                        <view class="modalite-text">- Date d'échéance : {{donnee.tontine.date_echeance}} (fin du tour)</view>
+                    </view>
+                </view>
+                <view class="modal-footer">
+                    <view class="confirm-button" bindtap="openModalModifRegle" wx:if="{{isAdmin}}">
+                        Modifier
+                    </view>
+                </view>
+            </scroll-view>
+
+        </view>
+    </view>
+
+
+    <!-- Modal historique des transaction-->
+    <view wx:if="{{showModalHistorique}}" class="modal-overlay2" bindtap="closeModalHistorique">
+        <view class="modal-container2" catchtap="preventClose">
+
+            <view class="modal-header1">
+                <view class="close-button" bindtap="closeModalHistorique">
+                    <text class="close-icon">×</text>
+                </view>
+            </view>
+
+            <view class="modal-title-container1">
+                <text class="modal-title1">Historique des transations</text>
+            </view>
+
+            <scroll-view scroll-y="true" class="modal-scroll2" enhanced="true">
+                <view class="modal-body2">
+                    <view style="margin-top: 10rpx; display: flex; justify-content: space-between; align-items: center;">
+                        <view>
+                            <view>
+                                <text class="modaliteText">
+                                    Frean Debohi Grâce 076922147
+                                </text>
+                            </view>
+                            <view style="margin-top: -10%;">
+                                <text style="font-weight: 100; font-size: 28rpx;">
+                                    19 mai 2025 à 18:35
+                                </text>
+                            </view>
+                        </view>
+                        <view style="margin-top: -5%;">
+                            <text style="font-weight: normal; font-size: 30rpx;">
+                                22.47 F
+                            </text>
+                        </view>
+                    </view>
+                </view>
+            </scroll-view>
+
+        </view>
+    </view>
+
+</view>
+
+
+
+<view wx:if="{{showModalPaie}}" class="overlay" bindtap="closeModalPaie">
+    <!-- Modal fixe en bas avec animation -->
+    <view class="bottom-modal {{modalVisiblePaie ? 'show' : 'hide'}}" catchtap="true">
+
+        <!-- Croix de fermeture -->
+        <view bindtap="closeModalPaie" style="position: absolute; top: 10px; right: 15px; font-size: 20px; font-weight: bold;">X</view>
+
+        <!-- Contenu de la modal -->
+        <view style="text-align: start; font-weight: bold; font-size: 20px; margin-bottom: 15px;">Paiement Cotisation</view>
+
+        <view style="padding-left: 10px; padding-right: 10px; margin-bottom: 20rpx;">
+            <view style="text-align: start; margin-bottom: 5rpx;">Montant de la cotisation</view>
+            <input wx:if="{{!result.montant_penalite}}" type="number" value="{{ result.montant_a_cotise }}" disabled style="text-align: start; border: solid 2rpx;  margin-top: 13px; padding: 10px;" />
+            <input wx:if="{{result.montant_penalite}}" type="number" value="{{ result.montant_a_cotise_penalite }}" disabled style="text-align: start; border: solid 2rpx; margin-top: 50rpx; padding: 10px;" />
+        </view>
+
+        <view style="padding-left: 10px; padding-right: 10px;">
+            <view style="text-align: start;">Compte à débiter</view>
+            <input type="text" value="{{result.contact}}" style="text-align: start; border: solid 2rpx; margin-top: 15rpx; padding: 10px;" />
+        </view>
+
+
+        <!--<view style="background-color: rgb(65, 63, 63); height: 0.25px; margin: 30px"></view>
+
+     <view style="text-align: center; color: gray;">Entrer un autre numéro à débiter</view>
+    <view style="padding-left: 10px; padding-right: 10px;">
+      <input type="text" value="" style="text-align: center; border: solid 2rpx; border-radius: 15px; margin-top: 15px; padding: 10px;" />
+    </view> 
+    form-type="submit" -->
+
+        <!--<button style="margin-top: 30px; color: white; background-color: rgb(255, 135, 23); font-weight: 400; border-radius: 10px;" bind:tap="paiement">
+            Valider
+        </button>-->
+        <button wx:if="{{!aPayer}}" style="margin-top: 30px; color: white; background-color: rgb(255, 135, 23); font-weight: 400; border-radius: 10px;" bind:tap="paiement">
+            Valider
+        </button>
+        <button wx:if="{{aPayer}}" style="margin-top: 30px; color: white; background-color: rgb(179, 176, 175); font-weight: 400; border-radius: 10px;">
+            Déjà payer
+        </button>
+    </view>
+</view>
+
+
+<!-- Modal de modification de la tontine -->
+<view wx:if="{{showModalModifRegle}}" class="overlay" bindtap="closeModifRegle">
+  <!-- Modal fixe en bas avec animation -->
+  <view class="bottom-modal {{modalVisibleRegle ? 'show' : 'hide'}}" catchtap="true">
+
+    <view class="modal-header">
+      <view class="modal-title-container">
+        <text class="modal-title">Modifier la tontine</text>
+      </view>
+      <view class="close-button" bindtap="closeModifRegle">
+        <text class="close-icon">×</text>
+      </view>
+    </view>
+
+    <scroll-view scroll-y="true" class="modal-scrollModif" enhanced="true">
+      <view class="modal-body">
+
+        <view class="input-group">
+          <text class="input-label">Nom *</text>
+          <input class="input-field" style="width: 32vh;" placeholder="Ex: Tontine des amis" value="{{formData.nom}}" bindinput="onInputChange" data-field="nom" maxlength="50" />
+        </view>
+        <!-- Champ Description (textarea plus grand) -->
+        <view class="input-group">
+          <text class="input-label">Description *</text>
+          <textarea class="textarea-field" placeholder="Ex: Tontine mensuelle entre collègues" value="{{formData.description}}" bindinput="onInputChange" data-field="description" maxlength="200" />
+        </view>
+
+        <!--Liste déroulante type tontine-->
+        <view class="input-group">
+          <text class="input-label">Type de tontine *</text>
+          <view disabled="{{isDisabled}}" class="select-field {{isDisabled ? 'input-disabled' : 'input-enabled'}}" bindtap="openTypeTontineOptions">
+            <view class="select-value {{formData.type_tontine? '' : 'placeholder'}}">
+              {{formData.type_tontine || 'Choisir le type de tontine'}}
+            </view>
+            <view class="select-arrow">▼</view>
+          </view>
+        </view>
+
+        <!-- Champ Description de modalité (textarea plus grand) -->
+        <view class="input-group">
+          <text class="input-label">Règles*</text>
+          <textarea class="textarea-field" placeholder="Ex: Règles" value="{{formData.regles}}" bindinput="onInputChange" data-field="regles" maxlength="200" />
+        </view>
+
+        <view class="input-group">
+          <text class="input-label">Montant à cotiser *</text>
+          <input disabled="{{isDisabled}}" class="input-field {{isDisabled ? 'input-disabled' : 'input-enabled'}}" style="width: 32vh;" placeholder="Ex: 50 000" value="{{formData.montant}}" bindinput="onInputChange" data-field="montant" type="number" />
+        </view>
+
+        <view class="input-group">
+          <text class="input-label">Fréquence *</text>
+          <view disabled="{{isDisabled}}" class="select-field {{isDisabled ? 'input-disabled' : 'input-enabled'}}" bindtap="openFrequenceOptions">
+            <view class="select-value {{formData.frequence ? '' : 'placeholder'}}">
+              {{formData.frequence || 'Choisir une fréquence'}}
+            </view>
+            <view class="select-arrow">▼</view>
+          </view>
+        </view>
+
+        <!--Vue Rappel-->
+        <view class="input-group">
+          <text class="input-label">Date d'échéance *</text>
+          <view disabled="{{isDisabled}}" class="select-field" bindtap="openRappelOptions">
+            <view class="select-value {{formData.date_echeance? '' : 'placeholder'}}">
+              {{formData.date_echeance || 'Choisir un jour pour le Rappel'}}
+            </view>
+            <view class="select-arrow">▼</view>
+          </view>
+        </view>
+
+        <view class="input-group">
+          <text class="input-label">Nombre de participants *</text>
+          <input disabled="{{isDisabled}}" class="input-field {{isDisabled ? 'input-disabled' : 'input-enabled'}}" style="width: 32vh;" placeholder="Ex: 10" value="{{formData.participants}}" bindinput="onInputChange" data-field="participants" type="number" />
+        </view>
+
+      </view>
+      <view class="modal-footer">
+        <button class="confirm-button" bind:tap="confirmModal">
+          Valider
+        </button>
+      </view>
+    </scroll-view>
+  </view>
+</view>

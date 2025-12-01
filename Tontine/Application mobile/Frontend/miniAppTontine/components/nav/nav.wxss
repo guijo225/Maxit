@@ -1,0 +1,17 @@
+/* components/nav/nav.wxss */
+.nav{
+    display: flex;
+    width: auto;
+    height: auto;
+    border-bottom: solid 1rpx rgba(219, 119, 37, 0.527);
+    margin-top: 15px;
+    justify-content: space-between;
+    padding: 8px 10px ;
+    align-items: center;
+  }
+  
+  .image{
+    height: 100rpx;
+    width: 140rpx;
+  } 
+  

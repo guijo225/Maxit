@@ -1,0 +1,175 @@
+<!--pages/Tour/Tour.wxml-->
+<nav></nav>
+
+<title_bar label="Informations sur le tour"></title_bar>
+<error wx:if="{{showError}}" errorMessage="{{errorMessage}}"></error>
+<view style=" align-items: center; text-align: center; margin-top: 8%; margin-bottom: 5%;">
+    <block wx:if="{{result}}" wx:for="{{result}}" wx:key="id">
+        <text style="font-size: 36rpx; font-weight: bold;"> Tour N°{{item.tour[0].numero_tour}}</text>
+    </block>
+    <!-- <view wx:if="{{!result}}">Numéro de tour indisponible</view> -->
+</view>
+
+<!-- <view style="width: 750rpx; height: 323rpx; display: block; box-sizing: border-box"> -->
+<view>
+    <block wx:if="{{result}}" wx:for="{{result}}" wx:key="id">
+        <!-- Carte principale -->
+        <view class="card" bind:tap="infoTontine">
+            <view class="card-header">
+                <view class="card-title">
+                    Nombre de participants ayant cotisé à ce tour :
+                </view>
+                <view class="counter">
+                    <view>{{item.tour[0].cotisation.length}}/{{item.nombre_participants}}</view>
+                </view>
+            </view>
+            <!-- Bloc argent collecté -->
+            <view class="card-body">
+                <view>
+                    Somme collectée :
+                    {{item.tour[0].montant_distribue}} / {{item.montant_total}} Fcfa
+                </view>
+            </view>
+        </view>
+    </block>
+    <!--  <block wx:if="{{result}}" wx:for="{{result}}" wx:key="id">
+        <view style="width: 292rpx; padding: 15rpx; border-radius: 10px; border: 1rpx solid #ff7900; background-color: #F16E00; display: flex; justify-content: center; align-items: center; flex-direction: column; color: white ;" bind:tap="infoTontine">
+            <view style="position: relative; left: 17rpx; top: 26rpx; font-size: 35rpx; font-weight: bold;">Nombre de participants ayant cotisé a ce tour:</view>
+
+            <view style="border-radius: 10px;position: relative; width: 95rpx; background: #ED6C30; height: 95rpx; left: 222rpx; top: 25rpx; display: block; box-sizing: border-box; border-radius: 99rpx; margin-left: -6vh">
+                <text style="position: relative; left: 23rpx; top: 18rpx; font-size: 30rpx; font-weight: bolder; color: #FFFFFFFF">{{item.tour[0].cotisation.length}}/{{item.nombre_participants}}</text>
+            </view>
+        </view>
+
+        <view style="position: relative; width: 345rpx; background:#fff; height: 296rpx; display: block; box-sizing: border-box; left: 392rpx; top: -296rpx; font-size: 35rpx; font-weight: bold; box-shadow: 0 3rpx 8rpx rgba(255,121,0,1); border-radius: 18rpx; border-radius: 10px; background-color: rgb(125, 235, 115);">
+            <text style="position: relative; left: 12rpx; top: 26rpx;font-size: 35rpx; font-weight: bold;">Argent collecté
+                pour ce tour:
+                {{item.tour[0].montant_distribue}}/{{item.montant_total}} Fcfa
+            </text>
+        </view>
+    </block> -->
+    <!-- Ce qui est afficher avant le chargement des informations  -->
+    <!-- <block wx:if="{{!result}}">
+        <view style="position: relative; width: 345rpx; background: #fff; height: 296rpx; display: block; box-sizing: border-box; left: 32rpx; box-shadow: 0 3rpx 8rpx rgba(255,121,0,1); top: 0rpx ; border-radius: 10px; background-color: rgba(252, 192, 136, 0.445);" bind:tap="infoTontine">
+            <view style="position: relative; left: 17rpx; top: 26rpx; font-weight: 500;">Nombre de participants ayant cotisé a ce tour:</view>
+            <view style="position: relative; width: 95rpx; background: #ED6C30; height: 95rpx; left: 231rpx; top: 25rpx; display: block; box-sizing: border-box; border-radius: 99rpx">
+                <text style="position: relative; left: 43rpx; top: 27rpx; font-size: 30rpx; font-weight: 500; color: #FFFFFFFF">!</text>
+            </view>
+        </view>
+
+        <view style="position: relative; width: 345rpx; background:#fff; height: 296rpx; display: block; box-sizing: border-box; left: 392rpx; top: -296rpx; font-size: 35rpx; font-weight: bold; box-shadow: 0 3rpx 8rpx rgba(255,121,0,1);border-radius: 10px; ">
+            <text style="position: relative; left: 12rpx; top: 26rpx;font-size: 35rpx; font-weight: bold;">Argent collecté
+                pour ce tour:
+            </text>
+            <view style="position: relative; width: 191rpx; height: 65rpx; left: 137rpx; top: 95rpx; display: block; box-sizing: border-box;">Indisponible</view>
+        </view>
+    </block> -->
+</view>
+
+<view class="conteneur">
+  <block wx:if="{{result && result.length !== 0 }}">
+    <text class="title">Participants à jour</text>
+<view style="background-color:rgba(211, 211, 211, 0.295); border-radius: 10rpx; margin: 10rpx;">
+    <scroll-view scroll-y class="scrollarea">
+      <block wx:for="{{result}}" wx:key="id">
+        <block wx:for="{{item.participant}}" wx:for-item="participant" wx:for-index="participantIndex" wx:key="id_participant">
+          <block wx:for="{{participant.cotisation}}" wx:for-item="cotisation" wx:key="id_cotisation">
+            <block wx:if="{{cotisation && cotisation.id_tour === item.tour[0].id_tour}}">
+              <view class="listParticipant">
+                <view class="index-number">{{participantIndex + 1}}.</view>
+                <view class="nom">{{participant.utilisateur.nom}} {{participant.utilisateur.prenoms}}</view>
+                <view class="montant">{{cotisation.montant_cotise}} Fcfa</view>
+              </view>
+            </block>
+          </block>
+        </block>
+      </block>
+    </scroll-view>
+    </view>
+  </block>
+
+  <!-- Cas où il n’y a pas de données -->
+  <!--  <block wx:else>
+    <text class="h1">Participants</text>
+    <view class="empty">Pas de données à afficher</view>
+  </block> -->
+</view>
+
+ <!-- 
+<view style="width: 710rpx; height: 375rpx; margin-left: 18rpx; display: block; box-sizing: border-box; left: 0rpx; top: 0rpx" class="conteneur contour">
+    <block wx:for="{{result}}" wx:key="id">
+        <text style="position: relative; left: 0rpx; top: 0rpx" class="h1">Participants</text>
+        <scroll-view scroll-y="true" class="scrollarea" style="width: 710rpx; height: 320rpx; display: block; box-sizing: border-box; background-color: #d9d9d960; border-radius: 18rpx;">
+            <view style="position: relative; width: 710rpx; height: auto; left: 0rpx; top: 23rpx; display: block; box-sizing: border-box">
+                <view data-index="{{index}}" style="width: 710rpx; display: block; box-sizing: border-box">
+                    <block wx:for="{{item.participant}}" wx:for-item="participant" wx:for-index="participantIndex" wx:key="id_participant">
+                        <block wx:for="{{participant.cotisation}}" wx:for-item="cotisation" wx:key="id_cotisation">
+                            <block wx:if="{{cotisation && cotisation.id_tour === item.tour[0].id_tour}}">
+                                <view class="listParticipant" style="width: 710rpx; height: 63rpx; display: flex; align-items: center; box-sizing: border-box; border-bottom: 1rpx solid #d9d9d9;">
+                                    <view class="index-number" style="width: 50rpx; font-size: 28rpx; color: #333; margin-right: 20rpx;">{{participantIndex + 1}}.</view>
+                                    <view class="nom">{{participant.utilisateur.nom}} {{participant.utilisateur.prenoms}}</view>
+                                    <view class="montant">{{cotisation.montant_cotise}}</view>
+                                </view>
+                            </block>
+                        </block>
+                    </block>
+                </view>
+            </view>
+        </scroll-view>
+    </block>
+    <block wx:if="{{!result}}">
+        <text style="position: relative; left: 0rpx; top: 0rpx" class="h1">Participants</text>
+        <view style="width: 348rpx; height: 39rpx; display: flex; box-sizing: border-box; text-align: center; margin-left: 25%; margin-top: 70px">Pas de données à afficher</view>  
+    </block>
+</view> -->
+
+<block wx:if="{{result && result.length}}">
+  <!-- Vérifie si au moins une pénalité existe -->
+  <block wx:for="{{result}}" wx:key="id">
+    <block wx:for="{{item.participant}}" wx:for-item="participant" wx:key="id_participant">
+      <block wx:if="{{participant.penalite && participant.penalite.length > 0}}">
+
+        <view class="penalite-header">
+          <text class="title">Pénalités</text>
+        </view>
+
+        <!-- Liste scrollable -->
+        <scroll-view scroll-y class="scrollarea">
+          <block wx:for="{{participant.penalite}}" wx:for-item="penalite" wx:key="id_penalite">
+            <view class="listParticipant">
+              <view class="nom">
+                {{participant.utilisateur.nom}} {{participant.utilisateur.prenoms}}
+              </view>
+              <view class="montant">
+                {{penalite.montant_penalite}} Fcfa
+              </view>
+            </view>
+          </block>
+        </scroll-view>
+      </block>
+    </block>
+  </block>
+</block>
+
+<!-- Cas sans pénalités -->
+<!-- <block wx:if="{{!result || result.length === 0}}">
+  <view class="empty">Pas de pénalités à afficher</view>
+</block> -->
+
+
+<view style="margin: 20px 10px;">
+    <block wx:for="{{result}}" wx:key="id">
+        <block wx:for="{{item.participant}}" wx:for-item="participant" wx:key="id_participant">
+            <block wx:if="{{participant.numero_ordre === item.tour[0].numero_tour}}">
+                <view class="title" style="padding : 20px auto">Bénéficiaire du tour</view>
+                <view style="background-color:rgba(211, 211, 211, 0.295); border-radius: 10rpx; margin: 10rpx;">
+                <view style="font-size: 31rpx; font-weight: bolder; margin-top: 30rpx;  border-bottom: 1rpx solid #d9d9d9; ">{{participant.utilisateur.nom}} {{participant.utilisateur.prenoms}}
+                </view>
+                </view>
+            </block>
+        </block>
+    </block>
+     <!-- <block wx:if="{{!result}}">
+        <view style="width: 355rpx; height: 49rpx; display: block; box-sizing: border-box; margin-left: 25%; margin-top: 12px">Pas de données à afficher</view> 
+    </block> -->
+</view>

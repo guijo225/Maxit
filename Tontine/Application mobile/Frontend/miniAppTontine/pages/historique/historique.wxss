@@ -1,0 +1,158 @@
+ /* Grille de cards */
+ .card-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  /* Card individuelle */
+  .action-card {
+    width: 48%;
+    background: #fff;
+    border-radius: 20rpx;
+    padding: 20rpx;
+    margin-bottom: 20rpx;
+    box-shadow: 0 4rpx 8rpx rgba(0.1,0.1,0.1,0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .card-title {
+    font-size: 28rpx;
+    font-weight: 500;
+    text-align: start;
+    margin-bottom: 10rpx;
+  }
+  
+  .card-text {
+    font-size: 24rpx;
+    text-align: start;
+    margin-bottom: 20rpx;
+  }
+
+  .h1{
+    font-weight: 500;
+    color: rgb(255, 135, 23);
+    font-size: 120%;
+  }
+  .listParticipant{
+    padding: 2%;
+    font-weight: 500;
+  }
+
+  .listParticipant1{
+    padding: 2%;
+  }
+  .nom{
+    width: 70%;
+  }
+
+  .montant{
+    width: 30%; 
+    text-align: center;
+  }
+
+  .time{
+      width: 50%;
+  }
+
+  .select-field {
+    width: 90%;
+    padding: 26rpx 24rpx;
+    border-radius: 16rpx;
+    background: #fff;
+    display: flex;
+    align-items: center;
+
+    /*justify-content: space-between;*/
+  }
+  
+  .select-value {
+    font-size: 36rpx;
+    color: #111827;
+  }
+  
+  .select-value.placeholder {
+    color: #111827;
+  }
+  
+  .select-arrow {
+    font-size: 24rpx;
+    color: #6b7280;
+    margin-left: 12rpx;
+  }
+
+  .card {
+    width: 650rpx;
+    background :#F16E00 ;
+    border-radius: 20rpx;
+    padding: 30rpx;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 25rpx;
+    box-shadow: 0 8rpx 18rpx rgba(255, 121, 0, 0.5);
+    margin: 0 auto;
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .card-title {
+    font-size: 32rpx;
+    font-weight: bold;
+    flex: 1;
+    margin-right: 20rpx;
+  }
+  
+  .counter {
+    width: 100rpx;
+    height: 100rpx;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #F16E00;
+    font-size: 28rpx;
+    font-weight: bold;
+    box-shadow: 0 4rpx 10rpx rgba(0,0,0,0.15);
+  }
+   
+  .card-body {
+    display: flex;
+    /* justify-content: center; */
+    /* align-items: start; */
+    background: #fff;
+    color: black;
+    border-radius: 15rpx;
+    padding: 30rpx;
+    font-size: 30rpx;
+    font-weight: bold;
+    box-shadow: 0 3rpx 8rpx rgba(255,121,0,0.8);
+    text-align: start;
+    font-size: 30rpx;
+  }
+  .title{
+    margin-top: 10px ;
+    font-weight: bold;
+    color: #F16E00;
+  }
+  .conteneur {
+    margin: 20rpx 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20rpx;
+  }
+  .scrollarea {
+    max-height: 320rpx; 
+    /* background-color: #f5f5f5; */
+    border-radius: 18rpx;
+    padding: 10rpx;
+    box-sizing: border-box;
+  }

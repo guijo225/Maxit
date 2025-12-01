@@ -1,0 +1,86 @@
+<view style="height: 100vh; display: flex; flex-direction: column; font-family: 'Times New Roman', Times, serif;">
+  <nav></nav>
+  <error wx:if="{{showError}}" errorMessage="{{errorMessage}}"></error>
+  <!-- Section des filtres avec défilement horizontal -->
+  <scroll-view scroll-x="true" show-scrollbar="false" class="styleBoutonDef">
+    <view style="display: flex; flex-direction: row;">
+      <view wx:for="{{filters}}" wx:key="value" class="bouton" style="color: {{currentFilter === item.value ? 'white' : 'black'}}; background-color: {{currentFilter === item.value ? '#F16E00' : '#d3d3d3'}};" bind:tap="filterTontines" data-filter="{{item.value}}">
+        {{item.label}}
+      </view>
+    </view>
+  </scroll-view>
+  <!-- width: 750rpx; height: 1350rpx;  -->
+  <scroll-view scroll-y="true" style="overflow-y: auto; display: block; box-sizing: border-box">
+    <!-- width: 750rpx; -->
+    <view wx:for="{{filteredTontines}}" wx:key="id_tontine" class="styleTontine" bindtap="NavPageGestion" data-tontine="{{item}}">
+
+      <!-- Image à gauche -->
+      <!-- <image src="/images/money-box.svg" style="width: 100rpx; height: 100rpx; border-radius: 15rpx; object-fit: cover;" /> -->
+      <image src="/images/orange-governance.svg" style="width: 100rpx; height: 100rpx; border-radius: 15rpx; object-fit: cover;" />
+      <!-- <image src="/images/wallet.svg" style="width: 100rpx; height: 100rpx; border-radius: 15rpx; object-fit: cover;" /> -->
+
+      <!-- Texte à droite -->
+      <view style="flex: 1; margin-left: 30rpx; display: flex; flex-direction: column; justify-content: space-between; height: 150rpx;">
+        <text style="font-size: 33rpx; font-weight: bold;"> {{ item.nom_tontine }}</text>
+        <text style="font-size: 27rpx;">Nombre de participants : {{ item.nombre_participants }}</text>
+        <text style="font-size: 27rpx;">Créée le : {{ item.date_creation }}</text>
+        <text style="font-size: 27rpx; color: {{ item.statut_tontine !== 'en_attente' && item.statut_tontine !== 'En cours' ? '#F16E00' : 'green'}} ;"> {{ item.statut_tontine }}</text>
+      </view>
+    </view>
+    <!-- Donner une couleur en fonction de l'etat : a faire -->
+
+    <view wx:if="{{loaded && filteredTontines.length === 0}}" style="text-align: center; margin-top: 150rpx; width: 750rpx; height: 72rpx; display: block; box-sizing: border-box; top: 50%;">
+      {{emptyMessage}}
+    </view>
+
+
+    <!-- <view wx:for="{{filteredTontines}}" wx:key="id_tontine" style="margin-bottom: 20rpx; width: 750rpx; height: 267rpx; display: block; box-sizing: border-box">
+            <view style="position: relative; width: 721rpx; height: 267rpx; left: 16rpx; top: 0rpx; display: block; box-sizing: border-box; border-radius: 15px; background-color: #f3f2f2b4" bindtap="NavPageGestion" data-tontine="{{item}}">
+
+               <view style="position: relative; left: 23rpx; top: 23rpx; font-size: 28rpx;">Tontine : {{ item.nom_tontine }}</view>
+                <view style="position: relative; left: 25rpx; top: 41rpx; width: 454rpx; height: 39rpx; display: block; box-sizing: border-box; font-size: 28rpx;">Nombre de participants : {{item.nombre_participants}}</view>
+                <view style="position: relative; left: 21rpx; top: 62rpx; font-size: 28rpx;">Date de création : {{item.date_creation}}</view>
+                <view style="position: relative; left: 25rpx; top: 77rpx; font-size: 28rpx;">Etat : {{item.statut_tontine}}</view>
+
+                <image style="position: relative; left: 530rpx; top: -96rpx; width: 200rpx; height: 200rpx; display: inline-block; box-sizing: border-box" src="/images/contribution_remoove.png" />
+            </view>
+        </view> -->
+
+    <!-- <view style="position: fixed; bottom: 110rpx; right: 50rpx; z-index: 999;">
+            <view bind:tap="" style="display: flex; justify-content: center; align-items: center; background-color: rgb(255, 135, 23); border-radius: 50%; width: 100rpx; height: 100rpx; box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.3);"> 
+                <image src="/images/contribution_remoove.png" style="width: 60rpx; height: 60rpx; border-radius: 50%; " />
+            </view>
+        </view>
+
+         <view style="position: fixed; bottom: calc(30rpx + env(safe-area-inset-bottom)); right: 24rpx; width: 345rpx; height: 73rpx; display: flex; align-items: center; justify-content: center; background-color: rgb(255, 135, 23); color: white; font-size: 28rpx; border-radius: 25rpx;" bind:tap="CreeTontine">
+            Créer une tontine
+            <image style="width: 40rpx; height: 40rpx; margin-right: 10rpx;" src="/images/plus.png" />
+        </view>
+        <view style="position: fixed; bottom: calc(30rpx + env(safe-area-inset-bottom)); left: 24rpx; width: 345rpx; height: 73rpx; display: flex; align-items: center; justify-content: center; background-color: rgb(255, 135, 23); color: white; font-size: 28rpx; border-radius: 25rpx;" bind:tap="IntegreTontine">
+            Intégrer une tontine
+        </view> -->
+  </scroll-view>
+
+  <view class="floating-container">
+    <view wx:if="{{menuOpen}}" class="overlay"></view>
+    <!-- Bouton flottant principal -->
+    <view class="floating-btn" bindtap="toggleMenu">
+      <image src="{{menuOpen ? '/images/add-tontine.png' : '/images/cota.png'}}" class="btn-icon" />
+    </view>
+    <!-- Menu d’actions -->
+    <view wx:if="{{menuOpen}}" class="floating-actions">
+      <view class="action-btn" bindtap="CreeTontine">
+        <text class="action-text">Créer une tontine</text>
+        <view class="icon-wrapper">
+          <image src="/images/wallet.svg" class="action-icon" />
+        </view>
+      </view>
+      <view class="action-btn" bindtap="IntegreTontine">
+        <text class="action-text">Intégrer une tontine</text>
+        <view class="icon-wrapper">
+          <image src="/images/rejoindre.png" class="action-icon" />
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

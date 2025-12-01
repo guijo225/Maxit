@@ -45,7 +45,7 @@ class TontineService
         //$montantNet = ($tontine->montant_a_cotiser);
         // 4. Enregistrer la cotisation et la garantie
         //$cotisation = $this->enregistrerCotisation($validatedData, $montantNet, $transactionData['transaction_id'], $transactionData['status']);
-        $cotisation = $this->enregistrerCotisation($validatedData, $montantNet, $transactionData['transaction_id'], $transactionData['status']);
+        $cotisation = $this->enregistrerCotisation($validatedData, $tontine->montant_a_cotise, $transactionData['transaction_id'], $transactionData['status']);
         // $transaction = $this->insererGarantie($validatedData, $cotisation, $montantGarantie);
         // 5. Mettre à jour le tour et gérer la distribution
         $this->mettreAJourTourEtDistribution($cotisation, $tour, $tontine, $montantNet, $montantGarantie, $validatedData['mode_paiement']);
@@ -144,7 +144,7 @@ class TontineService
 
     private function effectuerTransfert(Tour $tour, Tontine $tontine, array $participant)
     {
-        $response = Http::post('http://192.168.252.43:8000/paiement', [
+        $response = Http::post('http://192.168.252.202:8000/paiement', [
             'numero' => $participant['utilisateur']['telephone'],
             'tontine_id' => intval($tour->id_tontine),
             'tour_id' => intval($tour->id_tour),

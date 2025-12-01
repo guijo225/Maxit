@@ -1,0 +1,37 @@
+.container {
+    padding: 20rpx;
+    background-color: #ffffff;
+  }
+  
+  .header {
+    margin-bottom: 20rpx;
+  }
+  
+  .title {
+    font-size: 36rpx;
+    font-weight: bold;
+    color: #333333;
+  }
+  
+  .subtitle {
+    margin-top: 30rpx;
+    font-size: 30rpx;
+    font-weight: 600;
+    color: #1c1c1c;
+  }
+  
+  .paragraph {
+    margin-top: 10rpx;
+    font-size: 28rpx;
+    color: #666666;
+    line-height: 42rpx;
+  }
+  
+  .content {
+    height: 100%;
+  }
+  
+  .valider {
+    background-color: #ff7900;
+    margin-top:20px;
+  }

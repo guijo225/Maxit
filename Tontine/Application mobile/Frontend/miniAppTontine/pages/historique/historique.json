@@ -1,0 +1,7 @@
+{
+    "usingComponents": {
+        "nav":"/components/nav/nav",
+        "error":"/components/error/error",
+      "title_bar":"/components/title_bar/title_bar"
+    }
+}

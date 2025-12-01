@@ -3,9 +3,8 @@ import express from "express";
 
 const router = express.Router();
 
-router.get("/afficher", Afficher);
+router.get("/afficher/:id", Afficher);
 router.post("/", creerTontine);
-// router.post('/integrer', integrerTontine);
 router.post("/update", updateTontine);
 
 export default router;

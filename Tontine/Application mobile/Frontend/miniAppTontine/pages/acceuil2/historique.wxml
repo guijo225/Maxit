@@ -1,0 +1,30 @@
+<!--pages/historique/historique.wxml-->
+<view style="height: 100vh;display: flex;flex-direction: column;font-family: 'Times New Roman', Times, serif;">
+<nav></nav>
+
+<scroll-view scroll-y="true" style="flex:1;overflow-y: auto;">
+<view wx:for="{{tontines}}" wx:key="id_tontine" style="margin-bottom: 20rpx;">
+    <view style="position: relative; width: 721rpx;height: 267rpx; left: 15rpx; top: 51rpx; display: block; box-sizing: border-box; border-radius: 15px;border: solid 1rpx #FF7900;">
+        <view style="position: relative; left: 23rpx; top: 23rpx; font-size: 28rpx;">Tontine : {{ item.nom_tontine}} </view>
+        <view style="position: relative; left: 25rpx; top: 41rpx; width: 454rpx; height: 39rpx; display: block; box-sizing: border-box ;  font-size: 28rpx;">Nombre de participant : {{item.nombre_participants}}</view>
+        <view style="position: relative; left: 21rpx; top: 62rpx ;  font-size: 28rpx;">Date de création : {{item.date_creation}} </view>
+        <view style="position: relative; left: 25rpx; top: 77rpx ;  font-size: 28rpx;">Etat : {{item.statut_tontine}}</view>
+    
+        <image style="position: relative; left: 498rpx; top: -96rpx; width: 200rpx; height: 150rpx; display: inline-block; box-sizing: border-box" src="/images/contribution.png" />
+    
+    </view>
+</view>
+
+<view wx:if="{{loaded && tontines.length === 0}}" style="text-align: center; margin-top: 150rpx;">
+  Vous n'avez pas de tontine .
+</view>
+
+  <view style="position: fixed; bottom: calc(30rpx + env(safe-area-inset-bottom)); right: 24rpx; width: 345rpx; height: 73rpx; display: flex; align-items: center; justify-content: center; background-color: rgb(255, 135, 23); color: white; font-size: 28rpx; border-radius: 12rpx;" bind:tap="openModal">
+    Créer une tontine
+  </view>
+</scroll-view>
+
+
+</view>
+
+

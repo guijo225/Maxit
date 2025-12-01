@@ -1,0 +1,12 @@
+<view class="error-container">
+    <image src="/images/atom_illustration_error.svg" class="error-image"></image>
+    <text class="error-text">{{errorMessage}}</text>
+    <view class="button-container">
+        <view class="refresh-button" bindtap="handleRefresh">
+            <text>Actualiser</text>
+        </view>
+        <view class="back-button" bindtap="handleGoBack">
+            <text style="text-align: center;">Retour</text>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,108 @@
+.bouton{
+    flex: 0 0 200rpx; 
+    padding: 18rpx; 
+    margin-right: 15rpx; 
+    border-radius: 25rpx; 
+    font-size: 28rpx; 
+    text-align: center;
+}
+.floating-container {
+    position: fixed;
+    bottom: 50rpx;
+    right: 50rpx;
+    z-index: 1002;
+    display: flex;
+    flex-direction: column-reverse; /* actions apparaissent au-dessus du bouton */
+    align-items: flex-end;
+  }
+  
+  .floating-btn {
+    width: 100rpx;
+    height: 100rpx;
+    background-color: #F16E00;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10rpx 18rpx rgba(0, 0, 0, 0.74);
+    z-index: 1001;
+  }
+  
+  .btn-icon {
+    width: 60rpx;
+    height: 60rpx;
+    border-radius: 50%;
+  }
+  
+  .floating-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 20rpx;
+    margin-bottom: 20rpx; /* espace entre bouton et actions */
+    z-index: 1000;
+    
+  }
+  
+  .action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10rpx 0;
+    border-radius: 30rpx;
+    gap: 5px;
+}
+
+.action-text {
+    font-size: 24rpx;
+    color: #ffffff; 
+    font-weight: 700;
+}
+
+.icon-wrapper {
+    width: 70rpx;
+    height: 70rpx;
+    border-radius: 50%;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.action-icon {
+    width: 30rpx; /* taille de l’icône */
+    height: 30rpx;
+}
+
+  /* Overlay gris semi-transparent */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4); /* gris transparent */
+    z-index: 998; /* sous le bouton flottant */
+  }
+  .styleTontine {
+    margin-bottom: 20rpx; 
+    height: 200rpx; 
+    display: flex; 
+    align-items: center; 
+    background-color: rgba(211, 211, 211, 0.164);
+    box-shadow: 0 0rpx 8rpx rgba(0.1, 0.1, 0.1, 0.5);
+    border-radius: 15rpx; 
+    padding: 20rpx; 
+    box-sizing: border-box; 
+    margin: 10px;
+  }
+  .styleBoutonDef {
+    padding: 20rpx; 
+    width: 750rpx; 
+    box-sizing: border-box; 
+    overflow-x: auto; 
+    height: 120rpx; 
+    display: block; 
+    justify-content: center;
+    align-items: center;
+  }
+  

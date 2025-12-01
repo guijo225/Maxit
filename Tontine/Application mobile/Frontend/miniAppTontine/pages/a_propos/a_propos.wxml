@@ -1,0 +1,68 @@
+<!-- Barre de navigation -->
+<nav></nav>
+<view class="page-container">
+
+
+    <!-- En-tête héroïque -->
+    <view class="hero-section">
+        <text class="hero-title">Bienvenue sur Ma Tontine</text>
+    </view>
+
+    <!-- Contenu scrollable -->
+    <scroll-view class="scrollarea" scroll-y="true" enhanced="true">
+        <view class="content-container">
+            <!-- Section Introduction -->
+            <view class="section">
+                <view bind:tap="toggleMission" class="toggle">
+                    <text class="section-title">Notre mission</text>
+                    <image src="/pages/assets/backs.png" style="width: 30rpx; height:30rpx; opacity: 0.6;flex-shrink: 0; margin: 0 10px; rotate: -90deg;" />
+                </view>
+                <view wx:if="{{showMission}}" class="section-content animate-fade">
+                    Notre mission est de révolutionner l’épargne collective en rendant la tontine simple, sécurisée et accessible à tous grâce au digital. Nous permettons à chaque utilisateur d’épargner, de bénéficier de son tour et de renforcer la solidarité financière au sein de sa communauté, tout en favorisant l’inclusion financière.
+                </view>
+            </view>
+
+            <!-- Section Vision -->
+            <view class="section">
+                <view bind:tap="toggleVision" class="toggle">
+                    <text class="section-title">Notre vision</text>
+                    <image src="/pages/assets/backs.png" style="width: 30rpx; height:30rpx; opacity: 0.6;flex-shrink: 0; margin: 0 10px; rotate: -90deg;" />
+                </view>
+                <view wx:if="{{showVision}}" class="section-content animate-fade">
+                    Nous aspirons à devenir la plateforme de référence en Afrique et au-delà pour la gestion moderne des tontines. Nous voulons bâtir un écosystème financier collaboratif où la confiance, la transparence et la technologie s’unissent pour transformer les habitudes d’épargne et offrir à chacun la possibilité de réaliser ses projets.
+                </view>
+            </view>
+
+            <!-- Section Valeurs -->
+            <view class="section">
+                <view bind:tap="toggleValeurs" class="toggle">
+                    <text class="section-title">Nos valeurs</text>
+                    <image src="/pages/assets/backs.png" style="width: 30rpx; height:30rpx; opacity: 0.6;flex-shrink: 0; margin: 0 10px; rotate: -90deg;" />
+                </view>
+                <view wx:if="{{showValeurs}}" class="section-content animate-fade">
+                    Solidarité : Nous plaçons la force du collectif au cœur de notre modèle.
+                    Confiance : Chaque transaction repose sur la fiabilité et la transparence.
+                    Innovation : Nous utilisons la technologie pour moderniser une pratique ancestrale.
+                    Accessibilité : Une solution simple, intuitive et ouverte à tous.
+                    Responsabilité : Nous nous engageons à protéger les données et les intérêts de nos utilisateurs.
+                </view>
+            </view>
+
+            <!-- Section Contact -->
+            <view class="contact-footer">
+              
+            
+                <view class="contact-info">
+                    <text>Email : contact@notreplateforme.com</text>
+                    <text>Téléphone : +225 123 456 789</text>
+                    <text>Adresse : Abidjan, Côte d'Ivoire</text>
+                </view>
+            
+                <view class="contact-button" bindtap="goToContact">
+                    Envoyer un message
+                </view>
+            </view>
+
+        </view>
+    </scroll-view>
+</view>

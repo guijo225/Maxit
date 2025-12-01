@@ -2,7 +2,7 @@ import pool from "./baseDonnees.js";
 
 export const Afficher = async (req, res) => {
   try {
-    const id = req.query.id;
+    const id = req.params.id;
     //console.log('l id est :'+id)
     const query =
       "SELECT * FROM tontine, participant WHERE participant.id_utilisateur = $1 AND participant.id_tontine = tontine.id_tontine";
@@ -14,6 +14,14 @@ export const Afficher = async (req, res) => {
     return res.status(500).json({ error: err.message });
   }
 };
+
+setInterval(async () => {
+  try {
+    await pool.query("SELECT 1");
+  } catch (err) {
+    console.error("Keep-alive error:", err);
+  }
+}, 60 * 1000); // toutes les 60s
 
 //Créer une tontine
 export const creerTontine = async (req, res) => {
