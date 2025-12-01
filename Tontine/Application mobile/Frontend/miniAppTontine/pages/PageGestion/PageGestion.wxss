@@ -136,6 +136,14 @@
     width: 65%;
 }
 
+.arrow-image {
+    width: 80rpx;
+    height: 80rpx;
+    position: absolute;
+    right: 20rpx;
+    top: 10rpx;
+}
+
 .banner-image {
     width: 120rpx;
     height: 110rpx;

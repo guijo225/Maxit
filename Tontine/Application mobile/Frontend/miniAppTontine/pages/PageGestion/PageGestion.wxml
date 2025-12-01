@@ -30,8 +30,8 @@
                     <text class="tour-title">Tontine terminée</text>
                 </view>
             </block>
-            <view style="position: absolute; right: 20rpx; bottom: 20rpx; display: flex; align-items: center;">
-                <text bindtap="goToTour" style="color: #FF7900; font-size: 28rpx; font-weight: 500;">voir détails...</text>
+            <view style="position: absolute; right: 0rpx; bottom: 250rpx; display: flex; align-items: center;">
+                <text bindtap="goToTour" ></text><image src="../../images/Ellipse663.svg"style="color: #FF7900; font-size: 28rpx; font-weight: 500;" class="arrow-image" />
                 <!--   <image src="../../images/right-arrow.svg" style="width: 24rpx; height: 24rpx; margin-left: 10rpx; margin-top: 10rpx;" />-->
             </view>
         </view>
