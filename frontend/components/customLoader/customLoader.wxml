@@ -1,0 +1,5 @@
+<view wx:if="{{visible}}" class="loader-mask">
+  <view class="loader-container">
+    <view class="loader-circle"></view>
+  </view>
+</view>

@@ -1,0 +1,8 @@
+{
+    "usingComponents": {
+        "nav" : "/components/nav/nav",
+        "error" : "/components/error/error",
+        "custom-loader": "/components/customLoader/customLoader"
+
+    }
+}
