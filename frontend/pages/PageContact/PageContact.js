@@ -1,4 +1,3 @@
-const API_URL = 'http://192.168.252.43:3000';
 const app = getApp();
 // pages/PageContact/PageContact.js
 Page({
@@ -55,7 +54,7 @@ Page({
         const id_tontine = this.data.tontine;
         console.log(id_tontine)
         wx.request({
-            url: `http://${app.globalData.url_guitto}:3000/send-otp`,
+            url: `${app.globalData.url_node}/send-otp`,
             method: 'POST',
             header: {
                 'Content-Type':'application/json'

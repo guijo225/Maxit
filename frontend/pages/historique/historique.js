@@ -1,4 +1,3 @@
-// pages/Tour/Tour.js
 const app = getApp();
 Page({
 
@@ -46,7 +45,7 @@ Page({
 
     getTour(id_tontine) {
         wx.request({
-            url: `http://${app.globalData.url_backend}:8001/api/tontine/${id_tontine}`,
+            url: `${app.globalData.url_laravel}/api/tontine/${id_tontine}`,
             method: 'GET',
             success: (res) => {
                 const result = res.data;

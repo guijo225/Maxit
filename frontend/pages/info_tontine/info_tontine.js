@@ -11,6 +11,7 @@ Page({
         donnee: {},
         participantList: [],
         showError:'',
+        visible: true,
         errorMessage:''
     },
 
@@ -50,12 +51,13 @@ Page({
 
     getInfoTontine(id_tontine){
         wx.request({
-            url: `http://${app.globalData.url_backend}:8001/api/tontine/${id_tontine}`,
+            url: `${app.globalData.url_laravel}/api/tontine/${id_tontine}`,
             method: 'GET',
             success: (res) => {
                 const result = res.data;
                 this.setData({
-                    result: result
+                    result: result,
+                    visible: false
                 });
                 this.setData({
                     participantList: result.tontine.participant
@@ -66,7 +68,8 @@ Page({
                 console.error('Erreur chargement :', err);
                 this.setData({
                     showError: true,
-                    errorMessage: 'Problème de connexion lors du chargement des informations de la tontine.'
+                    errorMessage: 'Problème de connexion lors du chargement des informations de la tontine.',
+                    visible: false
                 });
             }
         });
@@ -106,28 +109,6 @@ Page({
             })
         }, 300);
     },
-    /*chargePage() {
-        //const id = this.data.tontine.id_tontine
-      wx.request({
-        url:`http://192.168.252.43:8000/api/tontine/14`,
-        method: 'GET',
-        success: (res) => {
-          const result = res.data;
-            console.log(result);
-          this.setData({
-            result
-          });
-        },
-        fail:(err) => {
-          console.error('Erreur chargement membres :', err);
-        }
-      });
-    },
-    chargeParticipant(){
-      wx.request({
-        url: 'http://192.168.252.43:8000/api/tontine/14',
-      })
-    },*/
     onTouchStart(e) {
         this.setData({
             startY: e.touches[0].clientY,
@@ -177,7 +158,7 @@ Page({
 
 
         wx.request({
-            url: `http://${app.globalData.url_backend}:8000/api/update-ordre`,
+            url: `${app.globalData.url_laravel}/api/update-ordre`,
             method: 'POST',
             header: {
                 'content-type': 'application/json'

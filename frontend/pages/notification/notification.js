@@ -29,7 +29,7 @@ Page({
       id_tontine: this.data.donnee.tontine.id_tontine
     }
     wx.request({
-      url: `http://${app.globalData.url_diack}:8000/api/getNotificationsTontine`,
+      url: `${app.globalData.url_laravel}/api/getNotificationsTontine`,
       method: 'POST',
       data: data,
       header: {

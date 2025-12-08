@@ -1,6 +1,7 @@
 <!--index.wxml-->
 <nav></nav>
 <error wx:if="{{showError}}" errorMessage="{{errorMessage}}"></error>
+<custom-loader visible="{{visible}}"></custom-loader>
 <view class="conteneur">
     <block wx:for="{{result}}" wx:key="id">
         <view style="position: relative; top: 15rpx; text-align: center; margin-bottom: 20rpx; font-weight: bolder;">{{item.nom_tontine}}</view>

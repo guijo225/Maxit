@@ -1,6 +1,5 @@
 const app = getApp();
 Page({
-
     data: {
         showModalPaie: false,
         modalVisiblePaie: false,
@@ -71,8 +70,9 @@ Page({
 
         this.refreshInterval = setInterval(() => {
             this.chargeTour(this.data.donnee.tontine.id_tontine);
-        }, 10000); // 10 000 ms = 10 secondes
+        }, 10000); //10 secondes
     },
+    
     onUnload() {
         // Nettoyage pour éviter les fuites de mémoire
         clearInterval(this.refreshInterval);
@@ -115,11 +115,11 @@ Page({
 
     chargeTour(id_tontine) {
         wx.request({
-            url: `http://${app.globalData.url_backend}:8001/api/tour/${id_tontine}`,
+            url: `${app.globalData.url_laravel}/api/tour/${id_tontine}`,
             method: "GET",
             success: (res) => {
                 const info = res.data;
-                console.log(info)
+                // console.log(info)
                 this.setData({
                     info: res.data,
                     loaded: true,
@@ -139,7 +139,7 @@ Page({
                         visible: false
                     })
                 }
-                console.log('les tours sont', info, 'et', this.data.isDisabled);
+                // console.log('les tours sont', info, 'et', this.data.isDisabled);
             },
             fail: (err) => {
                 console.error("Erreur de paiement ", err);
@@ -160,7 +160,8 @@ Page({
         console.log(idUser)
         console.log(idTour)
         wx.request({
-            url: `http://${app.globalData.url_backend}:8000/infos_paiement/id_user/${idUser}/id_tontine/${id}/id_tour/${idTour}`,
+            
+            url: `${app.globalData.url_fastapi}/infos_paiement/id_user/${idUser}/id_tontine/${id}/id_tour/${idTour}`,
             method: "GET",
             success: (res) => {
                 const result = res.data;
@@ -223,7 +224,7 @@ Page({
         // console.log(recipients);
         console.log('Envoi des invitations...', 'info:', id, recipients, nomTontine);
         wx.request({
-            url: `http://${app.globalData.url_backend}:3000/send-otp`,
+            url: `${app.globalData.url_node}/send-otp`,
             method: 'POST',
             header: {
                 'Content-Type': 'application/json'
@@ -293,7 +294,7 @@ Page({
         const id_tour = this.data.info.tour[0].id_tour;
         // console.log(`montant a cotise: ${montant_a_cotise}, id_tour: ${id_tour}, contact: ${contact}, id_participant: ${id_participant}`);
         wx.request({
-            url: `http://${app.globalData.url_backend}:8001/api/insererCotisation`,
+            url: `${app.globalData.url_laravel}/api/insererCotisation`,
             method: "POST",
             header: {
                 'accept': 'application/json',
@@ -582,7 +583,7 @@ Page({
         });
 
         wx.request({
-            url: `http://${app.globalData.url_backend}:3000/first/update`,
+            url: `${app.globalData.url_node}/first/update`,
             method: 'POST',
             data: formDataWithId,
             header: {

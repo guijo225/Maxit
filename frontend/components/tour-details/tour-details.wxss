@@ -1,0 +1,192 @@
+/* components/tour-details/tour-details.wxss */
+
+.tour-details-container {
+    font-family: 'Times New Roman', Times, serif;
+  }
+  
+  /* En-tête */
+  .tour-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
+  
+  .tour-number {
+    font-size: 36rpx;
+    font-weight: bold;
+  }
+  
+  .tour-selector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  /*  padding: 10rpx 20rpx;*/
+  /*  border-radius: 10rpx;*/
+  /*  background-color: rgba(241, 110, 0, 0.1);*/
+    /* box-shadow: 0 3rpx 8rpx rgba(255, 121, 0, 0.8);*/
+    text-align: center;
+  }
+  
+  .select-arrow {
+    margin-left: 10rpx;
+    color: #F16E00;
+    font-size: 24rpx;
+    margin-top: 20%;
+  }
+  
+  /* Carte principale */
+  .card {
+    width: 650rpx;
+    background: #F16E00;
+    border-radius: 20rpx;
+    padding: 30rpx;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 25rpx;
+    box-shadow: 0 8rpx 18rpx rgba(255, 121, 0, 0.5);
+    margin: 0 auto;
+  }
+  
+  .card-header {
+    display: flex;
+    text-align: start;
+  }
+  
+  .card-title {
+    font-size: 32rpx;
+    font-weight: bold;
+    flex: 1;
+    margin-right: 20rpx;
+  }
+  
+  .counter {
+    width: 100rpx;
+    height: 100rpx;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #F16E00;
+    font-size: 28rpx;
+    font-weight: bold;
+    box-shadow: 0 4rpx 10rpx rgba(0, 0, 0, 0.15);
+  }
+  
+  .card-body {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    color: black;
+    border-radius: 15rpx;
+    padding: 10rpx 20rpx;
+    font-size: 30rpx;
+    font-weight: bold;
+    box-shadow: 0 3rpx 8rpx rgba(255, 121, 0, 0.8);
+  }
+  
+  /* Conteneurs de sections */
+  .conteneur {
+    margin: 20rpx 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20rpx;
+  }
+  
+  .title {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #F16E00;
+    font-size: 32rpx;
+  }
+  
+  .scroll-container {
+    background-color: rgba(211, 211, 211, 0.295);
+    border-radius: 10rpx;
+    margin: 10rpx;
+  }
+  
+  .scrollarea {
+    max-height: 320rpx;
+    border-radius: 18rpx;
+    padding: 10rpx;
+    box-sizing: border-box;
+  }
+  
+  /* Liste des participants */
+  .listParticipant {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15rpx 10rpx;
+    border-bottom: 1rpx solid #d9d9d9;
+    font-weight: bold;
+  }
+  
+  .listParticipant1 {
+    display: flex;
+    padding: 5rpx 10rpx 15rpx;
+    font-size: 24rpx;
+    color: #666;
+  }
+  
+  .index-number {
+    font-size: 28rpx;
+    color: #666;
+    width: 60rpx;
+  }
+  
+  .nom {
+    flex: 1;
+    font-size: 28rpx;
+    color: #333;
+  }
+  
+  .montant {
+    font-size: 28rpx;
+    font-weight: bold;
+    color: #F16E00;
+    text-align: end;
+  }
+  
+  .time {
+    font-size: 24rpx;
+    color: #888;
+    margin-left: 10px;
+  }
+  
+  .statut {
+    margin-left: 32%;
+    width: 25%;
+    font-size: 24rpx;
+  }
+  
+  /* Section bénéficiaire */
+  .beneficiaire-section {
+    margin: 20px 10px;
+  }
+  
+  .beneficiaire-card {
+    background-color: rgba(211, 211, 211, 0.295);
+    border-radius: 10rpx;
+    margin: 10rpx;
+    padding: 20rpx;
+  }
+  
+  .beneficiaire-name {
+    font-size: 31rpx;
+    font-weight: bolder;
+    border-bottom: 1rpx solid #d9d9d9;
+    padding-bottom: 10rpx;
+  }
+  
+  .empty {
+    text-align: center;
+    font-size: 28rpx;
+    color: #888;
+    padding: 40rpx 0;
+  }

@@ -32,7 +32,7 @@ Page({
             emptyMessage: 'Aucune tontine en attente'
         },
         {
-            label: 'Terminer',
+            label: 'Terminée(s)',
             value: 'Terminer',
             emptyMessage: 'Aucune tontine terminée'
         },
@@ -121,19 +121,9 @@ Page({
         const encodedData = encodeURIComponent(JSON.stringify(data));
         wx.navigateTo({
             url: `/pages/PageGestion/PageGestion?data=${encodedData}`,
-            // success(res) {
-            //     res.eventChannel.emit('sendDataToDetail', data);
-            // }
         });
     },
 
-    /**
-     * Lifecycle function--Called when page load
-     */ // pages/accueil/accueil.js
-
-    /**
-   * Lifecycle function--Called when page load
-   */ // pages/accueil/accueil.js
     checkUserAndLoadTontine() {
         const App = getApp();
         const waitForUser = setInterval(() => {
@@ -154,39 +144,9 @@ Page({
         this.checkUserAndLoadTontine();
     },
 
-
-    /*login(id) {
-        try {
-            wx.request({
-                url: `http://${app.globalData.url_diack}:8000/api/login/${id}`,
-                method: "GET",
-                success: (res) => {
-                    if (res.data.success && res.data.utilisateur) {
-                        const utilisateur = res.data.utilisateur;
-                        this.setData({
-                            users: utilisateur
-                        });
-                        console.log("Utilisateur ID:", utilisateur.id_utilisateur);
-                        this.getTontine(utilisateur.id_utilisateur)
-                    } else {
-                        wx.redirectTo({
-                            url: '/pages/condition_generale/condition_generale',
-                        });
-                    }
-                }
-            });
-        } catch (error) {
-            console.error("Erreur requête API (login) :", err);
-            this.setData({
-                showError: true,
-                errorMessage: 'Problème lors de la tentative de connexion.'
-            })
-        }
-    },*/
-
     getTontine(id_utilisateur) {
         wx.request({
-            url: `http://${app.globalData.url_backend}:3000/first/afficher/${id_utilisateur}`,
+            url: `${app.globalData.url_node}/first/afficher/${id_utilisateur}`,
             method: "GET",
             success: (res2) => {
                 console.log("Tontines reçues:", res2.data);
@@ -213,38 +173,5 @@ Page({
                 });
             }
         });
-    },
-    /**
-     * Lifecycle function--Called when page is initially rendered
-     */
-    onReady() { },
-
-    /**
-     * Lifecycle function--Called when page show
-     */
-
-    /**
-     * Lifecycle function--Called when page hide
-     */
-    onHide() { },
-
-    /**
-     * Lifecycle function--Called when page unload
-     */
-    onUnload() { },
-
-    /**
-     * Page event handler function--Called when user drop down
-     */
-    onPullDownRefresh() { },
-
-    /**
-     * Called when page reach bottom
-     */
-    onReachBottom() { },
-
-    /**
-     * Called when user click on the top right corner to share
-     */
-    onShareAppMessage() { }
+    }
 });

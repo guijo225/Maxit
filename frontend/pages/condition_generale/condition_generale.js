@@ -8,7 +8,7 @@ Page({
 
   onValider :function(){
     wx.request({
-      url: `http://${app.globalData.url_backend}:8001/api/users/${app.globalData.maxitId}`,
+      url: `${app.globalData.url_laravel}/api/users/${app.globalData.maxitId}`,
       method : "GET",
       success : (res) => {
         const users = res.data
@@ -19,7 +19,7 @@ Page({
 
         
     wx.request({
-        url: `http://${app.globalData.url_backend}:8000/api/inscription`,
+        url: `${app.globalData.url_laravel}/api/inscription`,
         method:"POST",
         data:users,
         success:(res)=>{

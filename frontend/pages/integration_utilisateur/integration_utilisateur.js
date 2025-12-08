@@ -74,7 +74,7 @@ Page({
         }
         console.log("Vérification de l'otp", 'info');
         wx.request({
-          url: `http://${app.globalData.url_backend}:3000/verify-otp`,
+          url: `${app.globalData.url_node}/verify-otp`,
           method: 'POST',
           header: {
               'Content-Type' : 'application/json'

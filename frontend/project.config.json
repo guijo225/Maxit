@@ -1,5 +1,10 @@
 {
     "compileType": "miniprogram",
+    "libVersion": "3.10.0",
+    "packOptions": {
+        "ignore": [],
+        "include": []
+    },
     "setting": {
         "coverView": true,
         "es6": true,
@@ -27,11 +32,8 @@
         "tabIndent": "insertSpaces",
         "tabSize": 4
     },
+    "appid": "wxfb66c2fca55bdfb0",
     "TCMPPappid": "1108100302",
-    "condition": {},
-    "packOptions": {
-        "ignore": [],
-        "include": []
-    },
-    "appid": "wxfb66c2fca55bdfb0"
+    "projectname": "TontineV1",
+    "condition": {}
 }

@@ -2,12 +2,9 @@
 App({
     globalData: {
         maxitId: 2,
-        //url_backend: "192.168.252.186",
-        //url_guitto_laravel: "192.168.252.54:8001",
-        //url_guitto_fastapi: "192.168.252.54:8000",
-       // url_guitto: "192.168.252.54",
-       // url_guitto2: "192.168.252.54",
-        url_backend: "192.168.252.13",
+        url_laravel:"https://api-laravel-qt66.onrender.com",
+        url_node:" https://serveurs-node.onrender.com",
+        url_fastapi:"https://api-paiement.onrender.com",
 
         utilisateur: {}
     },
@@ -19,7 +16,7 @@ App({
     login(id) {
         try {
             wx.request({
-                url: `http://${this.globalData.url_backend}:8001/api/login/${id}`,
+                url: `${this.globalData.url_laravel}/api/login/${id}`,
                 method: "GET",
                 success: (res) => {
                     if (res.data.success && res.data.utilisateur) {

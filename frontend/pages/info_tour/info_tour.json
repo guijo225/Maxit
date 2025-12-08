@@ -3,6 +3,7 @@
         "nav": "/components/nav/nav",
         "error": "/components/error/error",
         "title_bar": "/components/title_bar/title_bar",
-        "custom-loader": "/components/customLoader/customLoader"
+        "custom-loader": "/components/customLoader/customLoader",
+        "tour-details": "/components/tour-details/tour-details"
     }
 }

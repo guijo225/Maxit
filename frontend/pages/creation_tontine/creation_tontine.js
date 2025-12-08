@@ -49,34 +49,10 @@ Page({
     },
 
     onLoad(options) {
-
-        //const userId = app.globalData.maxitId;
-
         this.setData({
             users: app.globalData.utilisateur
         });
 
-        /*wx.request({
-            url: `http://${app.globalData.url_diack}:8000/api/login/${userId}`,
-            method: "GET",
-            success: (res) => {
-                if (res.data.success && res.data.utilisateur) {
-                    const utilisateur = res.data.utilisateur;
-                    this.setData({
-                        users: utilisateur
-                    });
-                    console.log("Utilisateur :", utilisateur);
-
-                } else {
-                    wx.redirectTo({
-                        url: '/pages/condition_generale/condition_generale',
-                    });
-                }
-            },
-            fail: (err) => {
-                console.error("Erreur requête API (login) :", err);
-            }
-        });*/
         this.onRefresh = () => {
             this.setData({
                 showError: false
@@ -223,7 +199,7 @@ Page({
         });
 
         wx.request({
-            url: `http://${app.globalData.url_backend}:3000/first`,
+            url: `${app.globalData.url_node}/first`,
             method: 'POST',
             data: formDataWithId,
             header: {

@@ -1,4 +1,5 @@
 // pages/historique/historique.js
+const app = getApp();
 Page({
 
     /**
@@ -18,7 +19,7 @@ Page({
      */
     onLoad(options) {
         wx.request({
-            url: 'http://192.168.252.236:3000/first/afficher',
+            url: `${app.globalData.url_node}/first/afficher`,
             method : "GET" ,
             success : (res) => {
               console.log(res.data); 

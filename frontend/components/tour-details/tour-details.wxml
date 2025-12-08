@@ -1,0 +1,89 @@
+<!-- components/tour-details/tour-details.wxml -->
+<view class="tour-details-container">
+  <!-- En-tête avec titre dynamique -->
+  <view class="tour-header">
+    <block wx:if="{{mode === 'info'}}">
+      <text class="tour-number">Tour N°{{tourData.numero_tour}}</text>
+    </block>
+    
+    <block wx:if="{{mode === 'historique'}}">
+      <view class="tour-selector" bindtap="onTourSelect">
+        <text class="tour-number">
+          Tour N° {{selectedTour || tourData.numero_tour}}
+        </text>
+        <text wx:if="{{hasMultipleTours}}" class="select-arrow">▼</text>
+      </view>
+    </block>
+  </view>
+
+  <!-- Carte principale -->
+  <view class="card">
+    <view class="card-header">
+      <view class="card-title">
+        Nombre de participants ayant cotisé à ce tour :
+      </view>
+      <view class="counter">
+        <view>{{tourData.cotisation_count}}/{{tourData.total_participants}}</view>
+      </view>
+    </view>
+    
+    <view class="card-body">
+      <text>
+        {{mode === 'info' ? 'Somme collectée' : 'Argent collecté pour ce tour'}} :
+        {{tourData.montant_collecte}} / {{tourData.montant_total}} Fcfa
+      </text>
+    </view>
+  </view>
+
+  <!-- Section Participants -->
+  <view class="conteneur">
+    <block wx:if="{{participantsList.length > 0}}">
+      <text class="title">{{mode === 'info' ? 'Participants à jour' : 'Cotisations réglées'}}</text>
+      <view class="scroll-container">
+        <scroll-view scroll-y class="scrollarea">
+          <block wx:for="{{participantsList}}" wx:key="index">
+            <view class="listParticipant">
+              <view wx:if="{{mode === 'info'}}" class="index-number">{{index + 1}}.</view>
+              <view class="nom">{{item.nom}} {{item.prenoms}}</view>
+              <view class="montant">{{item.montant}} Fcfa</view>
+            </view>
+            <view wx:if="{{mode === 'historique' && item.date}}" class="time">{{item.date}}</view>
+          </block>
+        </scroll-view>
+      </view>
+    </block>
+  </view>
+
+  <!-- Section Pénalités -->
+  <block wx:if="{{penalitesList.length > 0}}">
+    <view class="conteneur">
+      <text class="title">{{mode === 'info' ? 'Pénalités' : 'Participants pénalisés'}}</text>
+      <view class="scroll-container">
+        <scroll-view scroll-y class="scrollarea">
+          <block wx:for="{{penalitesList}}" wx:key="index">
+            <view class="listParticipant">
+              <view class="nom">{{item.nom}} {{item.prenoms}}</view>
+              <view class="montant">{{item.montant}} Fcfa</view>
+            </view>
+            <view wx:if="{{mode === 'historique'}}" class="listParticipant1">
+              <view class="time">{{item.date}}</view>
+              <view class="statut">{{item.statut}}</view>
+            </view>
+          </block>
+        </scroll-view>
+      </view>
+    </view>
+  </block>
+
+  <!-- Section Bénéficiaire -->
+  <view class="beneficiaire-section">
+    <block wx:if="{{beneficiaire}}">
+      <text class="title">{{mode === 'info' ? 'Bénéficiaire du tour' : 'Bénéficiaire de la cagnotte'}}</text>
+      <view class="beneficiaire-card">
+        <view class="beneficiaire-name">
+          {{beneficiaire.nom}} {{beneficiaire.prenoms}}
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
